@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='432.00pt' height='360.00pt' viewBox='0 0 432.00 360.00'>
+<g class='svglite'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+    .svglite g.glyphgroup path {
+      fill: inherit;
+      stroke: none;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw0MzIuMDB8MC4wMHwzNjAuMDA='>
+    <rect x='0.00' y='0.00' width='432.00' height='360.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwzNjAuMDA=)'>
+<rect x='-0.000000000000032' y='0.00' width='432.00' height='360.00' style='stroke-width: 1.07; stroke: #FFFFFF; fill: #FFFFFF;' />
+</g>
+<defs>
+  <clipPath id='cpMTguMDh8MzUzLjgyfDIyLjc4fDM0MS45Mg=='>
+    <rect x='18.08' y='22.78' width='335.74' height='319.14' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMTguMDh8MzUzLjgyfDIyLjc4fDM0MS45Mg==)'>
+<rect x='18.08' y='22.78' width='335.74' height='319.14' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<rect x='18.08' y='22.78' width='335.74' height='319.14' style='stroke-width: 1.07; stroke: #333333;' />
+</g>
+<g clip-path='url(#cpMC4wMHw0MzIuMDB8MC4wMHwzNjAuMDA=)'>
+<text transform='translate(13.05,182.35) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Arimo";' textLength='80.70px' lengthAdjust='spacingAndGlyphs'>WGCNA Module</text>
+<rect x='364.78' y='120.06' width='61.74' height='124.58' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<text x='370.26' y='134.26' style='font-size: 11.00px; font-family: "Arimo";' textLength='50.78px' lengthAdjust='spacingAndGlyphs'>Spearman</text>
+<text x='370.26' y='146.14' style='font-size: 11.00px; font-family: "Arimo";' textLength='15.91px' lengthAdjust='spacingAndGlyphs'>rho</text>
+<image width='17.28' height='86.40' x='370.26' y='152.76' preserveAspectRatio='none' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAEsCAYAAAACUNnVAAAAx0lEQVQ4jZ2QSw7CMAxEn30+7n8HFuyQkKDtsCj9pHZclY2VZJ5nYnN/3OTguGHMJzAc294awTZkFcza3hOufUsyZoPU9AK879jG6glZhnXDo2lfPZqe5ybh/R8cd3qBqzeUl2ztFVKYekDCxzvcn5HCcImy6HeaTjgSTqcIncg6LVfXn6amWVs5G9UwWUcYK86Rt2m/iLqjC6dcu43cWQEJpsscNTehoB4LKlXwUQ0yCnykvUrrCXwAfNBSPnMR/gb8JfCn4AvYkjHOUze3zQAAAABJRU5ErkJggg=='/>
+<polyline points='384.08,239.02 387.54,239.02 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='384.08,217.49 387.54,217.49 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='384.08,195.96 387.54,195.96 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='384.08,174.43 387.54,174.43 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='384.08,152.90 387.54,152.90 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='373.72,239.02 370.26,239.02 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='373.72,217.49 370.26,217.49 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='373.72,195.96 370.26,195.96 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='373.72,174.43 370.26,174.43 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<polyline points='373.72,152.90 370.26,152.90 ' style='stroke-width: 0.38; stroke: #FFFFFF; stroke-linecap: butt;' />
+<text x='393.02' y='242.04' style='font-size: 8.80px; font-family: "Arimo";' textLength='15.14px' lengthAdjust='spacingAndGlyphs'>-1.0</text>
+<text x='393.02' y='220.52' style='font-size: 8.80px; font-family: "Arimo";' textLength='15.14px' lengthAdjust='spacingAndGlyphs'>-0.5</text>
+<text x='393.02' y='198.99' style='font-size: 8.80px; font-family: "Arimo";' textLength='12.22px' lengthAdjust='spacingAndGlyphs'>0.0</text>
+<text x='393.02' y='177.46' style='font-size: 8.80px; font-family: "Arimo";' textLength='12.22px' lengthAdjust='spacingAndGlyphs'>0.5</text>
+<text x='393.02' y='155.93' style='font-size: 8.80px; font-family: "Arimo";' textLength='12.22px' lengthAdjust='spacingAndGlyphs'>1.0</text>
+<text x='18.08' y='14.56' style='font-size: 13.20px; font-family: "Arimo";' textLength='181.20px' lengthAdjust='spacingAndGlyphs'>Leaf: Module-Trait Correlations</text>
+</g>
+</g>
+</svg>

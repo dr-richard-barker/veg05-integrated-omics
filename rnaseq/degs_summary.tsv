@@ -1,0 +1,11 @@
+tissue	contrast	n_total	n_sig	n_up	n_down
+Leaf	flight_vs_ground	19844	757	404	353
+Leaf	red_vs_blue	19844	2645	1508	1137
+Leaf	flt_red_vs_gnd_red	19844	523	260	263
+Leaf	flt_blue_vs_gnd_blue	19844	4716	2523	2193
+Leaf	interaction	19844	3189	1634	1555
+Adv-Root	flight_vs_ground	20875	896	783	113
+Adv-Root	red_vs_blue	20875	206	102	104
+Adv-Root	flt_red_vs_gnd_red	20875	540	480	60
+Adv-Root	flt_blue_vs_gnd_blue	20875	1414	1129	285
+Adv-Root	interaction	20875	6	4	2
