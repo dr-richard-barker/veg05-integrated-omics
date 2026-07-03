@@ -1,0 +1,25 @@
+tissue	module	biology_label	n_GO_terms	top_GO_terms	top_padj
+Leaf	black	Photosynthesis & ribosome	13	photosynthesis; ribosome; photosystem I	4.42e-25
+Leaf	blue	Phosphate starvation / transport	3	DNA-binding transcription factor activity; cellular response to phosphate starvation; transmembrane transport	4.18e-03
+Leaf	brown	Lignin / phenolic metabolism	10	heme binding; endopeptidase inhibitor activity; cation binding	4.03e-02
+Leaf	green	Protein ubiquitination	10	protein ubiquitination; ubiquitin-protein transferase activity; cell surface receptor signaling pathway	2.36e-05
+Leaf	greenyellow	Chitinase / defense	6	chitinase activity; chitin catabolic process; chitin binding	9.91e-04
+Leaf	magenta	Transcription / ethylene	3	regulation of DNA-templated transcription; ethylene-activated signaling pathway; DNA-binding transcription factor activity	1.14e-03
+Leaf	pink	Cell wall / glucan	6	cell wall; xyloglucan:xyloglucosyl transferase activity; glucan metabolic process	4.06e-04
+Leaf	purple	Fe–S cluster / biosynthesis	5	iron-sulfur cluster binding; biosynthetic process	7.95e-04
+Leaf	red	RNA processing	4	RNA binding; protein binding; RNA modification	7.89e-10
+Leaf	tan	Oxidative stress (peroxidase)	7	hydrogen peroxide catabolic process; peroxidase activity; response to oxidative stress	1.78e-03
+Leaf	turquoise	Chromatin / nucleosome	13	nucleosome; structural constituent of chromatin; microtubule binding	7.77e-06
+Adv-Root	black	Nucleus	1	nucleus	3.14e-02
+Adv-Root	blue	RNA processing	7	protein binding; RNA binding; RNA modification	5.22e-26
+Adv-Root	brown	Lipid / GTPase signalling	11	ATP-dependent diacylglycerol kinase activity; phospholipase C-activating G protein-coupled receptor signaling pathway; GTPase activity	1.01e-02
+Adv-Root	cyan	Photosynthesis (light harvesting)	6	photosynthesis, light harvesting; photosynthesis; photosystem I	1.31e-26
+Adv-Root	green	Cell wall biogenesis	7	xyloglucan metabolic process; cell wall; xyloglucan:xyloglucosyl transferase activity	2.31e-02
+Adv-Root	greenyellow	Microtubule / nucleus	7	microtubule binding; ATP binding; nucleus	1.69e-02
+Adv-Root	lightcyan	Protein phosphorylation	3	protein phosphorylation; protein kinase activity; ATP binding	4.85e-06
+Adv-Root	magenta	Terpenoid biosynthesis	9	acyltransferase activity; terpene synthase activity; terpenoid biosynthetic process	3.69e-03
+Adv-Root	midnightblue	Membrane transport	3	transmembrane transporter activity; transmembrane transport; membrane	7.11e-03
+Adv-Root	pink	Transcription / ubiquitination	7	DNA-binding transcription factor activity; ubiquitin protein ligase activity; protein ubiquitination	4.00e-03
+Adv-Root	purple	Cellulose biosynthesis	3	cellulose synthase (UDP-forming) activity; cellulose biosynthetic process; O-acetyltransferase activity	3.65e-03
+Adv-Root	salmon	Cell cycle / mitosis	6	cyclin-dependent protein serine/threonine kinase regulator activity; mitotic cell cycle phase transition; microtubule	1.04e-07
+Adv-Root	turquoise	Oxidative stress (peroxidase)	26	peroxidase activity; hydrogen peroxide catabolic process; heme binding	4.22e-09

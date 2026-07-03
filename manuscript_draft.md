@@ -86,6 +86,39 @@ In adventitious roots, WGCNA identified 17 modules (power=18). The key finding w
 
 GO enrichment analysis of all modules revealed biologically coherent functional signatures. In leaves, the black module was enriched for photosynthesis and photosystem genes (p.adj=4.4×10⁻²⁵), while the red module was enriched for RNA binding and protein binding. In adventitious roots, the turquoise module (the largest, n=1,768) was enriched for oxidative stress response (peroxidase activity, p.adj=4.2×10⁻⁹; hydrogen peroxide catabolism, p.adj=1.1×10⁻⁸; glutathione transferase activity, p.adj=3.9×10⁻⁷), consistent with spaceflight-induced oxidative stress.
 
+### Module functional annotation (GO)
+
+To make the WGCNA module colours interpretable, each module was annotated with its dominant biology from per-module Gene Ontology enrichment (Table 1). These human-readable labels are shown alongside the module colours on the axes of Figs 4 and 6. Modules with no significant enrichment are marked accordingly.
+
+**Table 1. GO-based functional annotation of WGCNA modules.**
+
+| Tissue | Module | GO biology (dominant) | Representative GO terms |
+|---|---|---|---|
+| Adv-Root | black | Nucleus | nucleus |
+| Adv-Root | blue | RNA processing | protein binding; RNA binding; RNA modification |
+| Adv-Root | brown | Lipid / GTPase signalling | ATP-dependent diacylglycerol kinase activity; phospholipase C-activati... |
+| Adv-Root | cyan | Photosynthesis (light harvesting) | photosynthesis, light harvesting; photosynthesis; photosystem I |
+| Adv-Root | green | Cell wall biogenesis | xyloglucan metabolic process; cell wall; xyloglucan:xyloglucosyl trans... |
+| Adv-Root | greenyellow | Microtubule / nucleus | microtubule binding; ATP binding; nucleus |
+| Adv-Root | lightcyan | Protein phosphorylation | protein phosphorylation; protein kinase activity; ATP binding |
+| Adv-Root | magenta | Terpenoid biosynthesis | acyltransferase activity; terpene synthase activity; terpenoid biosynt... |
+| Adv-Root | midnightblue | Membrane transport | transmembrane transporter activity; transmembrane transport; membrane |
+| Adv-Root | pink | Transcription / ubiquitination | DNA-binding transcription factor activity; ubiquitin protein ligase ac... |
+| Adv-Root | purple | Cellulose biosynthesis | cellulose synthase (UDP-forming) activity; cellulose biosynthetic proc... |
+| Adv-Root | salmon | Cell cycle / mitosis | cyclin-dependent protein serine/threonine kinase regulator activity; m... |
+| Adv-Root | turquoise | Oxidative stress (peroxidase) | peroxidase activity; hydrogen peroxide catabolic process; heme binding |
+| Leaf | black | Photosynthesis & ribosome | photosynthesis; ribosome; photosystem I |
+| Leaf | blue | Phosphate starvation / transport | DNA-binding transcription factor activity; cellular response to phosph... |
+| Leaf | brown | Lignin / phenolic metabolism | heme binding; endopeptidase inhibitor activity; cation binding |
+| Leaf | green | Protein ubiquitination | protein ubiquitination; ubiquitin-protein transferase activity; cell s... |
+| Leaf | greenyellow | Chitinase / defense | chitinase activity; chitin catabolic process; chitin binding |
+| Leaf | magenta | Transcription / ethylene | regulation of DNA-templated transcription; ethylene-activated signalin... |
+| Leaf | pink | Cell wall / glucan | cell wall; xyloglucan:xyloglucosyl transferase activity; glucan metabo... |
+| Leaf | purple | Fe–S cluster / biosynthesis | iron-sulfur cluster binding; biosynthetic process |
+| Leaf | red | RNA processing | RNA binding; protein binding; RNA modification |
+| Leaf | tan | Oxidative stress (peroxidase) | hydrogen peroxide catabolic process; peroxidase activity; response to ... |
+| Leaf | turquoise | Chromatin / nucleosome | nucleosome; structural constituent of chromatin; microtubule binding |
+
 ### MOFA+ confirms dominant flight factor and cross-omics coordination
 
 MOFA+ integration of 21 matched leaf samples across three omics views (transcriptome: 2,000 genes; 16S: 348 ASVs; ITS: 77 ASVs) identified 5 factors. Factor 1 was the dominant signal, explaining 48.0% of transcriptome variance, 12.0% of 16S variance, and 3.0% of ITS variance. Factor 1 was significantly correlated with flight status (Spearman ρ=−0.76, padj=0.001), confirming that spaceflight is the primary axis of coordinated variation across omics layers.

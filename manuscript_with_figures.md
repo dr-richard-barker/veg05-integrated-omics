@@ -115,12 +115,45 @@ GO enrichment analysis of all modules revealed biologically coherent functional 
 
 ![Figure 4 (Leaf)](figures/fig4_module_traits_Leaf.png)
 
-***Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis).*
+***Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis). Each module is labelled with its dominant GO biology (Table 1); cells show Spearman rho with significance stars.*
 
 ![Figure 4 (Adv-Root)](figures/fig4_module_traits_AdvRoot.png)
 
-***Figure 4 (Adv-Root).** Module–trait correlations; the black module tracks ITS dysbiosis (r=−0.85) but not flight.*
+***Figure 4 (Adv-Root).** Module–trait correlations with GO-biology labels (Table 1). The black (nucleus) module tracks ITS dysbiosis (r=−0.85) but not flight; the turquoise (oxidative-stress/peroxidase) module is the largest flight-correlated module.*
 
+
+### Module functional annotation (GO)
+
+To make the WGCNA module colours interpretable, each module was annotated with its dominant biology from per-module Gene Ontology enrichment (Table 1). These human-readable labels are shown alongside the module colours on the axes of Figs 4 and 6. Modules with no significant enrichment are marked accordingly.
+
+**Table 1. GO-based functional annotation of WGCNA modules.**
+
+| Tissue | Module | GO biology (dominant) | Representative GO terms |
+|---|---|---|---|
+| Adv-Root | black | Nucleus | nucleus |
+| Adv-Root | blue | RNA processing | protein binding; RNA binding; RNA modification |
+| Adv-Root | brown | Lipid / GTPase signalling | ATP-dependent diacylglycerol kinase activity; phospholipase C-activati... |
+| Adv-Root | cyan | Photosynthesis (light harvesting) | photosynthesis, light harvesting; photosynthesis; photosystem I |
+| Adv-Root | green | Cell wall biogenesis | xyloglucan metabolic process; cell wall; xyloglucan:xyloglucosyl trans... |
+| Adv-Root | greenyellow | Microtubule / nucleus | microtubule binding; ATP binding; nucleus |
+| Adv-Root | lightcyan | Protein phosphorylation | protein phosphorylation; protein kinase activity; ATP binding |
+| Adv-Root | magenta | Terpenoid biosynthesis | acyltransferase activity; terpene synthase activity; terpenoid biosynt... |
+| Adv-Root | midnightblue | Membrane transport | transmembrane transporter activity; transmembrane transport; membrane |
+| Adv-Root | pink | Transcription / ubiquitination | DNA-binding transcription factor activity; ubiquitin protein ligase ac... |
+| Adv-Root | purple | Cellulose biosynthesis | cellulose synthase (UDP-forming) activity; cellulose biosynthetic proc... |
+| Adv-Root | salmon | Cell cycle / mitosis | cyclin-dependent protein serine/threonine kinase regulator activity; m... |
+| Adv-Root | turquoise | Oxidative stress (peroxidase) | peroxidase activity; hydrogen peroxide catabolic process; heme binding |
+| Leaf | black | Photosynthesis & ribosome | photosynthesis; ribosome; photosystem I |
+| Leaf | blue | Phosphate starvation / transport | DNA-binding transcription factor activity; cellular response to phosph... |
+| Leaf | brown | Lignin / phenolic metabolism | heme binding; endopeptidase inhibitor activity; cation binding |
+| Leaf | green | Protein ubiquitination | protein ubiquitination; ubiquitin-protein transferase activity; cell s... |
+| Leaf | greenyellow | Chitinase / defense | chitinase activity; chitin catabolic process; chitin binding |
+| Leaf | magenta | Transcription / ethylene | regulation of DNA-templated transcription; ethylene-activated signalin... |
+| Leaf | pink | Cell wall / glucan | cell wall; xyloglucan:xyloglucosyl transferase activity; glucan metabo... |
+| Leaf | purple | Fe–S cluster / biosynthesis | iron-sulfur cluster binding; biosynthetic process |
+| Leaf | red | RNA processing | RNA binding; protein binding; RNA modification |
+| Leaf | tan | Oxidative stress (peroxidase) | hydrogen peroxide catabolic process; peroxidase activity; response to ... |
+| Leaf | turquoise | Chromatin / nucleosome | nucleosome; structural constituent of chromatin; microtubule binding |
 
 ### MOFA+ confirms dominant flight factor and cross-omics coordination
 
@@ -143,7 +176,7 @@ Bipartite correlation networks identified 29 significant module-taxon relationsh
 
 ![Figure 6](figures/fig6_module_taxon_network.png)
 
-***Figure 6.** Bipartite module–taxon network linking flight-associated modules to Methylobacterium, Burkholderia, Azospirillum.*
+***Figure 6.** Significant leaf module–taxon correlations (BH padj<0.05); modules carry their GO-biology labels (Table 1). The flight-associated turquoise (chromatin/nucleosome) module positively tracks Methylobacterium, Burkholderia and Azospirillum, while the blue (phosphate-starvation) module shows the inverse.*
 
 
 ### Functional prediction reveals nitrogen cycling and methanotrophy
@@ -190,11 +223,11 @@ Several limitations should be noted. First, sample sizes are small (n=21 leaf, n
 - **Figure 3.** DEG summary across tissue × contrast; the leaf blue-light flight response (4,716 DEGs) dwarfs red (523).
 - **Figure 3B.** Leaf Flight-vs-Ground volcano.
 - **Figure 3C.** Adventitious-root Flight-vs-Ground volcano (predominantly upregulation).
-- **Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis).
-- **Figure 4 (Adv-Root).** Module–trait correlations; the black module tracks ITS dysbiosis (r=−0.85) but not flight.
+- **Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis). Each module is labelled with its dominant GO biology (Table 1); cells show Spearman rho with significance stars.
+- **Figure 4 (Adv-Root).** Module–trait correlations with GO-biology labels (Table 1). The black (nucleus) module tracks ITS dysbiosis (r=−0.85) but not flight; the turquoise (oxidative-stress/peroxidase) module is the largest flight-correlated module.
 - **Figure 5A.** MOFA+ variance explained per factor per view (transcriptome, 16S, ITS).
 - **Figure 5B.** MOFA+ factor–trait correlations; Factor 1 captures flight (ρ=−0.76).
-- **Figure 6.** Bipartite module–taxon network linking flight-associated modules to Methylobacterium, Burkholderia, Azospirillum.
+- **Figure 6.** Significant leaf module–taxon correlations (BH padj<0.05); modules carry their GO-biology labels (Table 1). The flight-associated turquoise (chromatin/nucleosome) module positively tracks Methylobacterium, Burkholderia and Azospirillum, while the blue (phosphate-starvation) module shows the inverse.
 - **Figure 7.** FAPROTAX predicted bacterial functions (aerobic chemoheterotrophy, N fixation, methanotrophy, methanol oxidation).
 
 ---

@@ -28,15 +28,15 @@ FIGS = [
         ("figures/fig3c_volcano_advroot_flight.png", "**Figure 3C.** Adventitious-root Flight-vs-Ground volcano (predominantly upregulation).")]),
     ("consistent with spaceflight-induced oxidative stress.", [
         ("figures/fig4_module_traits_Leaf.png",
-         "**Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis)."),
+         "**Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis). Each module is labelled with its dominant GO biology (Table 1); cells show Spearman rho with significance stars."),
         ("figures/fig4_module_traits_AdvRoot.png",
-         "**Figure 4 (Adv-Root).** Module–trait correlations; the black module tracks ITS dysbiosis (r=−0.85) but not flight.")]),
+         "**Figure 4 (Adv-Root).** Module–trait correlations with GO-biology labels (Table 1). The black (nucleus) module tracks ITS dysbiosis (r=−0.85) but not flight; the turquoise (oxidative-stress/peroxidase) module is the largest flight-correlated module.")]),
     ("microbial features were consistently present in the top weights.", [
         ("figures/fig5a_mofa_variance.png", "**Figure 5A.** MOFA+ variance explained per factor per view (transcriptome, 16S, ITS)."),
         ("figures/fig5b_mofa_correlations.png", "**Figure 5B.** MOFA+ factor–trait correlations; Factor 1 captures flight (ρ=−0.76).")]),
     ("*Paenibacillus* (ρ=−0.77, padj=0.003).", [
         ("figures/fig6_module_taxon_network.png",
-         "**Figure 6.** Bipartite module–taxon network linking flight-associated modules to Methylobacterium, Burkholderia, Azospirillum.")]),
+         "**Figure 6.** Significant leaf module–taxon correlations (BH padj<0.05); modules carry their GO-biology labels (Table 1). The flight-associated turquoise (chromatin/nucleosome) module positively tracks Methylobacterium, Burkholderia and Azospirillum, while the blue (phosphate-starvation) module shows the inverse.")]),
     ("as the main ecological guilds.", [
         ("figures/fig7_faprotax.png",
          "**Figure 7.** FAPROTAX predicted bacterial functions (aerobic chemoheterotrophy, N fixation, methanotrophy, methanol oxidation).")]),
@@ -85,9 +85,35 @@ def add_runs(par, text):
         else:
             par.add_run(tok)
 
-for line in md.splitlines():
-    t = line.rstrip()
+def is_sep(row):
+    return bool(row.strip()) and set(row.replace('|', '').strip()) <= set('-: ')
+
+lines = md.splitlines()
+i = 0
+while i < len(lines):
+    t = lines[i].rstrip()
     if not t.strip():
+        i += 1; continue
+    # --- markdown pipe table ---
+    if t.lstrip().startswith('|') and i + 1 < len(lines) and is_sep(lines[i + 1]):
+        block = []
+        while i < len(lines) and lines[i].lstrip().startswith('|'):
+            block.append(lines[i]); i += 1
+        rows_ = [[c.strip() for c in r.strip().strip('|').split('|')] for r in block if not is_sep(r)]
+        if rows_:
+            ncol = max(len(r) for r in rows_)
+            tbl = doc.add_table(rows=len(rows_), cols=ncol)
+            try:
+                tbl.style = 'Table Grid'
+            except Exception:
+                pass
+            for ri, rr in enumerate(rows_):
+                for ci in range(ncol):
+                    cell = tbl.cell(ri, ci); cell.text = ''
+                    run = cell.paragraphs[0].add_run((rr[ci] if ci < len(rr) else '').replace('**', ''))
+                    run.font.size = Pt(8)
+                    if ri == 0:
+                        run.bold = True
         continue
     mi = IMG.match(t)
     if mi:
@@ -97,7 +123,7 @@ for line in md.splitlines():
             width = Inches(6.3 if h / w <= 1.15 else min(6.3, 8.2 * w / h))
             par = doc.add_paragraph(); par.alignment = WD_ALIGN_PARAGRAPH.CENTER
             par.add_run().add_picture(p, width=width)
-        continue
+        i += 1; continue
     if t.startswith('# '):
         add_runs(doc.add_heading(level=0), t[2:])
     elif t.startswith('### '):
@@ -105,7 +131,7 @@ for line in md.splitlines():
     elif t.startswith('## '):
         add_runs(doc.add_heading(level=1), t[3:])
     elif t == '---':
-        continue
+        i += 1; continue
     elif t.startswith('- '):
         add_runs(doc.add_paragraph(style='List Bullet'), t[2:])
     else:
@@ -114,6 +140,7 @@ for line in md.splitlines():
             r = par.add_run(t.strip('*')); r.italic = True; r.font.size = Pt(9.5)
         else:
             add_runs(par, t)
+    i += 1
 
 z = doc.settings.element.find(qn('w:zoom'))
 if z is not None and z.get(qn('w:percent')) is None:
