@@ -56,7 +56,7 @@ Bacterial functional profiles were predicted using FAPROTAX v1.2 [19] with a cus
 
 ### Data and code availability
 
-All analysis code is available at [GitHub repository URL]. Raw data are available from NASA OSDR (OSD-766, OSD-767).
+All analysis code is available at https://github.com/dr-richard-barker/veg05-integrated-omics. Raw data are available from NASA OSDR (OSD-766, OSD-767).
 
 ---
 
@@ -88,9 +88,9 @@ ALDEx2 identified few taxa with significant differential abundance under the con
 
 ### Spaceflight transcriptional response is light-dependent
 
-DESeq2 analysis revealed a pronounced interaction between spaceflight and light quality (Table S2). In leaves, the main flight effect comprised 757 DEGs (404 up, 353 down), but the flight effect under blue light was nearly 9-fold larger (4,716 DEGs) than under red light (523 DEGs). The formal interaction term identified 3,189 DEGs, confirming that the transcriptional response to spaceflight is strongly modulated by light quality.
+DESeq2 analysis revealed a pronounced interaction between spaceflight and light quality (Table S2). In leaves, the main flight effect comprised 757 DEGs (404 up, 353 down; Fig. 3B), but the flight effect under blue light was nearly 9-fold larger (4,716 DEGs) than under red light (523 DEGs) (Fig. 3). The formal interaction term identified 3,189 DEGs, confirming that the transcriptional response to spaceflight is strongly modulated by light quality.
 
-In adventitious roots, the flight response was predominantly upregulation (896 DEGs: 783 up, 113 down, 87% upregulated), suggesting activation of stress response pathways. The interaction was minimal (6 DEGs after shrinkage), indicating that the root transcriptional response to spaceflight is less light-dependent than the leaf response.
+In adventitious roots, the flight response was predominantly upregulation (896 DEGs: 783 up, 113 down, 87% upregulated; Fig. 3C), suggesting activation of stress response pathways. The interaction was minimal (6 DEGs after shrinkage), indicating that the root transcriptional response to spaceflight is less light-dependent than the leaf response.
 
 ![Figure 3](figures/fig3_deg_summary.png)
 
@@ -107,7 +107,7 @@ In adventitious roots, the flight response was predominantly upregulation (896 D
 
 ### WGCNA identifies a microbe-driven host transcriptional module
 
-WGCNA of the leaf transcriptome identified 13 modules (power=20), with the turquoise module (n=2,037 genes) showing the strongest flight correlation (r=+0.73, padj=0.001) and the blue module (n=1,012) showing the strongest anti-correlation (r=−0.79, padj=3×10⁻⁴). Four leaf modules were classified as co-regulated (correlated with both flight and dysbiosis), reflecting the intertwined nature of environmental and microbial signals.
+WGCNA of the leaf transcriptome identified 13 modules (power=20; Fig. 4), with the turquoise module (n=2,037 genes) showing the strongest flight correlation (r=+0.73, padj=0.001) and the blue module (n=1,012) showing the strongest anti-correlation (r=−0.79, padj=3×10⁻⁴). Four leaf modules were classified as co-regulated (correlated with both flight and dysbiosis), reflecting the intertwined nature of environmental and microbial signals.
 
 In adventitious roots, WGCNA identified 17 modules (power=18). The key finding was the black module (n=169 genes), which was strongly correlated with ITS dysbiosis (r=−0.85, padj=0.001) but not with flight status (r=−0.38, p=0.32). This module was classified as microbe-driven, representing a host transcriptional response to fungal community changes that is independent of the direct spaceflight stimulus. GO enrichment of the black module itself was limited — its only significantly enriched term was the cellular component "nucleus" — so it is defined here by its microbe-driven trait association rather than by a specific enriched process; the adventitious-root oxidative-stress program was instead concentrated in the larger turquoise module (see below).
 
@@ -157,7 +157,7 @@ To make the WGCNA module colours interpretable, each module was annotated with i
 
 ### MOFA+ confirms dominant flight factor and cross-omics coordination
 
-MOFA+ integration of 21 matched leaf samples across three omics views (transcriptome: 2,000 genes; 16S: 348 ASVs; ITS: 77 ASVs) identified 5 factors. Factor 1 was the dominant signal, explaining 48.0% of transcriptome variance, 12.0% of 16S variance, and 3.0% of ITS variance. Factor 1 was significantly correlated with flight status (Spearman ρ=−0.76, padj=0.001), confirming that spaceflight is the primary axis of coordinated variation across omics layers.
+MOFA+ integration of 21 matched leaf samples across three omics views (transcriptome: 2,000 genes; 16S: 348 ASVs; ITS: 77 ASVs) identified 5 factors. Factor 1 was the dominant signal, explaining 48.0% of transcriptome variance, 12.0% of 16S variance, and 3.0% of ITS variance (Fig. 5A). Factor 1 was significantly correlated with flight status (Spearman ρ=−0.76, padj=0.001; Fig. 5B), confirming that spaceflight is the primary axis of coordinated variation across omics layers.
 
 Factor 2 showed a trend toward correlation with 16S dysbiosis (ρ=−0.52, p=0.018, padj=0.089), while Factor 3 trended with both light treatment (ρ=0.52) and ITS dysbiosis (ρ=0.50). The transcriptome contributed the highest-weighted features to all factors, reflecting its greater dimensionality, but microbial features were consistently present in the top weights.
 
@@ -172,7 +172,7 @@ Factor 2 showed a trend toward correlation with 16S dysbiosis (ρ=−0.52, p=0.0
 
 ### Module-taxon correlations link host modules to specific bacteria
 
-Bipartite correlation networks identified 29 significant module-taxon relationships (BH padj < 0.05), predominantly in leaf 16S (28 of 29). The flight-associated turquoise module positively correlated with *Methylobacterium-Methylorubrum* (ρ=+0.76, padj=0.001), *Burkholderia-Caballeronia-Paraburkholderia* (ρ=+0.74, padj=0.003), and *Azospirillum* (ρ=+0.68, padj=0.012) — all genera associated with plant growth promotion and nitrogen fixation. The anti-correlated blue module showed the inverse pattern with these same taxa. The brown module correlated negatively with *Pantoea* (ρ=−0.79, padj=0.003) and *Paenibacillus* (ρ=−0.77, padj=0.003).
+Bipartite correlation networks identified 29 significant module-taxon relationships (BH padj < 0.05), predominantly in leaf 16S (28 of 29; Fig. 6). The flight-associated turquoise module positively correlated with *Methylobacterium-Methylorubrum* (ρ=+0.76, padj=0.001), *Burkholderia-Caballeronia-Paraburkholderia* (ρ=+0.74, padj=0.003), and *Azospirillum* (ρ=+0.68, padj=0.012) — all genera associated with plant growth promotion and nitrogen fixation. The anti-correlated blue module showed the inverse pattern with these same taxa. The brown module correlated negatively with *Pantoea* (ρ=−0.79, padj=0.003) and *Paenibacillus* (ρ=−0.77, padj=0.003).
 
 ![Figure 6](figures/fig6_module_taxon_network.png)
 
@@ -181,7 +181,7 @@ Bipartite correlation networks identified 29 significant module-taxon relationsh
 
 ### Functional prediction reveals nitrogen cycling and methanotrophy
 
-FAPROTAX assigned 239 of 348 bacterial ASVs to 29 functional categories. The dominant predicted functions were aerobic chemoheterotrophy (787,792 reads, 185 taxa), nitrogen fixation (164,614 reads, 12 taxa), methanotrophy (96,514 reads, 15 taxa), and methanol oxidation (96,687 reads, 15 taxa). The methanotrophy and methanol oxidation functions were primarily associated with *Methylobacterium-Methylorubrum*, the same genus showing the strongest positive correlation with the flight-associated WGCNA module.
+FAPROTAX assigned 239 of 348 bacterial ASVs to 29 functional categories. The dominant predicted functions were aerobic chemoheterotrophy (787,792 reads, 185 taxa), nitrogen fixation (164,614 reads, 12 taxa), methanotrophy (96,514 reads, 15 taxa), and methanol oxidation (96,687 reads, 15 taxa) (Fig. 7). The methanotrophy and methanol oxidation functions were primarily associated with *Methylobacterium-Methylorubrum*, the same genus showing the strongest positive correlation with the flight-associated WGCNA module.
 
 Fungal guild assignment (manual genus-level classification) identified saprotrophs (11 ASVs, dominated by *Penicillium* and *Aspergillus*) and plant pathogens (2 ASVs: *Fusarium* spp.) as the main ecological guilds.
 

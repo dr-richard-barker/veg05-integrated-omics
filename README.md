@@ -100,4 +100,5 @@ MIT License. See LICENSE file for details.
 
 If using this code or data, please cite:
 - NASA OSDR: OSD-766, OSD-767
-- This repository: [DOI upon Zenodo deposition]
+- This repository: DOI via Zenodo — badge pre-wired to repo id 1287757020; activates on Zenodo link + release:
+  [![DOI](https://zenodo.org/badge/1287757020.svg)](https://zenodo.org/badge/latestdoi/1287757020)
