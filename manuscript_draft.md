@@ -16,7 +16,7 @@ Plant-associated microbiomes play critical roles in nutrient acquisition, pathog
 
 Spaceflight has been shown to alter microbial community composition, gene expression, and virulence in pure culture systems [4,5]. However, the coordinated response of host plants and their associated microbiomes to the spaceflight environment remains largely unexplored. Multi-omics integration approaches such as MOFA+ (Multi-Omics Factor Analysis) [6] and WGCNA (Weighted Gene Co-expression Network Analysis) [7] offer powerful frameworks for identifying coordinated variation across biological layers, but have not been applied to spaceflight plant-microbiome studies.
 
-Here we present an integrated analysis of the VEG-05 tomato microbiome (16S rRNA and ITS amplicon sequencing, OSD-766) and host transcriptome (RNA-seq, OSD-767). We characterize community health through diversity metrics and a dysbiosis index, identify co-expression modules associated with microbial changes, and infer the directionality of host-microbe interactions using a framework that distinguishes host-driven, microbe-driven, and co-regulated responses.
+Here we present an integrated analysis of the VEG-05 tomato microbiome (16S rRNA and ITS amplicon sequencing, OSD-766) and host transcriptome (RNA-seq, OSD-767) (Fig. 1). We characterize community health through diversity metrics and a dysbiosis index, identify co-expression modules associated with microbial changes, and infer the directionality of host-microbe interactions using a framework that distinguishes host-driven, microbe-driven, and co-regulated responses.
 
 ---
 
@@ -32,7 +32,7 @@ Raw sequencing data and metadata were obtained from NASA's Open Science Data Rep
 
 ### Differential expression analysis
 
-RNA-seq count matrices were analyzed with DESeq2 [12] separately for leaf (21 samples) and adventitious root (15 samples). The design model included flight status, light treatment, and their interaction. Log-fold changes were shrunk with apeglm [13] for main effects and ashr [14] for subset contrasts. DEGs were defined as padj < 0.05 and |log2FC| ≥ 1.
+RNA-seq count matrices were analyzed with DESeq2 [12] separately for leaf (21 samples) and adventitious root (15 samples; Table S1). The design model included flight status, light treatment, and their interaction. Log-fold changes were shrunk with apeglm [13] for main effects and ashr [14] for subset contrasts. DEGs were defined as padj < 0.05 and |log2FC| ≥ 1.
 
 ### Community health metrics
 
@@ -66,7 +66,7 @@ All analysis code is available at https://github.com/dr-richard-barker/veg05-int
 
 DADA2 processing of 16S rRNA reads yielded 544 ASVs from 142 samples (3,558,814 non-chimeric reads, 89.8% retention). After removing chloroplast (38.9% of reads) and mitochondrial (21.5%) sequences, 348 bacterial ASVs remained. ITS processing yielded 77 fungal ASVs from 141 samples (160,316 reads, 15.8% retention).
 
-Spaceflight significantly altered leaf bacterial community composition (PERMANOVA: R²=0.42, F=4.02, p=0.001, n=21) and adventitious root communities (R²=0.33, F=2.93, p=0.001, n=15). In leaves, bacterial alpha diversity was higher in flight samples: Observed ASVs ranged from 17.8–25.8 in flight versus 10.0–15.2 in ground controls (Fig. 2A). The Shannon index showed a similar pattern, with flight blue-light samples reaching 2.18 versus 0.80 in ground blue-light controls.
+Spaceflight significantly altered leaf bacterial community composition (PERMANOVA: R²=0.42, F=4.02, p=0.001, n=21) and adventitious root communities (R²=0.33, F=2.93, p=0.001, n=15; Table S4). In leaves, bacterial alpha diversity was higher in flight samples: Observed ASVs ranged from 17.8–25.8 in flight versus 10.0–15.2 in ground controls (Fig. 2A; Table S3). The Shannon index showed a similar pattern, with flight blue-light samples reaching 2.18 versus 0.80 in ground blue-light controls.
 
 The dysbiosis index quantified community displacement relative to ground controls. Leaf bacterial communities showed a 2.06-fold increase in dysbiosis during flight (2.06 ± 0.99 vs. 1.00 ± 0.47, Fig. 2B). Fungal communities showed even greater displacement (ITS leaf: 3.64 ± 2.78 vs. 1.00 ± 0.24), though the PERMANOVA was marginally significant (R²=0.45, p=0.054). Adventitious root fungal communities were significantly reshaped (R²=0.65, F=8.19, p=0.001).
 
@@ -80,11 +80,11 @@ In adventitious roots, the flight response was predominantly upregulation (896 D
 
 ### WGCNA identifies a microbe-driven host transcriptional module
 
-WGCNA of the leaf transcriptome identified 13 modules (power=20; Fig. 4), with the turquoise module (n=2,037 genes) showing the strongest flight correlation (r=+0.73, padj=0.001) and the blue module (n=1,012) showing the strongest anti-correlation (r=−0.79, padj=3×10⁻⁴). Four leaf modules were classified as co-regulated (correlated with both flight and dysbiosis), reflecting the intertwined nature of environmental and microbial signals.
+WGCNA of the leaf transcriptome identified 13 modules (power=20; Fig. 4), with the turquoise module (n=2,037 genes) showing the strongest flight correlation (r=+0.73, padj=0.001) and the blue module (n=1,012) showing the strongest anti-correlation (r=−0.79, padj=3×10⁻⁴). Four leaf modules were classified as co-regulated (correlated with both flight and dysbiosis), reflecting the intertwined nature of environmental and microbial signals (Table S5).
 
 In adventitious roots, WGCNA identified 17 modules (power=18). The key finding was the black module (n=169 genes), which was strongly correlated with ITS dysbiosis (r=−0.85, padj=0.001) but not with flight status (r=−0.38, p=0.32). This module was classified as microbe-driven, representing a host transcriptional response to fungal community changes that is independent of the direct spaceflight stimulus. GO enrichment of the black module itself was limited — its only significantly enriched term was the cellular component "nucleus" — so it is defined here by its microbe-driven trait association rather than by a specific enriched process; the adventitious-root oxidative-stress program was instead concentrated in the larger turquoise module (see below).
 
-GO enrichment analysis of all modules revealed biologically coherent functional signatures. In leaves, the black module was enriched for photosynthesis and photosystem genes (p.adj=4.4×10⁻²⁵), while the red module was enriched for RNA binding and protein binding. In adventitious roots, the turquoise module (the largest, n=1,768) was enriched for oxidative stress response (peroxidase activity, p.adj=4.2×10⁻⁹; hydrogen peroxide catabolism, p.adj=1.1×10⁻⁸; glutathione transferase activity, p.adj=3.9×10⁻⁷), consistent with spaceflight-induced oxidative stress.
+GO enrichment analysis of all modules revealed biologically coherent functional signatures (full results in Table S10). In leaves, the black module was enriched for photosynthesis and photosystem genes (p.adj=4.4×10⁻²⁵), while the red module was enriched for RNA binding and protein binding. In adventitious roots, the turquoise module (the largest, n=1,768) was enriched for oxidative stress response (peroxidase activity, p.adj=4.2×10⁻⁹; hydrogen peroxide catabolism, p.adj=1.1×10⁻⁸; glutathione transferase activity, p.adj=3.9×10⁻⁷), consistent with spaceflight-induced oxidative stress.
 
 ### Module functional annotation (GO)
 
@@ -123,17 +123,17 @@ To make the WGCNA module colours interpretable, each module was annotated with i
 
 MOFA+ integration of 21 matched leaf samples across three omics views (transcriptome: 2,000 genes; 16S: 348 ASVs; ITS: 77 ASVs) identified 5 factors. Factor 1 was the dominant signal, explaining 48.0% of transcriptome variance, 12.0% of 16S variance, and 3.0% of ITS variance (Fig. 5A). Factor 1 was significantly correlated with flight status (Spearman ρ=−0.76, padj=0.001; Fig. 5B), confirming that spaceflight is the primary axis of coordinated variation across omics layers.
 
-Factor 2 showed a trend toward correlation with 16S dysbiosis (ρ=−0.52, p=0.018, padj=0.089), while Factor 3 trended with both light treatment (ρ=0.52) and ITS dysbiosis (ρ=0.50). The transcriptome contributed the highest-weighted features to all factors, reflecting its greater dimensionality, but microbial features were consistently present in the top weights.
+Factor 2 showed a trend toward correlation with 16S dysbiosis (ρ=−0.52, p=0.018, padj=0.089), while Factor 3 trended with both light treatment (ρ=0.52) and ITS dysbiosis (ρ=0.50). The transcriptome contributed the highest-weighted features to all factors, reflecting its greater dimensionality, but microbial features were consistently present in the top weights (Table S8).
 
 ### Module-taxon correlations link host modules to specific bacteria
 
-Bipartite correlation networks identified 29 significant module-taxon relationships (BH padj < 0.05), predominantly in leaf 16S (28 of 29; Fig. 6). The flight-associated turquoise module positively correlated with *Methylobacterium-Methylorubrum* (ρ=+0.76, padj=0.001), *Burkholderia-Caballeronia-Paraburkholderia* (ρ=+0.74, padj=0.003), and *Azospirillum* (ρ=+0.68, padj=0.012) — all genera associated with plant growth promotion and nitrogen fixation. The anti-correlated blue module showed the inverse pattern with these same taxa. The brown module correlated negatively with *Pantoea* (ρ=−0.79, padj=0.003) and *Paenibacillus* (ρ=−0.77, padj=0.003).
+Bipartite correlation networks identified 29 significant module-taxon relationships (BH padj < 0.05), predominantly in leaf 16S (28 of 29; Fig. 6; Table S9). The flight-associated turquoise module positively correlated with *Methylobacterium-Methylorubrum* (ρ=+0.76, padj=0.001), *Burkholderia-Caballeronia-Paraburkholderia* (ρ=+0.74, padj=0.003), and *Azospirillum* (ρ=+0.68, padj=0.012) — all genera associated with plant growth promotion and nitrogen fixation. The anti-correlated blue module showed the inverse pattern with these same taxa. The brown module correlated negatively with *Pantoea* (ρ=−0.79, padj=0.003) and *Paenibacillus* (ρ=−0.77, padj=0.003).
 
 ### Functional prediction reveals nitrogen cycling and methanotrophy
 
-FAPROTAX assigned 239 of 348 bacterial ASVs to 29 functional categories. The dominant predicted functions were aerobic chemoheterotrophy (787,792 reads, 185 taxa), nitrogen fixation (164,614 reads, 12 taxa), methanotrophy (96,514 reads, 15 taxa), and methanol oxidation (96,687 reads, 15 taxa) (Fig. 7). The methanotrophy and methanol oxidation functions were primarily associated with *Methylobacterium-Methylorubrum*, the same genus showing the strongest positive correlation with the flight-associated WGCNA module.
+FAPROTAX assigned 239 of 348 bacterial ASVs to 29 functional categories (Table S6). The dominant predicted functions were aerobic chemoheterotrophy (787,792 reads, 185 taxa), nitrogen fixation (164,614 reads, 12 taxa), methanotrophy (96,514 reads, 15 taxa), and methanol oxidation (96,687 reads, 15 taxa) (Fig. 7). The methanotrophy and methanol oxidation functions were primarily associated with *Methylobacterium-Methylorubrum*, the same genus showing the strongest positive correlation with the flight-associated WGCNA module.
 
-Fungal guild assignment (manual genus-level classification) identified saprotrophs (11 ASVs, dominated by *Penicillium* and *Aspergillus*) and plant pathogens (2 ASVs: *Fusarium* spp.) as the main ecological guilds.
+Fungal guild assignment (manual genus-level classification) identified saprotrophs (11 ASVs, dominated by *Penicillium* and *Aspergillus*) and plant pathogens (2 ASVs: *Fusarium* spp.) as the main ecological guilds (Table S7).
 
 ---
 

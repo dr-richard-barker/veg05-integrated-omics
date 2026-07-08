@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="628.2pt" height="324.864pt" viewBox="0 0 628.2 324.864" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-08T17:45:10.977357</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.11.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 324.864 
+L 628.2 324.864 
+L 628.2 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 21.486724 209.0016 
+L 146.363276 209.0016 
+Q 154.829483 209.0016 154.829483 200.1312 
+L 154.829483 69.2928 
+Q 154.829483 60.4224 146.363276 60.4224 
+L 21.486724 60.4224 
+Q 13.020517 60.4224 13.020517 69.2928 
+L 13.020517 200.1312 
+Q 13.020517 209.0016 21.486724 209.0016 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #4c6e91; stroke: #33506e; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 188.165172 136.9296 
+L 318.333103 136.9296 
+Q 326.79931 136.9296 326.79931 128.0592 
+L 326.79931 69.2928 
+Q 326.79931 60.4224 318.333103 60.4224 
+L 188.165172 60.4224 
+Q 179.698966 60.4224 179.698966 69.2928 
+L 179.698966 128.0592 
+Q 179.698966 136.9296 188.165172 136.9296 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #c58a2e; stroke: #8f6216; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 188.165172 236.7216 
+L 318.333103 236.7216 
+Q 326.79931 236.7216 326.79931 227.8512 
+L 326.79931 169.0848 
+Q 326.79931 160.2144 318.333103 160.2144 
+L 188.165172 160.2144 
+Q 179.698966 160.2144 179.698966 169.0848 
+L 179.698966 227.8512 
+Q 179.698966 236.7216 188.165172 236.7216 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #4a8c6f; stroke: #316049; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 154.673299 101.037208 
+Q 165.942241 98.67582 175.022647 96.773035 
+" clip-path="url(#pe3d2f2f0d4)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 167.669881 94.839949 
+L 175.022647 96.773035 
+L 169.064519 101.495397 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 153.957942 169.541341 
+Q 165.940666 184.607104 176.531485 197.922838 
+" clip-path="url(#pe3d2f2f0d4)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 174.959594 190.484481 
+L 176.531485 197.922838 
+L 169.637665 194.717337 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 357.48931 209.0016 
+L 487.657241 209.0016 
+Q 496.123448 209.0016 496.123448 200.1312 
+L 496.123448 69.2928 
+Q 496.123448 60.4224 487.657241 60.4224 
+L 357.48931 60.4224 
+Q 349.023103 60.4224 349.023103 69.2928 
+L 349.023103 200.1312 
+Q 349.023103 209.0016 357.48931 209.0016 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #6e5a8c; stroke: #4a3d61; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 328.90191 102.684437 
+Q 337.912295 109.764855 345.164496 115.463682 
+" clip-path="url(#pe3d2f2f0d4)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 341.918517 108.588828 
+L 345.164496 115.463682 
+L 337.717025 113.935553 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 328.540195 199.653003 
+Q 337.909357 187.382422 345.92152 176.889073 
+" clip-path="url(#pe3d2f2f0d4)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 339.092486 180.230375 
+L 345.92152 176.889073 
+L 344.497141 184.357081 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 526.813448 209.0016 
+L 606.713276 209.0016 
+Q 615.179483 209.0016 615.179483 200.1312 
+L 615.179483 69.2928 
+Q 615.179483 60.4224 606.713276 60.4224 
+L 526.813448 60.4224 
+Q 518.347241 60.4224 518.347241 69.2928 
+L 518.347241 200.1312 
+Q 518.347241 209.0016 526.813448 209.0016 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #b0472f; stroke: #7d2f1f; stroke-width: 1.4; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 498.654939 134.712 
+Q 507.23766 134.712 513.584313 134.712 
+" clip-path="url(#pe3d2f2f0d4)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+    <path d="M 506.784313 131.312 
+L 513.584313 134.712 
+L 506.784313 138.112 
+z
+" clip-path="url(#pe3d2f2f0d4)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+   </g>
+   <g id="text_1">
+    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #222222" x="314.1" y="18.288" transform="rotate(-0 314.1 18.288)">ISS VEG-05 multi-omics integration: host transcriptome × microbiome</text>
+   </g>
+   <g id="text_2">
+    <text style="font-weight: 700; font-size: 9.5px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="83.925" y="86.490516" transform="rotate(-0 83.925 86.490516)">VEG-05 experiment</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(39.038156 116.003625)">Tomato cv. Red Robin</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(53.087813 127.763625)">aboard the ISS</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(83.925 136.392)"/>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(49.409531 150.469875)">Flight vs Ground</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(49.743563 163.043625)">Red vs Blue LED</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(83.925 171.672)"/>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(70.167375 186.563625)">Leaf +</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(47.92575 198.323625)">Adventitious root</text>
+   </g>
+   <g id="text_4">
+    <text style="font-weight: 700; font-size: 9.5px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="253.249138" y="86.490516" transform="rotate(-0 253.249138 86.490516)">Host transcriptome</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(212.711263 115.115719)">RNA-seq · OSD-767</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(219.530357 127.763625)">Leaf &amp; Adv-Root</text>
+   </g>
+   <g id="text_6">
+    <text style="font-weight: 700; font-size: 9.5px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="253.249138" y="186.282516" transform="rotate(-0 253.249138 186.282516)">Microbiome</text>
+   </g>
+   <g id="text_7">
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(187.107013 214.981875)">16S + ITS amplicons · OSD-766</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(189.575169 226.741875)">348 bacterial / 77 fungal ASVs</text>
+   </g>
+   <g id="text_8">
+    <text style="font-weight: 700; font-size: 9.5px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="422.573276" y="86.490516" transform="rotate(-0 422.573276 86.490516)">Integration</text>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(390.15387 115.185281)">DESeq2 (DEGs)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(375.755088 126.949875)">WGCNA co-expression</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(389.893338 138.709875)">Dysbiosis index</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(386.74137 150.789469)">MOFA+ (3 views)</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(372.81312 163.043625)">Module–taxon networks</text>
+    <text style="font-size: 8.4px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(391.945432 174.803625)">GO annotation</text>
+   </g>
+   <g id="text_10">
+    <text style="font-weight: 700; font-size: 9.3px; font-family: 'DejaVu Sans', sans-serif; text-anchor: middle; fill: #ffffff" x="566.763362" y="86.338547" transform="rotate(-0 566.763362 86.338547)">Findings</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(543.738018 114.994687)">Spaceflight</text>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(547.936675 126.474687)">dysbiosis</text>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(566.763362 135.692)"/>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(555.052096 149.434687)">Light-</text>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(544.582362 160.914687)">dependent</text>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(548.141034 171.575328)">response</text>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(566.763362 181.612)"/>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(549.123753 196.149062)">Microbe-</text>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(543.634878 207.629062)">driven host</text>
+    <text style="font-size: 8.2px; font-family: 'DejaVu Sans', sans-serif; fill: #ffffff" transform="translate(550.414612 219.109062)">defense</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pe3d2f2f0d4">
+   <rect x="7.2" y="7.2" width="613.8" height="310.464"/>
+  </clipPath>
+ </defs>
+</svg>

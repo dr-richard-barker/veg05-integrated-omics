@@ -13,6 +13,9 @@ md = open(os.path.join(HERE, 'manuscript_draft.md'), encoding='utf-8').read()
 
 # (anchor substring that ends a paragraph)  ->  list of (figure file, caption)
 FIGS = [
+    ("host-driven, microbe-driven, and co-regulated responses.", [
+        ("figures/fig1_study_design.png",
+         "**Figure 1. Study design and analysis overview.** The ISS VEG-05 experiment (tomato cv. Red Robin; Flight vs Ground; red vs blue LED; leaf and adventitious root) feeds two data streams — host transcriptome (OSD-767) and microbiome (OSD-766) — that are combined through DESeq2, WGCNA, a dysbiosis index, MOFA+, and module–taxon networks.")]),
     ("2.18 versus 0.80 in ground blue-light controls.", [
         ("figures/fig2a_alpha_diversity_16S.png",
          "**Figure 2A.** Bacterial (16S) alpha diversity (Observed ASVs) by flight status and light treatment; flight leaves show higher diversity.")]),
