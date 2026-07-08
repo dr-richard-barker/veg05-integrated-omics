@@ -166,6 +166,15 @@ MOFA+ integration of 21 matched leaf samples across three omics views (transcrip
 
 Factor 2 showed a trend toward correlation with 16S dysbiosis (ρ=−0.52, p=0.018, padj=0.089), while Factor 3 trended with both light treatment (ρ=0.52) and ITS dysbiosis (ρ=0.50). The transcriptome contributed the highest-weighted features to all factors, reflecting its greater dimensionality, but microbial features were consistently present in the top weights (Table S8).
 
+![Figure 5A](figures/fig5a_mofa_variance.png)
+
+***Figure 5A.** MOFA+ variance explained per factor per view (transcriptome, 16S, ITS).*
+
+![Figure 5B](figures/fig5b_mofa_correlations.png)
+
+***Figure 5B.** MOFA+ factor–trait correlations; Factor 1 captures flight (ρ=−0.76).*
+
+
 ### Module-taxon correlations link host modules to specific bacteria
 
 Bipartite correlation networks identified 29 significant module-taxon relationships (BH padj < 0.05), predominantly in leaf 16S (28 of 29; Fig. 6; Table S9). The flight-associated turquoise module positively correlated with *Methylobacterium-Methylorubrum* (ρ=+0.76, padj=0.001), *Burkholderia-Caballeronia-Paraburkholderia* (ρ=+0.74, padj=0.003), and *Azospirillum* (ρ=+0.68, padj=0.012) — all genera associated with plant growth promotion and nitrogen fixation. The anti-correlated blue module showed the inverse pattern with these same taxa. The brown module correlated negatively with *Pantoea* (ρ=−0.79, padj=0.003) and *Paenibacillus* (ρ=−0.77, padj=0.003).
@@ -180,6 +189,11 @@ Bipartite correlation networks identified 29 significant module-taxon relationsh
 FAPROTAX assigned 239 of 348 bacterial ASVs to 29 functional categories (Table S6). The dominant predicted functions were aerobic chemoheterotrophy (787,792 reads, 185 taxa), nitrogen fixation (164,614 reads, 12 taxa), methanotrophy (96,514 reads, 15 taxa), and methanol oxidation (96,687 reads, 15 taxa) (Fig. 7). The methanotrophy and methanol oxidation functions were primarily associated with *Methylobacterium-Methylorubrum*, the same genus showing the strongest positive correlation with the flight-associated WGCNA module.
 
 Fungal guild assignment (manual genus-level classification) identified saprotrophs (11 ASVs, dominated by *Penicillium* and *Aspergillus*) and plant pathogens (2 ASVs: *Fusarium* spp.) as the main ecological guilds (Table S7).
+
+![Figure 7](figures/fig7_faprotax.png)
+
+***Figure 7.** FAPROTAX predicted bacterial functions (aerobic chemoheterotrophy, N fixation, methanotrophy, methanol oxidation).*
+
 
 ---
 

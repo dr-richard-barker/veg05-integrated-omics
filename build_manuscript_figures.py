@@ -34,13 +34,13 @@ FIGS = [
          "**Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis). Each module is labelled with its dominant GO biology (Table 1); cells show Spearman rho with significance stars."),
         ("figures/fig4_module_traits_AdvRoot.png",
          "**Figure 4 (Adv-Root).** Module–trait correlations with GO-biology labels (Table 1). The black (nucleus) module tracks ITS dysbiosis (r=−0.85) but not flight; the turquoise (oxidative-stress/peroxidase) module is the largest flight-correlated module.")]),
-    ("microbial features were consistently present in the top weights.", [
+    ("microbial features were consistently present in the top weights (Table S8).", [
         ("figures/fig5a_mofa_variance.png", "**Figure 5A.** MOFA+ variance explained per factor per view (transcriptome, 16S, ITS)."),
         ("figures/fig5b_mofa_correlations.png", "**Figure 5B.** MOFA+ factor–trait correlations; Factor 1 captures flight (ρ=−0.76).")]),
     ("*Paenibacillus* (ρ=−0.77, padj=0.003).", [
         ("figures/fig6_module_taxon_network.png",
          "**Figure 6.** Significant leaf module–taxon correlations (BH padj<0.05); modules carry their GO-biology labels (Table 1). The flight-associated turquoise (chromatin/nucleosome) module positively tracks Methylobacterium, Burkholderia and Azospirillum, while the blue (phosphate-starvation) module shows the inverse.")]),
-    ("as the main ecological guilds.", [
+    ("as the main ecological guilds (Table S7).", [
         ("figures/fig7_faprotax.png",
          "**Figure 7.** FAPROTAX predicted bacterial functions (aerobic chemoheterotrophy, N fixation, methanotrophy, methanol oxidation).")]),
 ]
