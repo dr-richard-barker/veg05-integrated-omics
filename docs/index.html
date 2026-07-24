@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Home · VEG-05 Integrated Omics</title>
+<meta name="description" content="Spaceflight alters the tomato phyllosphere and rhizosphere microbiome in a light-dependent manner — a multi-omics integration of ISS VEG-05 host transcriptome and microbiome. FAIR data and code.">
+<link rel="stylesheet" href="assets/style.css">
+</head><body>
+<header class="site"><nav>
+  <span class="brand">🍅 VEG-05 Integrated Omics</span>
+  <a href="#abstract" style="color:var(--accent)">Abstract</a>
+  <a href="#highlights">Highlights</a>
+  <a href="#figures">Figures</a>
+  <a href="#data">Data &amp; code</a>
+  <a href="https://github.com/dr-richard-barker/veg05-integrated-omics">GitHub ↗</a>
+</nav></header>
+<main>
+<section class="hero">
+  <h1>Spaceflight reshapes the tomato microbiome in a light-dependent manner</h1>
+  <p class="lede">A multi-omics integration of the ISS VEG-05 experiment: host transcriptome
+     (OSD-767) and phyllosphere/rhizosphere microbiome (OSD-766) in tomato, across two
+     tissues and red vs. blue light — combined through DESeq2, WGCNA, MOFA+ and
+     module–taxon networks.</p>
+  <div class="badges">
+    <span class="badge">CC BY 4.0</span><span class="badge">FAIR</span>
+    <span class="badge">ISS VEG-05</span><span class="badge">16S + ITS + RNA-seq</span>
+    <span class="badge">MOFA+</span><span class="badge">WGCNA</span>
+  </div>
+  <div class="btnrow">
+    <a class="btn primary" href="https://github.com/dr-richard-barker/veg05-integrated-omics/blob/main/manuscript_with_figures.md">Read the manuscript →</a>
+    <a class="btn" href="#figures">Figures</a>
+    <a class="btn" href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/integration">Analysis code</a>
+    <a class="btn" href="https://github.com/dr-richard-barker/veg05-integrated-omics">Code &amp; data (GitHub)</a>
+  </div>
+  <p class="lede"><b>Headline:</b> spaceflight restructures leaf bacterial communities
+  (PERMANOVA R²&nbsp;=&nbsp;0.42) and drives a strongly <b>light-dependent</b> host response
+  (<b>4,716 leaf DEGs under blue light vs 523 under red</b>); a microbe-driven root module
+  tracks fungal dysbiosis independently of flight status.</p>
+</section>
+
+<h2 id="abstract">Abstract</h2>
+<div class="content"><p>Spaceflight imposes unique stressors on plant-microbe interactions, but
+the coordinated responses of host transcriptomes and associated microbiomes remain poorly
+characterized. We analyzed tomato (<em>Solanum lycopersicum</em> cv. Red Robin) grown aboard
+the ISS as part of VEG-05, integrating <b>16S rRNA and ITS amplicon sequencing (OSD-766)</b>
+with <b>host transcriptomics (OSD-767)</b> across two tissues (leaf, adventitious root) and two
+light treatments (red vs. blue). DADA2 yielded 348 bacterial and 77 fungal ASVs. Spaceflight
+significantly reshaped leaf bacterial communities (PERMANOVA R²=0.42, p=0.001) and increased
+bacterial alpha diversity. The transcriptional response was strongly light-dependent:
+<b>4,716 DEGs under blue light versus only 523 under red</b> in leaves. WGCNA identified a
+<b>169-gene adventitious-root module</b> correlated with fungal dysbiosis (r=−0.85, padj=0.001)
+but not flight status — a microbe-driven host signature independent of the direct spaceflight
+stimulus. MOFA+ across three omics layers confirmed a dominant flight-associated factor
+(48% transcriptome variance) and showed the leaf bacterial community was more flight-responsive
+than the fungal one. FAPROTAX prediction enriched nitrogen fixation, methanotrophy and methanol
+oxidation. Spaceflight restructures plant-associated microbiomes in a tissue- and
+light-specific manner — with implications for crop production in long-duration missions.</p><hr /></div>
+
+<h2 id="highlights">Highlights</h2>
+<div class="cards">
+  <div class="card"><h3>Microbiome reshaped</h3>
+    <p>Leaf bacterial communities restructured by spaceflight (<span class="k">PERMANOVA R²=0.42</span>) with increased bacterial alpha diversity.</p></div>
+  <div class="card"><h3>Light-dependent host response</h3>
+    <p><span class="k">4,716</span> leaf DEGs under blue light vs <span class="k">523</span> under red — the flight transcriptome is gated by light quality.</p></div>
+  <div class="card"><h3>Microbe-driven module</h3>
+    <p>A 169-gene root module tracks fungal dysbiosis (<span class="k">r=−0.85</span>) but not flight — host response driven by the microbiome, not the stimulus.</p></div>
+  <div class="card"><h3>Cross-omics integration</h3>
+    <p>MOFA+ finds a dominant flight factor (<span class="k">48%</span> transcriptome variance); FAPROTAX enriches N-fixation &amp; methanotrophy.</p></div>
+</div>
+
+<h2 id="figures">Selected figures</h2>
+<div class="gallery">
+  <figure><a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/figures"><img src="assets/figures/fig1_study_design.png" alt="VEG-05 study design and multi-omics integration overview."></a><figcaption>Fig 1 — Study design: host transcriptome (OSD-767) and microbiome (OSD-766) combined via DESeq2, WGCNA, MOFA+ and module–taxon networks.</figcaption></figure>
+  <figure><a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/figures"><img src="assets/figures/fig3_deg_summary.png" alt="Differential-expression summary; light-dependent flight response."></a><figcaption>Fig 3 — Differential expression summary; the flight response is strongly light-dependent.</figcaption></figure>
+  <figure><a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/figures"><img src="assets/figures/fig6_module_taxon_network.png" alt="Module–taxon correlation network linking host modules to specific bacteria."></a><figcaption>Fig 6 — Module–taxon network linking WGCNA host modules to specific microbial taxa.</figcaption></figure>
+</div>
+
+<h2 id="data">Data &amp; code</h2>
+<div class="content"><ul>
+  <li><b>Manuscript:</b> <a href="https://github.com/dr-richard-barker/veg05-integrated-omics/blob/main/manuscript_with_figures.md">with figures</a>
+      · npj-styled LaTeX in <a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/manuscript/latex"><code>manuscript/latex/</code></a></li>
+  <li><b>Analysis code:</b> <a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/integration"><code>integration/</code></a>,
+      <a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/rnaseq"><code>rnaseq/</code></a>,
+      <a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/microbiome"><code>microbiome/</code></a> (DADA2, DESeq2, WGCNA, MOFA+, FAPROTAX)</li>
+  <li><b>Results:</b> <a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/results"><code>results/</code></a>
+      and <a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/supplementary_tables"><code>supplementary_tables/</code></a></li>
+  <li><b>Figures:</b> <a href="https://github.com/dr-richard-barker/veg05-integrated-omics/tree/main/figures"><code>figures/</code></a> (Fig 1–7)</li>
+</ul>
+<p class="note">Sequencing data from NASA OSDR: OSD-766 (microbiome) and OSD-767 (host RNA-seq).
+Cite the individual OSD accessions; OSDR data remain subject to the NASA Open Data policy.</p></div>
+</main>
+<footer class="site">
+  VEG-05 Integrated Omics — ISS tomato host×microbiome multi-omics ·
+  FAIR data &amp; code ·
+  <a href="https://github.com/dr-richard-barker/veg05-integrated-omics">GitHub</a>
+</footer></body></html>
