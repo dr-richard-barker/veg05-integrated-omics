@@ -1,5 +1,7 @@
 # Integrated Transcriptome-Microbiome Analysis of ISS VEG-05 Tomatoes
 
+![Space_Tomato_Multi-Omics_Research](Space_Tomato_Multi-Omics_Research.png)
+
 🌐 **Live site:** https://dr-richard-barker.github.io/veg05-integrated-omics/
 
 ## Overview
