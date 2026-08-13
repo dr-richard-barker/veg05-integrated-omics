@@ -1,0 +1,22 @@
+# Python dependencies for the VEG-05 integrated omics pipeline
+# Install with: uv pip install -r requirements.txt
+# (or: pip install -r requirements.txt)
+
+# Primer trimming for ITS reads
+cutadapt>=4.2
+
+# MOFA+ Python backend (called via reticulate from R)
+mofapy2>=0.7.4
+
+# FAPROTAX custom collapse implementation
+pandas>=2.0
+numpy>=1.24
+
+# Data parsing and metadata handling
+pyyaml>=6.0
+
+# Optional: BIOM format support
+biom-format>=2.1.16
+
+# Optional: scikit-bio for additional diversity metrics
+scikit-bio>=0.7.0

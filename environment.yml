@@ -1,0 +1,39 @@
+name: veg05-omics
+channels:
+  - conda-forge
+  - bioconda
+  - r
+dependencies:
+  # R core
+  - r-base>=4.4
+  - r-essentials
+  # Bioconductor
+  - r-biocmanager
+  - bioconductor-dada2
+  - bioconductor-phyloseq
+  - bioconductor-deseq2
+  - bioconductor-ancombc
+  - bioconductor-apeglm
+  - bioconductor-complexheatmap
+  - bioconductor-clusterprofiler
+  # CRAN
+  - r-vegan
+  - r-wgcna
+  - r-mofa2
+  - r-ggplot2
+  - r-ggprism
+  - r-ggrepel
+  - r-svglite
+  - r-dplyr
+  - r-tidyr
+  - r-readr
+  - r-stringr
+  - r-yaml
+  # Python
+  - python>=3.11
+  - cutadapt
+  - biom-format
+  - scikit-bio
+  - pyyaml
+  - pandas
+  - numpy
