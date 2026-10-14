@@ -28,7 +28,7 @@ poorly characterized. We analyzed tomato (\textit{Solanum lycopersicum} cv.\ Red
 Robin) grown aboard the International Space Station (ISS) as part of the VEG-05
 experiment, integrating 16S rRNA and ITS amplicon sequencing (OSD-766) with host
 transcriptomics (OSD-767) across two tissues (leaf, adventitious root) and two
-light treatments (red vs.\ blue). DADA2 processing yielded 348 bacterial and 77
+light treatments (red-rich vs.\ blue-rich LED). DADA2 processing yielded 348 bacterial and 77
 fungal ASVs from 142 and 141 samples respectively. Spaceflight significantly
 reshaped leaf bacterial communities (PERMANOVA \(R^2 = 0.42\), \(p = 0.001\)) and
 increased bacterial alpha diversity (Observed ASVs: Flight 17.8--25.8 vs.\ Ground
@@ -59,13 +59,13 @@ protection, and stress tolerance \cite{bulgarelli2013}. In the context of
 spaceflight, these interactions take on added significance: crops grown in
 bioregenerative life support systems must maintain productive plant-microbe
 partnerships under conditions of microgravity, altered fluid dynamics, elevated
-radiation, and controlled-environment lighting \cite{wheeler2008}. The VEG-05
+radiation, and controlled-environment lighting \textbf{[TODO: citation needed]}. The VEG-05
 experiment aboard the International Space Station (ISS) provided a unique
 opportunity to study these interactions in tomato (\textit{Solanum lycopersicum}),
-a candidate crop for long-duration missions \cite{massa2024}.
+a candidate crop for long-duration missions \cite{spern2026,dixit2026}.
 
 Spaceflight has been shown to alter microbial community composition, gene
-expression, and virulence in pure culture systems \cite{rosenzweig2015,voorhies2019a}.
+expression, and virulence in pure culture systems \textbf{[TODO: citation needed]}.
 However, the coordinated response of host plants and their associated microbiomes to
 the spaceflight environment remains largely unexplored. Multi-omics integration
 approaches such as MOFA+ (Multi-Omics Factor Analysis) \cite{argelaguet2020} and
@@ -84,7 +84,7 @@ distinguishes host-driven, microbe-driven, and co-regulated responses.
 \centering
 \includegraphics[width=\textwidth]{fig1_study_design.png}
 \caption{\textbf{Study design and analysis overview.} The ISS VEG-05 experiment
-(tomato cv.\ Red Robin; Flight vs Ground; red vs blue LED; leaf and adventitious
+(tomato cv.\ Red Robin; Flight vs Ground; red-rich vs blue-rich LED; leaf and adventitious
 root) feeds two data streams --- host transcriptome (OSD-767) and microbiome
 (OSD-766) --- combined through DESeq2, WGCNA, a dysbiosis index, MOFA+, and
 module--taxon networks.}
@@ -95,9 +95,9 @@ module--taxon networks.}
 
 \subsection{Data acquisition and metadata}
 Raw sequencing data and metadata were obtained from NASA's Open Science Data
-Repository (OSDR): OSD-766 (microbiome amplicon sequencing) and OSD-767 (host
-RNA-seq). The VEG-05 experiment grew tomato cv.\ Red Robin aboard the ISS under red
-or blue LED lighting, with ground controls at Kennedy Space Center. Metadata were
+Repository (OSDR): OSD-766 (microbiome amplicon sequencing; \cite{spern2026}) and OSD-767 (host
+RNA-seq; \cite{dixit2026}). The VEG-05 experiment grew tomato cv.\ Red Robin aboard the ISS under red-rich (90\% red:10\% blue)
+or blue-rich (50\% red:50\% blue) LED lighting, with ground controls at Kennedy Space Center. Metadata were
 parsed from ISA-Tab format, and a crosswalk table linking microbiome and RNA-seq
 samples by plant ID, flight status, light treatment, and tissue was constructed.
 
@@ -122,11 +122,11 @@ contrasts. DEGs were defined as \(p_{\mathrm{adj}} < 0.05\) and \(|\text{log2FC}
 \subsection{Community health metrics}
 Alpha diversity (Observed ASVs, Shannon index) was computed on unfiltered data using
 phyloseq \cite{mcmurdie2013}. Beta diversity was assessed via Bray-Curtis
-dissimilarity and PERMANOVA (999 permutations) using vegan \cite{oksanen2024}. A
+dissimilarity and PERMANOVA (999 permutations) using vegan \cite{oksanen2026}. A
 dysbiosis index was calculated as the Bray-Curtis distance of each flight sample to
 the centroid of its corresponding ground control group, normalized by the mean
 ground-ground distance. Differential abundance testing used ALDEx2
-\cite{fernandes2013} with 128 Monte Carlo instances, requiring both Welch \(p <
+\cite{fernandes2014} with 128 Monte Carlo instances, requiring both Welch \(p <
 0.05\) and \(|\text{effect size}| > 1\).
 
 \subsection{WGCNA co-expression networks}

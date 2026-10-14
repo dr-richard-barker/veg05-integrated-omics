@@ -1,112 +1,140 @@
-% References transcribed from the manuscript reference list (complete with
-% journal/volume/pages). Add DOIs where available.
+% References checked against CrossRef/DataCite on 2026-10-14 (/abai check).
+% Every entry below carries a DOI; its registry record confirmed title, journal,
+% volume and year. Exceptions: stephens2017 pages 275-294 are not in CrossRef or
+% OpenAlex (both give only the article id kxw041); oksanen2026's version is taken
+% from sessionInfo.txt, which describes itself as reconstructed.
+%
+% Removed because no published record matches them (cited as TODO in main.tex):
+%   wheeler2008      "Crop production for space life support: a review", Adv. Space Res. 41, 1057-1066
+%                    (two Wheeler 2008 ASR 41 papers exist, 706-713 and 798-806; neither is this review)
+%   massa2024        "VEG-05: Plant Habitat-02 tomato plant growth...", NASA Technical Report (2024)
+%                    (closest NTRS item is a 2024 presentation, 20240001505); replaced by the peer-reviewed
+%                    VEG-05 papers spern2026 (OSD-766) and dixit2026 (OSD-767)
+%   rosenzweig2015   "Spaceflight and model microorganisms", npj Microgravity 1, 15009
+%                    (that article number is Topham et al. 2015, 10.1038/npjmgrav.2015.9)
+%   voorhies2019a    "Spaceflight alters bacterial gene expression and virulence", PLoS ONE 14, e0224893
+%                    (that article number is Hartmann et al. 2019, a videogaming/sleep study)
+% Corrected: bulgarelli2013 (title), quast2013 (title), koljalg2005 (journal/volume/pages),
+%   zhu2019 (title/journal/volume/pages), voorhies2019b (title), louca2016 (title/journal/volume/pages),
+%   oksanen2024 -> oksanen2026 (vegan 2.7-5 was released 2026-05-25),
+%   fernandes2013 -> fernandes2014 (the ALDEx2 paper whose title the entry carried).
 
 @article{bulgarelli2013,
   author = {Bulgarelli, D. and others},
-  title = {Structuring and function of the root microbiota in health and disease},
-  journal = {Annual Review of Plant Biology}, volume = {64}, pages = {807--838}, year = {2013}}
+  title = {Structure and functions of the bacterial microbiota of plants},
+  journal = {Annual Review of Plant Biology}, volume = {64}, pages = {807--838}, year = {2013},
+  doi = {10.1146/annurev-arplant-050312-120106}}
 
-@article{wheeler2008,
-  author = {Wheeler, R. M. and others},
-  title = {Crop production for space life support: a review},
-  journal = {Advances in Space Research}, volume = {41}, pages = {1057--1066}, year = {2008}}
+@article{spern2026,
+  author = {Spern, C. J. and others},
+  title = {The microbial communities of a tomato crop grown in {Veggie} under different lighting regimes on the {International Space Station}},
+  journal = {Life Sciences in Space Research}, volume = {52}, pages = {84--97}, year = {2026},
+  doi = {10.1016/j.lssr.2026.01.010}}
 
-@techreport{massa2024,
-  author = {Massa, G. D. and others},
-  title = {{VEG-05}: Plant Habitat-02 tomato plant growth in the vegetable production system on the {ISS}},
-  institution = {NASA}, type = {NASA Technical Report}, year = {2024}}
-
-@article{rosenzweig2015,
-  author = {Rosenzweig, J. A. and others},
-  title = {Spaceflight and model microorganisms},
-  journal = {npj Microgravity}, volume = {1}, pages = {15009}, year = {2015}}
-
-@article{voorhies2019a,
-  author = {Voorhies, A. A. and others},
-  title = {Spaceflight alters bacterial gene expression and virulence},
-  journal = {PLoS ONE}, volume = {14}, pages = {e0224893}, year = {2019}}
+@article{dixit2026,
+  author = {Dixit, A. R. and others},
+  title = {Stress and light spectral quality influence the transcriptome of a tomato crop on the {International Space Station}},
+  journal = {BMC Plant Biology}, volume = {26}, pages = {764}, year = {2026},
+  doi = {10.1186/s12870-025-07621-4}}
 
 @article{argelaguet2020,
   author = {Argelaguet, R. and others},
   title = {{MOFA+}: a statistical framework for comprehensive integration of multi-modal single-cell data},
-  journal = {Genome Biology}, volume = {21}, pages = {111}, year = {2020}}
+  journal = {Genome Biology}, volume = {21}, pages = {111}, year = {2020},
+  doi = {10.1186/s13059-020-02015-1}}
 
 @article{langfelder2008,
   author = {Langfelder, P. and Horvath, S.},
   title = {{WGCNA}: an {R} package for weighted correlation network analysis},
-  journal = {BMC Bioinformatics}, volume = {9}, pages = {559}, year = {2008}}
+  journal = {BMC Bioinformatics}, volume = {9}, pages = {559}, year = {2008},
+  doi = {10.1186/1471-2105-9-559}}
 
 @article{callahan2016,
   author = {Callahan, B. J. and others},
-  title = {{DADA2}: high-resolution sample inference from Illumina amplicon data},
-  journal = {Nature Methods}, volume = {13}, pages = {581--583}, year = {2016}}
+  title = {{DADA2}: high-resolution sample inference from {Illumina} amplicon data},
+  journal = {Nature Methods}, volume = {13}, pages = {581--583}, year = {2016},
+  doi = {10.1038/nmeth.3869}}
 
 @article{quast2013,
   author = {Quast, C. and others},
-  title = {The {SILVA} ribosomal {RNA} gene database project},
-  journal = {Nucleic Acids Research}, volume = {41}, pages = {D590--D596}, year = {2013}}
+  title = {The {SILVA} ribosomal {RNA} gene database project: improved data processing and web-based tools},
+  journal = {Nucleic Acids Research}, volume = {41}, pages = {D590--D596}, year = {2013},
+  doi = {10.1093/nar/gks1219}}
 
 @article{martin2011,
   author = {Martin, M.},
   title = {Cutadapt removes adapter sequences from high-throughput sequencing reads},
-  journal = {EMBnet.journal}, volume = {17}, pages = {10--12}, year = {2011}}
+  journal = {EMBnet.journal}, volume = {17}, pages = {10--12}, year = {2011},
+  doi = {10.14806/ej.17.1.200}}
 
 @article{koljalg2005,
   author = {K{\~o}ljalg, U. and others},
-  title = {{UNITE}: a database providing web-based methods for the molecular identification of fungi},
-  journal = {Oikos}, volume = {112}, pages = {182--186}, year = {2005}}
+  title = {{UNITE}: a database providing web-based methods for the molecular identification of ectomycorrhizal fungi},
+  journal = {New Phytologist}, volume = {166}, pages = {1063--1068}, year = {2005},
+  doi = {10.1111/j.1469-8137.2005.01376.x}}
 
 @article{love2014,
   author = {Love, M. I. and others},
   title = {Moderated estimation of fold change and dispersion for {RNA}-seq data with {DESeq2}},
-  journal = {Genome Biology}, volume = {15}, pages = {550}, year = {2014}}
+  journal = {Genome Biology}, volume = {15}, pages = {550}, year = {2014},
+  doi = {10.1186/s13059-014-0550-8}}
 
 @article{zhu2019,
-  author = {Zhu, A. and others},
-  title = {Heavy-tailed prior distributions for sequence count data: removing the bias and dissecting the controversy},
-  journal = {Genome Biology}, volume = {20}, pages = {139}, year = {2019}}
+  author = {Zhu, A. and Ibrahim, J. G. and Love, M. I.},
+  title = {Heavy-tailed prior distributions for sequence count data: removing the noise and preserving large differences},
+  journal = {Bioinformatics}, volume = {35}, pages = {2084--2092}, year = {2019},
+  doi = {10.1093/bioinformatics/bty895}}
 
 @article{stephens2017,
   author = {Stephens, M.},
   title = {False discovery rates: a new deal},
-  journal = {Biostatistics}, volume = {18}, pages = {275--294}, year = {2017}}
+  journal = {Biostatistics}, volume = {18}, pages = {275--294}, year = {2017},
+  doi = {10.1093/biostatistics/kxw041}}
 
 @article{mcmurdie2013,
   author = {McMurdie, P. J. and Holmes, S.},
   title = {phyloseq: an {R} package for reproducible interactive analysis and graphics of microbiome census data},
-  journal = {PLoS ONE}, volume = {8}, pages = {e61217}, year = {2013}}
+  journal = {PLoS ONE}, volume = {8}, pages = {e61217}, year = {2013},
+  doi = {10.1371/journal.pone.0061217}}
 
-@misc{oksanen2024,
+@misc{oksanen2026,
   author = {Oksanen, J. and others},
-  title = {vegan: Community Ecology Package},
-  howpublished = {R package version 2.7-5}, year = {2024}}
+  title = {{vegan}: {Community Ecology Package}},
+  howpublished = {R package version 2.7-5, CRAN}, year = {2026},
+  doi = {10.32614/CRAN.package.vegan}}
 
-@article{fernandes2013,
+@article{fernandes2014,
   author = {Fernandes, A. D. and others},
-  title = {Unifying the analysis of high-throughput sequencing data: comparing {RNA}-Seq and {ChIP}-Seq data},
-  journal = {PLoS ONE}, volume = {8}, pages = {e67023}, year = {2013}}
+  title = {Unifying the analysis of high-throughput sequencing datasets: characterizing {RNA}-seq, {16S} {rRNA} gene sequencing and selective growth experiments by compositional data analysis},
+  journal = {Microbiome}, volume = {2}, pages = {15}, year = {2014},
+  doi = {10.1186/2049-2618-2-15}}
 
 @article{yu2012,
   author = {Yu, G. and others},
-  title = {clusterProfiler: an {R} package for comparing biological themes among gene clusters},
-  journal = {OMICS}, volume = {16}, pages = {284--287}, year = {2012}}
+  title = {{clusterProfiler}: an {R} package for comparing biological themes among gene clusters},
+  journal = {OMICS}, volume = {16}, pages = {284--287}, year = {2012},
+  doi = {10.1089/omi.2011.0118}}
 
 @article{louca2016,
-  author = {Louca, S. and others},
-  title = {{FAPROTAX}: a functional annotation of prokaryotic taxa},
-  journal = {Nature Communications}, volume = {7}, pages = {12428}, year = {2016}}
+  author = {Louca, S. and Parfrey, L. W. and Doebeli, M.},
+  title = {Decoupling function and taxonomy in the global ocean microbiome},
+  journal = {Science}, volume = {353}, pages = {1272--1277}, year = {2016},
+  doi = {10.1126/science.aaf4507}}
 
 @article{nguyen2016,
   author = {Nguyen, N. H. and others},
-  title = {{FUNGuild}: an open annotation tool for parsing fungal community datasets},
-  journal = {Fungal Ecology}, volume = {20}, pages = {241--248}, year = {2016}}
+  title = {{FUNGuild}: an open annotation tool for parsing fungal community datasets by ecological guild},
+  journal = {Fungal Ecology}, volume = {20}, pages = {241--248}, year = {2016},
+  doi = {10.1016/j.funeco.2015.06.006}}
 
 @article{voorhies2019b,
   author = {Voorhies, A. A. and others},
-  title = {Study of the impact of long-duration spaceflight on the astronaut microbiome},
-  journal = {Scientific Reports}, volume = {9}, pages = {9911}, year = {2019}}
+  title = {Study of the impact of long-duration space missions at the {International Space Station} on the astronaut microbiome},
+  journal = {Scientific Reports}, volume = {9}, pages = {9911}, year = {2019},
+  doi = {10.1038/s41598-019-46303-8}}
 
 @article{chaves2011,
   author = {Chaves, I. and others},
-  title = {The cryptochromes: blue light receptors in plants and animals},
-  journal = {Annual Review of Plant Biology}, volume = {62}, pages = {335--364}, year = {2011}}
+  title = {The cryptochromes: blue light photoreceptors in plants and animals},
+  journal = {Annual Review of Plant Biology}, volume = {62}, pages = {335--364}, year = {2011},
+  doi = {10.1146/annurev-arplant-042110-103759}}
