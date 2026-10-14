@@ -1,0 +1,186 @@
+{
+  "R": {
+    "Version": "4.4.3",
+    "Repositories": [
+      {
+        "Name": "CRAN",
+        "URL": "https://cloud.r-project.org"
+      },
+      {
+        "Name": "BioC 3.20",
+        "URL": "https://bioconductor.org/packages/3.20"
+      }
+    ]
+  },
+  "Python": {
+    "Version": "3.12",
+    "Packages": {
+      "mofapy2": {
+        "Package": "mofapy2",
+        "Version": "0.7.4"
+      },
+      "cutadapt": {
+        "Package": "cutadapt",
+        "Version": "4.9"
+      },
+      "pandas": {
+        "Package": "pandas",
+        "Version": "2.2.3"
+      },
+      "numpy": {
+        "Package": "numpy",
+        "Version": "1.26.4"
+      },
+      "pyyaml": {
+        "Package": "pyyaml",
+        "Version": "6.0.2"
+      }
+    }
+  },
+  "Packages": {
+    "ALDEx2": {
+      "Package": "ALDEx2",
+      "Version": "1.38.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "ComplexHeatmap": {
+      "Package": "ComplexHeatmap",
+      "Version": "2.22.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "DESeq2": {
+      "Package": "DESeq2",
+      "Version": "1.46.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "MOFA2": {
+      "Package": "MOFA2",
+      "Version": "1.16.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "apeglm": {
+      "Package": "apeglm",
+      "Version": "1.28.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "clusterProfiler": {
+      "Package": "clusterProfiler",
+      "Version": "4.14.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "dada2": {
+      "Package": "dada2",
+      "Version": "1.34.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "enrichplot": {
+      "Package": "enrichplot",
+      "Version": "1.26.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "impute": {
+      "Package": "impute",
+      "Version": "1.78.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "phyloseq": {
+      "Package": "phyloseq",
+      "Version": "1.50.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "preprocessCore": {
+      "Package": "preprocessCore",
+      "Version": "1.76.0",
+      "Source": "Bioconductor",
+      "Repository": "BioC 3.20"
+    },
+    "WGCNA": {
+      "Package": "WGCNA",
+      "Version": "1.74",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "ashr": {
+      "Package": "ashr",
+      "Version": "2.2.63",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "dplyr": {
+      "Package": "dplyr",
+      "Version": "1.1.4",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "ggplot2": {
+      "Package": "ggplot2",
+      "Version": "3.5.1",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "ggprism": {
+      "Package": "ggprism",
+      "Version": "1.0.5",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "ggrepel": {
+      "Package": "ggrepel",
+      "Version": "0.9.6",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "readr": {
+      "Package": "readr",
+      "Version": "2.1.5",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "renv": {
+      "Package": "renv",
+      "Version": "1.2.4",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "stringr": {
+      "Package": "stringr",
+      "Version": "1.5.1",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "svglite": {
+      "Package": "svglite",
+      "Version": "2.1.3",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "tidyr": {
+      "Package": "tidyr",
+      "Version": "1.3.1",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "vegan": {
+      "Package": "vegan",
+      "Version": "2.7-5",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    },
+    "yaml": {
+      "Package": "yaml",
+      "Version": "2.3.10",
+      "Source": "CRAN",
+      "Repository": "CRAN"
+    }
+  }
+}
