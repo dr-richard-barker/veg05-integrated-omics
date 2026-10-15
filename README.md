@@ -92,6 +92,7 @@ veg05-integrated-omics/
 ├── docs/                        # GitHub Pages site and compiled manuscript PDF
 ├── execution_trace/             # Original analysis plan and agent notebook
 ├── COMPARISON_with_SA_integration.md
+├── ISS_Tomato_Multi-Omics.pptx   # summary slides, built by build_slides.py
 └── environment.yml, requirements.txt, renv.lock, sessionInfo.txt
 ```
 
