@@ -2,19 +2,20 @@
 # ==============================================================================
 # Step 5: Functional Prediction
 #
-# 1. FAPROTAX — functional categories for 16S bacterial communities
-#    (calls scripts/faprotax_collapse.py, a custom Python implementation
-#     because the original collapse_table.py was unavailable for download)
+# 1. FAPROTAX — functional categories for 16S bacterial communities, using
+#    FAPROTAX 1.2.12 and its own collapse_table.py (Louca et al. 2016;
+#    https://pages.uoregon.edu/slouca/LoucaLab/archive/FAPROTAX/)
 # 2. FUNGuild — ecological guild assignment for ITS fungal communities
 #    (attempts FUNGuild.py; falls back to manual genus-level assignment
 #     if the script or database is unavailable)
 #
 # Inputs:
-#   results/microbiome/16S/asv_table_16S.tsv
-#   results/microbiome/16S/taxonomy_16S.tsv
+#   results/microbiome/16S/phyloseq_16S_filtered.rds (chloroplast/mitochondria
+#     removed, written by 04_community_health.R)
 #   results/microbiome/ITS/asv_table_ITS.tsv
 #   results/microbiome/ITS/taxonomy_ITS.tsv
-#   data/microbiome/ref_db/FAPROTAX.txt
+#   data/microbiome/ref_db/FAPROTAX_1.2.12/{FAPROTAX.txt,collapse_table.py}
+#     (unmodified FAPROTAX 1.2.12 release)
 #
 # Outputs:
 #   results/microbiome/functional/faprotax_functions_16S.tsv
@@ -45,97 +46,82 @@ log_msg <- function(...) {
 # ==============================================================================
 log_msg("=== Part 1: FAPROTAX Functional Prediction (16S) ===")
 
-faprotax_db   <- file.path(REPO_ROOT, "data/microbiome/ref_db/FAPROTAX.txt")
-collapse_py   <- file.path(SCRIPT_DIR, "faprotax_collapse.py")
+# FAPROTAX's own collapse_table.py matches each group's wildcard patterns
+# against the whole taxonomy string and applies the database's group set
+# operations. (scripts/faprotax_collapse.py, used before, matched substrings,
+# skipped the set operations and read three database lines as group names.)
+faprotax_dir <- file.path(REPO_ROOT, "data/microbiome/ref_db/FAPROTAX_1.2.12")
+faprotax_db  <- file.path(faprotax_dir, "FAPROTAX.txt")
+collapse_py  <- file.path(faprotax_dir, "collapse_table.py")
+python_bin   <- Sys.getenv("PYTHON", "python3")
+stopifnot(file.exists(faprotax_db), file.exists(collapse_py))
 
-# Load taxonomy
-tax_16s <- read.csv(file.path(REPO_ROOT, "results/microbiome/16S/taxonomy_16S.tsv"),
-                    sep = "\t", stringsAsFactors = FALSE)
+# Bacterial ASVs only: chloroplast and mitochondrial ASVs are removed, as for
+# the community analyses (FAPROTAX files SILVA's mitochondria, which sit in
+# Rickettsiales, under intracellular parasites)
+ps16 <- readRDS(file.path(REPO_ROOT, "results/microbiome/16S/phyloseq_16S_filtered.rds"))
+otu16 <- as(otu_table(ps16), "matrix")
+if (!taxa_are_rows(ps16)) otu16 <- t(otu16)
+tax16 <- as.data.frame(as(tax_table(ps16), "matrix"), stringsAsFactors = FALSE)
+tax16 <- tax16[rownames(otu16), ]
+ranks <- c("Kingdom", "Phylum", "Class", "Order", "Family", "Genus", "Species")
+tax_strings <- apply(tax16[, ranks], 1, function(p) {
+  p[is.na(p)] <- ""
+  paste(p, collapse = ";")
+})
 
-if (file.exists(faprotax_db) && file.exists(collapse_py)) {
-  log_msg("  FAPROTAX database: ", faprotax_db)
-  log_msg("  collapse script:   ", collapse_py)
+work_dir <- tempfile("faprotax_")
+dir.create(work_dir)
+faprotax_infile <- file.path(work_dir, "faprotax_input_16S.tsv")
+write.table(data.frame(taxonomy = tax_strings, otu16, check.names = FALSE),
+            faprotax_infile, sep = "\t", row.names = FALSE, quote = FALSE)
+log_msg("  FAPROTAX input: ", nrow(otu16), " ASVs, ", ncol(otu16), " samples")
 
-  # Prepare 16S ASV table for FAPROTAX
-  asv_16s <- read.csv(file.path(REPO_ROOT, "results/microbiome/16S/asv_table_16S.tsv"),
-                      sep = "\t", stringsAsFactors = FALSE, check.names = FALSE)
-  asv_ids <- asv_16s[, 1]
-  count_data <- asv_16s[, -1]
-  rownames(count_data) <- asv_ids
+collapsed_file <- file.path(work_dir, "functions.tsv")
+g2r_file <- file.path(work_dir, "groups2records.tsv")
+cmd <- sprintf(paste("'%s' '%s' -i '%s' -g '%s' -d taxonomy",
+                     "--column_names_are_in first_data_line -n none",
+                     "-o '%s' --out_groups2records_table '%s' -v 2>&1"),
+               python_bin, collapse_py, faprotax_infile, faprotax_db, collapsed_file, g2r_file)
+log_msg("  Running FAPROTAX collapse_table.py...")
+faprotax_log <- system(cmd, intern = TRUE)
+cat(grep("Assigned|leftovers", faprotax_log, value = TRUE), sep = "\n")
+stopifnot(file.exists(collapsed_file), file.exists(g2r_file))
 
-  # Build taxonomy string: Kingdom;Phylum;Class;Order;Family;Genus;Species
-  tax_lookup <- tax_16s
-  rownames(tax_lookup) <- tax_lookup$ASV_ID
-
-  tax_strings <- sapply(asv_ids, function(a) {
-    t <- tax_lookup[a, ]
-    parts <- c(t$Kingdom, t$Phylum, t$Class, t$Order, t$Family, t$Genus, t$Species)
-    parts[is.na(parts)] <- ""
-    paste(parts, collapse = ";")
-  })
-
-  # FAPROTAX input: rows = taxa, cols = samples, first column = taxonomy
-  faprotax_input <- data.frame(
-    taxonomy = tax_strings,
-    t(count_data),
-    check.names = FALSE
-  )
-  rownames(faprotax_input) <- asv_ids
-
-  faprotax_infile <- "/workspace/faprotax_input_16S.tsv"
-  write.table(faprotax_input, faprotax_infile, sep = "\t", row.names = FALSE, quote = FALSE)
-  log_msg("  FAPROTAX input: ", nrow(faprotax_input), " ASVs, ", ncol(faprotax_input) - 1, " samples")
-
-  # Run custom collapse script
-  faprotax_outdir <- "/workspace/faprotax_output"
-  dir.create(faprotax_outdir, showWarnings = FALSE)
-
-  cmd <- paste0(
-    "python3 '", collapse_py, "' ",
-    "-i '", faprotax_infile, "' ",
-    "-o '", file.path(faprotax_outdir, "faprotax_report.tsv"), "' ",
-    "-g '", faprotax_db, "' ",
-    " 2>&1"
-  )
-  log_msg("  Running FAPROTAX collapse...")
-  faprotax_result <- system(cmd, intern = TRUE)
-  cat(paste(faprotax_result, collapse = "\n"), "\n")
-
-  # Read and save output
-  faprotax_report_file <- file.path(faprotax_outdir, "faprotax_report.tsv")
-  if (file.exists(faprotax_report_file)) {
-    fap_res <- read.csv(faprotax_report_file, sep = "\t",
-                        stringsAsFactors = FALSE, check.names = FALSE)
-    write.table(fap_res, file.path(FUNC_DIR, "faprotax_functions_16S.tsv"),
-                sep = "\t", row.names = FALSE, quote = FALSE)
-    log_msg("  FAPROTAX: ", nrow(fap_res), " functional groups predicted")
-
-    # Build summary (total reads per function)
-    if (ncol(fap_res) > 2) {
-      func_col <- colnames(fap_res)[1]
-      sums <- rowSums(fap_res[, 3:ncol(fap_res)], na.rm = TRUE)
-      func_summary <- data.frame(
-        `function` = fap_res[, func_col],
-        total_reads = sums,
-        check.names = FALSE
-      )
-      func_summary <- func_summary[order(func_summary$total_reads, decreasing = TRUE), ]
-      write.table(func_summary, file.path(FUNC_DIR, "faprotax_report_16S.tsv"),
-                  sep = "\t", row.names = FALSE, quote = FALSE)
-      log_msg("  Top functions:")
-      for (i in 1:min(15, nrow(func_summary))) {
-        if (func_summary$total_reads[i] > 0) {
-          log_msg("    ", func_summary[, 1][i], ": ", func_summary$total_reads[i])
-        }
-      }
-    }
-  } else {
-    log_msg("  WARNING: FAPROTAX output not found")
-  }
-} else {
-  log_msg("  WARNING: FAPROTAX files not found, skipping")
-  log_msg("  FAPROTAX.txt exists: ", file.exists(faprotax_db))
-  log_msg("  faprotax_collapse.py exists: ", file.exists(collapse_py))
+# Function x sample read counts
+func <- read.delim(collapsed_file, check.names = FALSE, stringsAsFactors = FALSE)
+colnames(func)[1] <- "function"
+# Group x ASV membership (rows are records, i.e. ASV taxonomy strings, in
+# input order)
+g2r <- read.delim(g2r_file, comment.char = "#", check.names = FALSE, stringsAsFactors = FALSE)
+member <- as.matrix(g2r[, -1]) != 0
+stopifnot(identical(g2r[[1]], unname(tax_strings)))
+n_taxa <- colSums(member)[func[["function"]]]
+asv_reads <- rowSums(otu16)
+representative <- sapply(func[["function"]], function(f) {
+  idx <- which(member[, f])
+  idx <- idx[order(asv_reads[idx], decreasing = TRUE)][seq_len(min(3, length(idx)))]
+  paste(unique(tax_strings[idx]), collapse = "; ")
+})
+report <- data.frame(
+  `function` = func[["function"]],
+  n_taxa = as.integer(n_taxa),
+  total_reads = rowSums(func[, -1, drop = FALSE]),
+  representative_taxa = representative,
+  check.names = FALSE
+)
+keep <- report$n_taxa > 0
+report <- report[keep, ]
+report <- report[order(report$total_reads, decreasing = TRUE), ]
+write.table(func[keep, ], file.path(FUNC_DIR, "faprotax_functions_16S.tsv"),
+            sep = "\t", row.names = FALSE, quote = FALSE)
+write.table(report, file.path(FUNC_DIR, "faprotax_report_16S.tsv"),
+            sep = "\t", row.names = FALSE, quote = FALSE)
+log_msg("  FAPROTAX: ", nrow(report), " functions with at least one ASV; ",
+        sum(rowSums(member) > 0), " of ", nrow(member), " ASVs assigned")
+for (i in seq_len(min(10, nrow(report)))) {
+  log_msg("    ", report[["function"]][i], ": ", report$total_reads[i], " reads, ",
+          report$n_taxa[i], " ASVs")
 }
 
 # ==============================================================================
