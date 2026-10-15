@@ -216,17 +216,19 @@ build_bipartite_network <- function(tissue, wgcna_dir, ps_16s, ps_its, meta_rna,
   # Combine and add genus annotation
   all_cor <- rbind(cor_16s_df, cor_its_df)
 
-  if (nrow(cor_16s_df) > 0) {
-    tax_lookup_16s <- tax_16s
-    rownames(tax_lookup_16s) <- tax_lookup_16s$ASV_ID
-    all_cor$Genus <- sapply(all_cor$asv_id, function(a) {
-      if (a %in% rownames(tax_lookup_16s)) {
-        g <- tax_lookup_16s[a, "Genus"]
-        if (is.na(g)) return(tax_lookup_16s[a, "Family"])
-        return(g)
-      }
-      return(NA)
-    })
+  # Look each ASV up in its own amplicon's taxonomy. ASV IDs restart in each
+  # amplicon (ITS ASV006 is Fusarium solani, 16S ASV006 is Ralstonia), and an
+  # earlier version labelled every row, ITS included, from the 16S table.
+  if (nrow(all_cor) > 0) {
+    tax_lookup <- list("16S" = tax_16s, "ITS" = tax_its)
+    all_cor$Genus <- mapply(function(a, amp) {
+      tl <- tax_lookup[[amp]]
+      i <- match(a, tl$ASV_ID)
+      if (is.na(i)) return(NA)
+      g <- tl$Genus[i]
+      if (is.na(g)) return(tl$Family[i])
+      g
+    }, all_cor$asv_id, all_cor$amplicon, USE.NAMES = FALSE)
   }
 
   return(all_cor)

@@ -1,6 +1,6 @@
 """Rebuild Fig 6 (module-taxon) as a clean bubble grid with GO-based module biology labels.
 Shows the significant (padj<0.05) module-taxon correlations for Leaf 16S (the 28 of 29 hits);
-the single Adv-Root ITS hit (blue x Ralstonia) is noted in the caption/footnote.
+significant hits outside Leaf 16S are listed in a footnote, built from the table.
 """
 import os
 import numpy as np, pandas as pd
@@ -45,8 +45,10 @@ cb.set_label('Spearman rho', fontsize=9)
 for p, lab in [(0.05, 'padj .05'), (0.005, 'padj .005')]:
     ax.scatter([], [], s=-np.log10(p) * 90, c='#bbb', edgecolor='k', linewidth=0.5, label=lab)
 ax.legend(title='dot size', loc='upper left', bbox_to_anchor=(1.02, 1), fontsize=7.5, title_fontsize=8, frameon=False)
-fig.text(0.01, 0.005, 'One additional significant hit not shown: Adv-Root ITS blue × Ralstonia (rho=-0.98).',
-         fontsize=6.5, color='#555')
+other = d[(d['padj'] < 0.05) & ~((d['tissue'] == 'Leaf') & (d['amplicon'] == '16S'))]
+if len(other):
+    hits = '; '.join(f"{r.tissue} {r.amplicon} {r.module} × {r.Genus} (rho={r.rho:.2f})" for r in other.itertuples())
+    fig.text(0.01, 0.005, f"Significant hits not shown ({len(other)}): {hits}.", fontsize=6.5, color='#555')
 plt.tight_layout()
 for ext in ('png', 'svg', 'pdf'):
     fig.savefig(os.path.join(F, f'fig6_module_taxon_network.{ext}'), bbox_inches='tight', dpi=300)
