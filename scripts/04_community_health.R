@@ -144,12 +144,15 @@ compute_beta <- function(ps, amplicon) {
       # Replace NA light with "NA"
       comp_sd$light[is.na(comp_sd$light)] <- "NA"
       set.seed(42)
+      # by = "terms" reports flight, light and their interaction separately. Without it
+      # adonis2 returned only the whole-model row, whose R2 had been read as the
+      # spaceflight effect.
       perm <- adonis2(comp_dist ~ flight * light, data = comp_sd,
-                      permutations = PERMANOVA_PERMS)
+                      permutations = PERMANOVA_PERMS, by = "terms")
     } else {
       set.seed(42)
       perm <- adonis2(comp_dist ~ flight, data = comp_sd,
-                      permutations = PERMANOVA_PERMS)
+                      permutations = PERMANOVA_PERMS, by = "terms")
     }
     
     # Extract results
@@ -329,8 +332,12 @@ run_aldex2 <- function(ps, amplicon, compartment, contrast_var, group_levels) {
   # Welch's t-test + Wilcoxon rank-sum (for 2-group comparison)
   welch <- aldex.ttest(clr, paired.test = FALSE)
   
-  # Effect size
+  # Effect size. aldex.effect() reports the alphabetically second group minus
+  # the first: with groups "Flight"/"Ground", a taxon higher in Flight gets a
+  # negative effect (checked on a toy example with ALDEx2 1.44.0). Orient it so
+  # that positive means higher in group_levels[1], as the contrast label says.
   effect <- aldex.effect(clr)
+  orient <- if (sort(unique(groups))[2] == group_levels[1]) 1 else -1
   
   # Combine results
   results <- data.frame(
@@ -339,8 +346,8 @@ run_aldex2 <- function(ps, amplicon, compartment, contrast_var, group_levels) {
     contrast = paste0(contrast_var, "_", group_levels[1], "_vs_", group_levels[2]),
     welch_p = welch$we.eBH,    # Welch's t BH-adjusted p-value
     wilcox_p = welch$wi.eBH,   # Wilcoxon BH-adjusted p-value
-    effect_size = effect$effect,
-    diff_btw = effect$diff.btw,
+    effect_size = orient * effect$effect,
+    diff_btw = orient * effect$diff.btw,
     diff_win = effect$diff.win,
     overlap = effect$overlap
   )
