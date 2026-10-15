@@ -76,13 +76,19 @@ meta_rna <- meta_rna[meta_rna$tissue == TISSUE, ]
 # Build matching key
 meta_rna$match_key <- paste(meta_rna$flight, meta_rna$plant, meta_rna$light, sep = "_")
 
-# For microbiome, build matching key from sample metadata
+# For microbiome, build matching key from sample metadata. Only samples from
+# the RNA-seq tissue's own compartment may match: the key has no tissue, so
+# without this filter a plant's root, wick or soil sample could stand in for
+# its leaf
+COMPARTMENT <- c("Leaf" = "leaf", "Adv-Root" = "AdvRoot")[[TISSUE]]
 sd16 <- data.frame(sample_data(ps16))
+sd16 <- sd16[sd16$compartment == COMPARTMENT, ]
 sd16$match_key <- paste(sd16$flight, sd16$plant, sd16$light, sep = "_")
 sd16$match_key <- gsub("-", "", sd16$match_key)  # Normalize SN-01 -> SN01
 
 # Same for ITS
 sdITS <- data.frame(sample_data(psITS))
+sdITS <- sdITS[sdITS$compartment == COMPARTMENT, ]
 sdITS$match_key <- paste(sdITS$flight, sdITS$plant, sdITS$light, sep = "_")
 sdITS$match_key <- gsub("-", "", sdITS$match_key)
 
@@ -133,8 +139,13 @@ log_msg("Transcriptome view: ", nrow(rna_mat), " genes x ", ncol(rna_mat), " sam
 ps16_sub <- prune_samples(na.omit(s16_samples), ps16)
 otu16 <- as(otu_table(ps16_sub), "matrix")
 if (!taxa_are_rows(ps16_sub)) otu16 <- t(otu16)
-# Use the matched sample names
-colnames(otu16) <- names(s16_samples)[!is.na(s16_samples)]
+# prune_samples() keeps the phyloseq object's own sample order, so pick the
+# columns by sample ID before renaming them to the match keys
+otu16 <- otu16[, s16_samples, drop = FALSE]
+colnames(otu16) <- names(s16_samples)
+# ASVs with no reads in these samples have zero variance, so scale() turns
+# them into NaN rows that MOFA+ treats as entirely missing; drop them
+otu16 <- otu16[rowSums(otu16) > 0, , drop = FALSE]
 # Relative abundance
 otu16_rel <- sweep(otu16, 2, colSums(otu16), "/")
 otu16_rel[is.na(otu16_rel)] <- 0
@@ -148,7 +159,9 @@ log_msg("16S view: ", nrow(otu16_clr), " ASVs x ", ncol(otu16_clr), " samples")
 psITS_sub <- prune_samples(na.omit(sITS_samples), psITS)
 otuITS <- as(otu_table(psITS_sub), "matrix")
 if (!taxa_are_rows(psITS_sub)) otuITS <- t(otuITS)
-colnames(otuITS) <- names(sITS_samples)[!is.na(sITS_samples)]
+otuITS <- otuITS[, sITS_samples, drop = FALSE]
+colnames(otuITS) <- names(sITS_samples)
+otuITS <- otuITS[rowSums(otuITS) > 0, , drop = FALSE]
 otuITS_rel <- sweep(otuITS, 2, colSums(otuITS), "/")
 otuITS_rel[is.na(otuITS_rel)] <- 0
 otuITS_clr <- log2(otuITS_rel + 1e-6) - rowMeans(log2(otuITS_rel + 1e-6))
@@ -247,21 +260,11 @@ factor_df$light <- meta_match$light
 dys_16s <- read.csv(file.path(REPO_ROOT, "results/microbiome/community_health/dysbiosis_index_16S.tsv"), sep="\t")
 dys_its <- read.csv(file.path(REPO_ROOT, "results/microbiome/community_health/dysbiosis_index_ITS.tsv"), sep="\t")
 
-for (i in 1:nrow(factor_df)) {
-  key <- common_samples[i]
-  # Find dysbiosis by matching
-  plant <- meta_match$plant[i]
-  flight <- meta_match$flight[i]
-  plant_norm <- gsub("-", "", plant)
-  
-  d16 <- dys_16s[dys_16s$compartment == "leaf" & dys_16s$flight == flight &
-                  grepl(plant_norm, gsub("-", "", dys_16s$sample_id)), ]
-  if (nrow(d16) > 0) factor_df$dysbiosis_16S[i] <- d16$dysbiosis_index[1] else factor_df$dysbiosis_16S[i] <- NA
-  
-  dITS <- dys_its[dys_its$compartment == "leaf" & dys_its$flight == flight &
-                   grepl(plant_norm, gsub("-", "", dys_its$sample_id)), ]
-  if (nrow(dITS) > 0) factor_df$dysbiosis_ITS[i] <- dITS$dysbiosis_index[1] else factor_df$dysbiosis_ITS[i] <- NA
-}
+# Each sample's dysbiosis indices are those of the same leaf samples used in
+# its 16S and ITS views (a substring match on the plant ID paired SN01 with
+# SN010)
+factor_df$dysbiosis_16S <- dys_16s$dysbiosis_index[match(s16_samples[common_samples], dys_16s$sample_id)]
+factor_df$dysbiosis_ITS <- dys_its$dysbiosis_index[match(sITS_samples[common_samples], dys_its$sample_id)]
 
 write.table(factor_df, file.path(OUT_DIR, "mofa_factor_values.tsv"),
             sep = "\t", row.names = FALSE, quote = FALSE)
