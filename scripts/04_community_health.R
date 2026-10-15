@@ -85,8 +85,10 @@ compute_alpha <- function(ps, amplicon) {
   sd$sample_id <- rownames(sd)
   alpha <- merge(rich, sd, by = "sample_id")
   
-  # Add read depth
-  alpha$read_depth <- sample_sums(ps)
+  # Add read depth. merge() re-sorts the rows by sample_id, so look each
+  # sample's depth up by name (assigning sample_sums() in phyloseq order
+  # attached depths to the wrong samples)
+  alpha$read_depth <- as.numeric(sample_sums(ps)[alpha$sample_id])
   
   # Save
   write.table(alpha, file.path(OUT_DIR, paste0("alpha_diversity_", amplicon, ".tsv")),
