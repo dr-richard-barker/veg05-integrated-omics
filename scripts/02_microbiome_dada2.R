@@ -9,14 +9,22 @@
 #   3. Error learning + denoising
 #   4. Merge paired reads
 #   5. Chimera removal
-#   6. Taxonomy assignment (SILVA 138.2 for 16S, UNITE v7 for ITS)
+#   6. Taxonomy assignment (SILVA 138.1 for 16S, UNITE v7.2 for ITS)
 #   7. Export ASV tables, taxonomy, tracking stats
 #
 # Input:  data/microbiome/fastq/*.fastq.gz
 #         data/metadata/sample_metadata_microbiome.csv
 #         data/microbiome/ref_db/silva_nr99_v138.1_train_set.fa.gz
 #         data/microbiome/ref_db/silva_species_assignment_v138.1.fa.gz
-#         data/microbiome/ref_db/unite_ver7_99_10.10.2017_dada2.fasta.gz
+#           (both from https://doi.org/10.5281/zenodo.4587955)
+#         data/microbiome/ref_db/unite_ver7_99_01.12.2017_dada2.fasta.gz
+#           built from the UNITE QIIME release 01.12.2017
+#           (https://doi.org/10.15156/BIO/587481): each sequence in
+#           sh_refs_qiime_ver7_99_01.12.2017.fasta is headed by its line of
+#           sh_taxonomy_qiime_ver7_99_01.12.2017.txt with the k__/p__/... prefixes
+#           removed, e.g. ">Fungi;Ascomycota;...;Fusarium;Fusarium_solani;".
+#           The original run used the 10.10.2017 build, which UNITE no longer
+#           distributes.
 #
 # Output: results/microbiome/{16S,ITS}/
 #           asv_table_{amplicon}.tsv       — ASV count table (samples x ASVs)
@@ -56,11 +64,32 @@ SILVA_SPECIES <- file.path(REF_DIR, "silva_species_assignment_v138.1.fa.gz")
 # ITS parameters (primers need removal)
 ITS3F <- "GCATCGATGAAGAACGCAGC"   # 20 bp forward primer
 ITS4  <- "TCCTCCGCTTATTGATATGC"   # 20 bp reverse primer
-UNITE_DB <- file.path(REF_DIR, "unite_ver7_99_10.10.2017_dada2.fasta.gz")
+UNITE_DB <- file.path(REF_DIR, "unite_ver7_99_01.12.2017_dada2.fasta.gz")
 
 # --- Helper functions -------------------------------------------------------
 log_msg <- function(...) {
   cat(sprintf("[%s] %s\n", format(Sys.time(), "%H:%M:%S"), paste0(...)))
+}
+
+# Reads per sample through the pipeline. dadaFs, dadaRs and mergers hold only
+# the samples with reads after filtering, so every column is matched to
+# sample_names by name (binding them by position misaligned the ITS table)
+track_reads <- function(sample_names, filt_out, dadaFs, dadaRs, mergers, seqtab_nochim) {
+  by_name <- function(x) {
+    v <- x[sample_names]
+    v[is.na(v)] <- 0
+    unname(v)
+  }
+  nonchim <- rowSums(seqtab_nochim)
+  data.frame(
+    sample = sample_names,
+    input = filt_out[, 1],
+    filtered = filt_out[, 2],
+    denoisedF = by_name(sapply(dadaFs, function(x) sum(x$denoised))),
+    denoisedR = by_name(sapply(dadaRs, function(x) sum(x$denoised))),
+    merged = by_name(sapply(mergers, function(x) sum(x$abundance))),
+    nonchim = by_name(nonchim)
+  )
 }
 
 # --- Load metadata ----------------------------------------------------------
@@ -170,40 +199,29 @@ process_16S <- function() {
           round(ncol(seqtab_nochim) / ncol(seqtab2) * 100, 1), "% retained)")
   
   # --- Track reads through pipeline ---
-  track <- cbind(
-    sample = sample_names,
-    input = filt_out[, 1],
-    filtered = filt_out[, 2],
-    denoisedF = sapply(dadaFs, function(x) sum(x$denoised)),
-    denoisedR = sapply(dadaRs, function(x) sum(x$denoised)),
-    merged = sapply(mergers, function(x) sum(x$abundance)),
-    nonchim = rowSums(seqtab_nochim[match(sample_names, rownames(seqtab_nochim)), , drop = FALSE])
-  )
-  track[is.na(track)] <- 0
-  # Handle samples that were filtered out
-  if (nrow(track) < length(sample_names)) {
-    missing_samples <- setdiff(sample_names, track[, "sample"])
-    missing_track <- cbind(sample = missing_samples, 
-                           matrix(0, nrow = length(missing_samples), ncol = 6,
-                                  dimnames = list(NULL, c("input","filtered","denoisedF","denoisedR","merged","nonchim"))))
-    track <- rbind(track, missing_track)
-  }
-  write.table(track, file.path(OUT_DIR, "16S", "track_stats_16S.tsv"), 
+  track <- track_reads(sample_names, filt_out, dadaFs, dadaRs, mergers, seqtab_nochim)
+  write.table(track, file.path(OUT_DIR, "16S", "track_stats_16S.tsv"),
               sep = "\t", row.names = FALSE, quote = FALSE)
   log_msg("Track stats written")
-  
+
   # --- Taxonomy assignment ---
-  log_msg("Assigning taxonomy with SILVA 138.2...")
+  log_msg("Assigning taxonomy with SILVA 138.1...")
+  set.seed(42)  # assignTaxonomy bootstraps at random; fix the seed so a re-run gives the same labels
   taxa <- assignTaxonomy(seqtab_nochim, SILVA_TRAIN, multithread = NTHREADS, verbose = TRUE)
   log_msg("Adding species assignment...")
   taxa <- addSpecies(taxa, SILVA_SPECIES, verbose = TRUE)
   log_msg("Taxonomy assigned: ", nrow(taxa), " ASVs")
-  
+
+  # --- Capture sequences BEFORE renaming ---
+  # (getSequences() after the renaming returns "ASV001", ..., which made
+  # DNAStringSet() below fail)
+  asv_seqs <- getSequences(seqtab_nochim)
+
   # --- Create ASV IDs ---
   asv_ids <- paste0("ASV", sprintf("%03d", seq_len(ncol(seqtab_nochim))))
   colnames(seqtab_nochim) <- asv_ids
   rownames(taxa) <- asv_ids
-  
+
   # --- Save outputs ---
   # ASV table
   asv_df <- as.data.frame(t(seqtab_nochim))
@@ -230,7 +248,7 @@ process_16S <- function() {
   rownames(meta_match) <- meta_match$sample_id
   
   # Create DNAStringSet for refseq
-  dna <- DNAStringSet(getSequences(seqtab_nochim))
+  dna <- DNAStringSet(asv_seqs)
   names(dna) <- asv_ids
   
   ps <- phyloseq(
@@ -375,28 +393,19 @@ process_ITS <- function() {
           round(ncol(seqtab_nochim) / ncol(seqtab2) * 100, 1), "% retained)")
   
   # --- Track reads ---
-  track <- cbind(
-    sample = sample_names_trim,
-    input = filt_out[, 1],
-    filtered = filt_out[, 2],
-    denoisedF = sapply(dadaFs, function(x) sum(x$denoised)),
-    denoisedR = sapply(dadaRs, function(x) sum(x$denoised)),
-    merged = sapply(mergers, function(x) sum(x$abundance)),
-    nonchim = rowSums(seqtab_nochim[match(sample_names_trim, rownames(seqtab_nochim)), , drop = FALSE])
-  )
-  track[is.na(track)] <- 0
+  # "input" is the read count after primer removal
+  track <- track_reads(sample_names_trim, filt_out, dadaFs, dadaRs, mergers, seqtab_nochim)
   if (nrow(track) < length(sample_names)) {
-    missing_samples <- setdiff(sample_names, track[, "sample"])
-    missing_track <- cbind(sample = missing_samples,
-                           matrix(0, nrow = length(missing_samples), ncol = 6,
-                                  dimnames = list(NULL, c("input","filtered","denoisedF","denoisedR","merged","nonchim"))))
-    track <- rbind(track, missing_track)
+    missing_samples <- setdiff(sample_names, track$sample)
+    track <- rbind(track, data.frame(sample = missing_samples, input = 0, filtered = 0,
+                                     denoisedF = 0, denoisedR = 0, merged = 0, nonchim = 0))
   }
   write.table(track, file.path(OUT_DIR, "ITS", "track_stats_ITS.tsv"),
               sep = "\t", row.names = FALSE, quote = FALSE)
   
   # --- Taxonomy assignment ---
   log_msg("Assigning taxonomy with UNITE v7...")
+  set.seed(42)  # assignTaxonomy bootstraps at random; fix the seed so a re-run gives the same labels
   taxa <- assignTaxonomy(seqtab_nochim, UNITE_DB, multithread = NTHREADS, verbose = TRUE)
   log_msg("Taxonomy assigned: ", nrow(taxa), " ASVs")
   
@@ -456,9 +465,8 @@ log_msg("Starting DADA2 pipeline for VEG-05 microbiome")
 log_msg("R version: ", R.version.string)
 log_msg("dada2 version: ", as.character(packageVersion("dada2")))
 
-# Process 16S (already completed - loading saved results)
-log_msg("16S already processed, loading saved results...")
-seqtab_16s <- readRDS(file.path(OUT_DIR, "16S", "seqtab_16S.rds"))
+# Process 16S
+seqtab_16s <- process_16S()
 
 # Process ITS
 seqtab_ITS <- process_ITS()

@@ -22,7 +22,7 @@ ASV020	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Beijerinckiaceae	
 ASV021	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Rhizobiaceae	NA	NA
 ASV022	Bacteria	Bacteroidota	Bacteroidia	Cytophagales	Spirosomaceae	Dyadobacter	beijingensis
 ASV023	Bacteria	Cyanobacteria	Cyanobacteriia	Chloroplast	NA	NA	NA
-ASV024	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacterales	Erwiniaceae	Pantoea	NA
+ASV024	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacterales	Erwiniaceae	NA	NA
 ASV025	Bacteria	Cyanobacteria	Cyanobacteriia	Chloroplast	NA	NA	NA
 ASV026	Bacteria	Cyanobacteria	Cyanobacteriia	Chloroplast	NA	NA	NA
 ASV027	Bacteria	Cyanobacteria	Cyanobacteriia	Chloroplast	NA	NA	NA
@@ -116,7 +116,7 @@ ASV114	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA
 ASV115	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV116	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV117	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Hyphomicrobiaceae	Hyphomicrobium	NA
-ASV118	Bacteria	Proteobacteria	Gammaproteobacteria	Burkholderiales	Comamonadaceae	Pelomonas	NA
+ASV118	Bacteria	Proteobacteria	Gammaproteobacteria	Burkholderiales	Comamonadaceae	NA	NA
 ASV119	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV120	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV121	Bacteria	Proteobacteria	Alphaproteobacteria	Reyranellales	Reyranellaceae	Reyranella	NA
@@ -147,7 +147,7 @@ ASV145	Bacteria	Actinobacteriota	Actinobacteria	Micrococcales	Promicromonosporac
 ASV146	Bacteria	Proteobacteria	Gammaproteobacteria	Gammaproteobacteria Incertae Sedis	Unknown Family	Acidibacter	NA
 ASV147	Bacteria	Proteobacteria	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Novosphingobium	NA
 ASV148	Bacteria	Proteobacteria	Alphaproteobacteria	Caedibacterales	Caedibacteraceae	Caedibacter	NA
-ASV149	Bacteria	Proteobacteria	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	NA	NA
+ASV149	Bacteria	Proteobacteria	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	NA
 ASV150	Bacteria	Proteobacteria	Gammaproteobacteria	Burkholderiales	Oxalobacteraceae	Massilia	NA
 ASV151	Bacteria	Firmicutes	Bacilli	Bacillales	Bacillaceae	Bacillus	NA
 ASV152	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
@@ -168,7 +168,7 @@ ASV166	Bacteria	Actinobacteriota	Actinobacteria	Micrococcales	Microbacteriaceae	
 ASV167	Bacteria	Firmicutes	Bacilli	Paenibacillales	Paenibacillaceae	Paenibacillus	NA
 ASV168	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV169	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
-ASV170	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	NA	NA
+ASV170	Bacteria	Proteobacteria	Gammaproteobacteria	Enterobacterales	Enterobacteriaceae	Klebsiella	NA
 ASV171	Bacteria	Firmicutes	Bacilli	Paenibacillales	Paenibacillaceae	Paenibacillus	NA
 ASV172	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV173	Bacteria	Firmicutes	Bacilli	Paenibacillales	Paenibacillaceae	Paenibacillus	NA
@@ -319,7 +319,7 @@ ASV317	Bacteria	Proteobacteria	Gammaproteobacteria	Pseudomonadales	Moraxellaceae
 ASV318	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV319	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV320	Bacteria	Actinobacteriota	Actinobacteria	Micrococcales	Microbacteriaceae	Microbacterium	NA
-ASV321	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Rhizobiaceae	Mesorhizobium	NA
+ASV321	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Rhizobiaceae	NA	NA
 ASV322	Bacteria	Actinobacteriota	Actinobacteria	Micrococcales	Microbacteriaceae	Humibacter	NA
 ASV323	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
 ASV324	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA	NA
@@ -511,7 +511,7 @@ ASV509	Bacteria	Proteobacteria	Alphaproteobacteria	Rickettsiales	Mitochondria	NA
 ASV510	Bacteria	Acidobacteriota	Acidobacteriae	Subgroup 2	NA	NA	NA
 ASV511	Bacteria	Proteobacteria	Alphaproteobacteria	Rhizobiales	Beijerinckiaceae	Methylobacterium-Methylorubrum	NA
 ASV512	Bacteria	Acidobacteriota	Acidobacteriae	Bryobacterales	Bryobacteraceae	Bryobacter	NA
-ASV513	Bacteria	Actinobacteriota	Actinobacteria	Pseudonocardiales	Pseudonocardiaceae	Tamaricihabitans	NA
+ASV513	Bacteria	Actinobacteriota	Actinobacteria	Pseudonocardiales	Pseudonocardiaceae	NA	NA
 ASV514	Bacteria	Chloroflexi	Chloroflexia	Thermomicrobiales	JG30-KF-CM45	NA	NA
 ASV515	Bacteria	Firmicutes	Bacilli	Lactobacillales	Streptococcaceae	Lactococcus	NA
 ASV516	Bacteria	Proteobacteria	Alphaproteobacteria	Sphingomonadales	Sphingomonadaceae	Sphingomonas	NA
