@@ -1,22 +1,18 @@
-# Python dependencies for the VEG-05 integrated omics pipeline
-# Install with: uv pip install -r requirements.txt
-# (or: pip install -r requirements.txt)
+# Python dependencies for the VEG-05 integrated omics pipeline.
+# Versions are those used for the October 2026 re-runs (Python 3.9.6).
+# Install with: pip install -r requirements.txt
 
-# Primer trimming for ITS reads
-cutadapt>=4.2
+# ITS primer removal, called from scripts/02_microbiome_dada2.R
+cutadapt==5.2
+# MOFA+ training backend, called from scripts/07_integration_mofa.R through
+# reticulate; MOFA2 1.22.1 requires mofapy2 0.7.5
+mofapy2==0.7.5
+# FAPROTAX 1.2.12's collapse_table.py (scripts/05) needs only the standard library
 
-# MOFA+ Python backend (called via reticulate from R)
-mofapy2>=0.7.4
-
-# FAPROTAX custom collapse implementation
-pandas>=2.0
-numpy>=1.24
-
-# Data parsing and metadata handling
-pyyaml>=6.0
-
-# Optional: BIOM format support
-biom-format>=2.1.16
-
-# Optional: scikit-bio for additional diversity metrics
-scikit-bio>=0.7.0
+# Figure, manuscript and slide builders (build_*.py, fix_fig*.py)
+matplotlib==3.9.4
+numpy==2.0.2
+pandas==2.3.3
+pillow==11.3.0
+python-docx==1.2.0
+python-pptx==1.0.2

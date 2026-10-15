@@ -100,6 +100,7 @@ veg05-integrated-omics/
 - Original run: R 4.4.2, Bioconductor 3.20; DADA2 1.34.0, phyloseq 1.50.0, DESeq2 1.46.0, WGCNA 1.74, MOFA2 1.16.0, ALDEx2 1.38.0, clusterProfiler 4.14.0, vegan 2.7-5; Python 3.12, mofapy2 0.7.4, cutadapt
 - Re-runs of October 2026 (`rnaseq/RERUN_2026-10-14.md`, `microbiome/RERUN_2026-10-15.md`): R 4.6.1; DESeq2 1.52.0, WGCNA 1.74, DADA2 1.40.0, phyloseq 1.56.0, vegan 2.7-6, ALDEx2 1.44.0, MOFA2 1.22.1; Python mofapy2 0.7.5, cutadapt 5.2
 - SILVA 138.1, UNITE v7.2 QIIME release (1 Dec 2017, 99%), FAPROTAX 1.2.12
+- `renv.lock` pins the R packages of the re-runs (243 packages with their dependencies; restore with `renv::restore()`); `requirements.txt` pins the Python packages
 
 ## Limitations
 

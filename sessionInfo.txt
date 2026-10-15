@@ -88,7 +88,8 @@ viridisLite       0.4.2     CRAN
 1. This sessionInfo was reconstructed from the analysis record after the compute
    environment was recreated. Package versions reflect those used during the
    original analysis run (Bioconductor 3.20, R 4.4.x).
-2. See renv.lock for machine-readable package versions.
+2. renv.lock does not describe this environment: it records the environment of
+   the October 2026 re-runs (R 4.6.1, Bioconductor 3.23; see note 7).
 3. GO annotations for tomato (Solanum lycopersicum) were obtained from Ensembl
    Plants BioMart (virtual schema: plants_mart, dataset: slgca000188115v5cm_eg_gene)
    because org.Sl.eg.db was not available for Bioconductor 3.20.
