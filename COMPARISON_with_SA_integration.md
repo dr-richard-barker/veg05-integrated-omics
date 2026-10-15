@@ -41,7 +41,7 @@ trigger.
 
 **This microbiome study supplies a candidate trigger.** It shows that spaceflight
 *restructures the plant microbiome* — increased bacterial diversity, elevated bacterial and
-fungal dysbiosis, flight enrichment of specific taxa (*Pantoea*, *Penicillium*, *Fusarium*), and correlation of growth-promoting/N-fixing taxa (*Methylobacterium*, *Burkholderia*, *Azospirillum*) with flight-associated host modules — and that a **microbe-driven** host module (adventitious-root black module: r = −0.85 with ITS dysbiosis, but r = −0.38, padj = 0.32 with flight) tracks the *microbiome*, not microgravity per se (its only enriched GO term is "nucleus").
+fungal dysbiosis, flight enrichment of specific taxa (an Erwiniaceae ASV and *Penicillium citrinum* in leaves; *Burkholderia*, Rhizobiaceae and *Dyadobacter* in roots), and correlation of growth-promoting/N-fixing taxa (*Methylobacterium*, *Burkholderia*, *Azospirillum*) with flight-associated host modules — and that a **microbe-driven** host module (adventitious-root black module: r = −0.85 with ITS dysbiosis, but r = −0.38, padj = 0.32 with flight) tracks the *microbiome*, not microgravity per se (its only enriched GO term is "nucleus").
 
 Put together, a coherent, testable model emerges:
 

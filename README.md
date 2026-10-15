@@ -24,7 +24,7 @@ Complete analysis pipeline for an integrated multi-omics study of dwarf tomato (
 | 2 | `scripts/02_microbiome_dada2.R` | DADA2 amplicon processing (16S + ITS) |
 | 3 | `scripts/03_rnaseq_deseq2.R` | DESeq2 differential expression |
 | 4 | `scripts/04_community_health.R` | Alpha/beta diversity, PERMANOVA, dysbiosis index, ALDEx2 |
-| 5 | `scripts/05_functional_prediction.R` | FAPROTAX (via `scripts/faprotax_collapse.py`, custom) and FUNGuild |
+| 5 | `scripts/05_functional_prediction.R` | FAPROTAX 1.2.12 (its own `collapse_table.py`) and FUNGuild |
 | 6 | `scripts/06_wgcna.R` | WGCNA co-expression networks |
 | 7 | `scripts/07_integration_mofa.R` | MOFA+ multi-omics integration (leaf) |
 | 8 | `scripts/08_correlation_networks.R` | Module–taxon correlation networks |
@@ -46,10 +46,10 @@ below, so the scripts are not runnable from this repository without editing thos
 
 ### Microbiome
 - **16S**: 348 bacterial ASVs (after chloroplast/mitochondria removal), 142 samples, 3,558,814 reads
-- **ITS**: 77 fungal ASVs, 141 samples, 160,316 reads
-- **PERMANOVA (16S leaf)**: R²=0.42, F=4.02, p=0.001 for the full flight × light model (the flight term alone has not been estimated)
+- **ITS**: 78 fungal ASVs, 141 samples (121 with reads after processing), 156,102 reads
+- **PERMANOVA (16S leaf)**: flight R²=0.28, F=8.24, p=0.001; light n.s.; flight × light R²=0.11, p=0.035 (terms added sequentially)
 - **Dysbiosis (16S leaf)**: Flight 2.06±0.99 vs Ground 1.00±0.47
-- **Dysbiosis (ITS leaf)**: Flight 3.64±2.78 vs Ground 1.00±0.24
+- **Dysbiosis (ITS leaf)**: Flight 3.69±2.78 vs Ground 1.00±0.22
 
 ### Transcriptome
 - **Leaf**: 19,844 genes, 21 samples. Flight×Light interaction: 3,189 DEGs
@@ -59,12 +59,12 @@ below, so the scripts are not runnable from this repository without editing thos
 ### Integration
 - **WGCNA**: Leaf 12 modules, Adv-Root 16 modules (plus unassigned genes)
 - **Key module**: Adv-Root black (169 genes) — microbe-driven (r=−0.85, padj=0.009 with ITS dysbiosis, 12 plants; r=−0.38, padj=0.32 with flight)
-- **MOFA+**: 5 factors, 21 samples, 3 views. Factor 1 captures flight (ρ=−0.76, padj=0.001), explains 48% transcriptome variance. The 16S/ITS views were built from mismatched samples and need re-running
-- **Module-taxon correlations**: 29 significant (BH padj<0.05), linking flight modules to Methylobacterium, Burkholderia, Azospirillum
+- **MOFA+**: 5 factors, 18 leaf samples with all three views from the same leaf. Factor 1 explains 44% of transcriptome variance and correlates with flight (ρ=−0.68, padj=0.037) and light (ρ=+0.63, padj=0.053), which are partly confounded in these samples
+- **Module-taxon correlations**: 31 significant (BH padj<0.05; 28 leaf 16S, 3 root ITS), linking flight modules to Methylobacterium, Burkholderia, Azospirillum
 - **GO enrichment**: 80 module–term associations (73 unique terms, Leaf), 96 (86 unique, Adv-Root). Photosynthesis, oxidative stress, ribosome
 
 ### Functional Prediction
-- **FAPROTAX**: 26 functions; largest by reads are aerobic chemoheterotrophy, nitrogen fixation, dark hydrogen oxidation, methanol oxidation. The custom collapse misparses three database lines (31 ASVs) and needs re-running
+- **FAPROTAX** (1.2.12): 185 of 348 bacterial ASVs in 44 groups; largest by reads are chemoheterotrophy, aerobic chemoheterotrophy, nitrogen fixation, ureolysis. SILVA's merged genus names (e.g. *Methylobacterium-Methylorubrum*) are not matched by FAPROTAX's whole-word matching
 - **FUNGuild**: Saprotrophs (11 ASVs), Plant Pathogens (2 ASVs: Fusarium spp.)
 
 ## Repository Structure
@@ -72,7 +72,7 @@ below, so the scripts are not runnable from this repository without editing thos
 ```
 veg05-integrated-omics/
 ├── scripts/                     # Analysis pipeline, steps 00–12 (see Pipeline table)
-├── microbiome/                  # DADA2 taxonomy and read tracking (16S, ITS)
+├── microbiome/                  # DADA2 taxonomy and read tracking (16S, ITS); RERUN_2026-10-15.md
 │   ├── community_health/        # Alpha/beta diversity, PERMANOVA, dysbiosis, ALDEx2
 │   └── functional/              # FAPROTAX and FUNGuild outputs
 ├── rnaseq/                      # DESeq2 DEG tables and summary, sample-distance QC; RERUN_2026-10-14.md
@@ -97,19 +97,17 @@ veg05-integrated-omics/
 
 ## Software Versions
 
-- R 4.4.2, Bioconductor 3.20
-- DADA2 1.34.0, phyloseq 1.50.0, DESeq2 1.46.0, WGCNA 1.74, MOFA2 1.16.0
-- ALDEx2 1.38.0, clusterProfiler 4.14.0, vegan 2.7-5
-- SILVA 138.1, UNITE v7 (Oct 2017), FAPROTAX v1.2
-- Python 3.12, mofapy2 0.7.4, cutadapt
+- Original run: R 4.4.2, Bioconductor 3.20; DADA2 1.34.0, phyloseq 1.50.0, DESeq2 1.46.0, WGCNA 1.74, MOFA2 1.16.0, ALDEx2 1.38.0, clusterProfiler 4.14.0, vegan 2.7-5; Python 3.12, mofapy2 0.7.4, cutadapt
+- Re-runs of October 2026 (`rnaseq/RERUN_2026-10-14.md`, `microbiome/RERUN_2026-10-15.md`): R 4.6.1; DESeq2 1.52.0, WGCNA 1.74, DADA2 1.40.0, phyloseq 1.56.0, vegan 2.7-6, ALDEx2 1.44.0, MOFA2 1.22.1; Python mofapy2 0.7.5, cutadapt 5.2
+- SILVA 138.1, UNITE v7.2 QIIME release (1 Dec 2017, 99%), FAPROTAX 1.2.12
 
 ## Limitations
 
 1. Small sample sizes (n=21 leaf, n=15 root for RNA-seq)
 2. 16S leaf samples have very low bacterial reads after host DNA removal (median 89)
 3. ITS dataset has uneven group representation (some flight groups n=1-2)
-4. UNITE v7 used instead of v10 (Plutof.ut.ee inaccessible from analysis environment)
-5. FAPROTAX collapse implemented in custom Python (collapse_table.py unavailable for download)
+4. UNITE v7.2 (2017) used instead of a current release; the original run's 10 Oct 2017 build is no longer distributed, so the re-run uses the 1 Dec 2017 build
+5. Two flight adventitious-root samples retained a single ITS read each
 6. FUNGuild used manual genus-level assignment (script database incompatible)
 7. Study is correlational; causal relationships require experimental validation
 

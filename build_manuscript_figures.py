@@ -19,7 +19,7 @@ FIGS = [
     ("2.18 versus 0.80 in ground blue-light controls.", [
         ("figures/fig2a_alpha_diversity_16S.png",
          "**Figure 2A.** Bacterial (16S) alpha diversity (Observed ASVs) by flight status and light treatment; flight leaves show higher diversity.")]),
-    ("Adventitious root fungal community composition also differed among groups (model R²=0.65, F=8.19, p=0.001).", [
+    ("Adventitious root fungal community composition differed by flight (R²=0.40, F=13.1, p=0.001), light (R²=0.19, p=0.005) and their interaction (R²=0.16, p=0.006; n=12).", [
         ("figures/fig2b_dysbiosis_16S.png",
          "**Figure 2B (16S).** Bacterial dysbiosis index (mean Bray-Curtis distance to ground samples, relative to ground-ground distance); elevated under flight."),
         ("figures/fig2b_dysbiosis_ITS.png",
@@ -34,15 +34,15 @@ FIGS = [
          "**Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis). Each module is labelled with its dominant GO biology (Table 1); cells show Pearson r with significance stars."),
         ("figures/fig4_module_traits_AdvRoot.png",
          "**Figure 4 (Adv-Root).** Module–trait correlations with GO-biology labels (Table 1). The black (nucleus) module tracks ITS dysbiosis (r=−0.85) but not flight; the turquoise (oxidative-stress/peroxidase) module is the largest flight-correlated module.")]),
-    ("microbial features were consistently present in the top weights (Fig. S6).", [
+    ("highest-weighted features to Factors 1–4 and 16S ASVs to Factor 5 (Fig. S6).", [
         ("figures/fig5a_mofa_variance.png", "**Figure 5A.** MOFA+ variance explained per factor per view (transcriptome, 16S, ITS)."),
-        ("figures/fig5b_mofa_correlations.png", "**Figure 5B.** MOFA+ factor–trait correlations; Factor 1 captures flight (ρ=−0.76).")]),
+        ("figures/fig5b_mofa_correlations.png", "**Figure 5B.** MOFA+ factor–trait correlations; Factor 1 captures flight (ρ=−0.68).")]),
     ("*Paenibacillus* (ρ=−0.77, padj=0.003).", [
         ("figures/fig6_module_taxon_network.png",
          "**Figure 6.** Significant leaf module–taxon correlations (BH padj<0.05); modules carry their GO-biology labels (Table 1). The flight-associated turquoise (chromatin/nucleosome) module positively tracks Methylobacterium, Burkholderia and Azospirillum, while the blue (phosphate-starvation) module shows the inverse.")]),
     ("as the main ecological guilds (Table S7).", [
         ("figures/fig7_faprotax.png",
-         "**Figure 7.** FAPROTAX predicted bacterial functions (aerobic chemoheterotrophy, N fixation, methanotrophy, methanol oxidation).")]),
+         "**Figure 7.** FAPROTAX predicted bacterial functions (FAPROTAX 1.2.12; the 15 largest groups by read count: chemoheterotrophy, nitrogen fixation, ureolysis and others).")]),
 ]
 
 def fig_block(items):
