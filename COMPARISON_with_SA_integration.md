@@ -27,7 +27,7 @@ spaceflight response**.
    internal validation. (Exact DEG counts differ, as expected from different thresholds/models;
    the *direction and magnitude* replicate.)
 
-2. **Root-led, defense/oxidative signature.** This study: adventitious root is 87% upregulated
+2. **Root-led, defense/oxidative signature.** This study: the adventitious-root flight main effect is 83% upregulated
    with turquoise-module oxidative-stress GO (peroxidase, H₂O₂ catabolism, glutathione). Our
    work: the spaceflight defense signal is root-led (biotic/hormone axis; outer-cortex hotspot).
    Both localise the acute stress/defense response to the root.

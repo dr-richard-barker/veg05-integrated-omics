@@ -36,7 +36,7 @@ samples had higher bacterial alpha diversity (Observed ASVs: Flight 17.8--25.8 v
 under blue light, 4{,}716 differentially expressed genes (DEGs) were detected in
 leaves versus only 523 under red light. WGCNA identified a 169-gene adventitious
 root module correlated with fungal dysbiosis (\(r = -0.85\), \(p_{\mathrm{adj}} =
-0.001\)) but not with flight status (\(r = -0.38\), \(p_{\mathrm{adj}} = 0.32\)), representing a
+0.009\)) but not with flight status (\(r = -0.38\), \(p_{\mathrm{adj}} = 0.32\)), representing a
 microbe-driven host transcriptional signature independent of the direct spaceflight
 stimulus. MOFA+ integration across three omics layers confirmed a dominant
 flight-associated factor (48\% transcriptome variance)
@@ -115,9 +115,10 @@ taxonomy was assigned against UNITE v7 (October 2017) \cite{koljalg2005}.
 \subsection{Differential expression analysis}
 RNA-seq count matrices were analyzed with DESeq2 \cite{love2014} separately for leaf
 (21 samples) and adventitious root (15 samples; Table~S1). The design model included
-flight status, light treatment, and their interaction. Log-fold changes were shrunk
-with apeglm \cite{zhu2019} for main effects and ashr \cite{stephens2017} for subset
-contrasts. DEGs were defined as \(p_{\mathrm{adj}} < 0.05\) and \(|\text{log2FC}|
+flight status, light treatment, and their interaction. Each main effect is the effect
+of one factor averaged over both levels of the other. Log-fold changes were shrunk with
+ashr \cite{stephens2017} for the main effects and the within-light contrasts, and with
+apeglm \cite{zhu2019} for the interaction term. DEGs were defined as \(p_{\mathrm{adj}} < 0.05\) and \(|\text{log2FC}|
 \geq 1\).
 
 \subsection{Community health metrics}
@@ -135,7 +136,11 @@ WGCNA \cite{langfelder2008} was applied to variance-stabilized transcriptome dat
 for each tissue separately. Soft-thresholding powers were selected to maximize
 scale-free fit (Leaf: power = 20, \(R^2 = 0.72\); Adv-Root: power = 18, \(R^2 =
 0.69\)). Module eigengenes were correlated (Pearson) with flight status, light treatment, and
-16S/ITS dysbiosis indices. Hub genes were the 10 genes with the highest module membership
+the 16S/ITS dysbiosis indices of the same plant and tissue. A ground sample's index is its mean
+Bray-Curtis distance to the other ground samples of its compartment, over the same denominator,
+so ground indices average 1. Dysbiosis indices exist for 21 (16S) and 18 (ITS) of the 21 leaf
+samples and for 15 and 12 of the 15 adventitious-root samples; each correlation's \(p\)-value
+uses that number of samples. Hub genes were the 10 genes with the highest module membership
 (\(k_{\mathrm{ME}}\)) in each module (all \(k_{\mathrm{ME}} \geq 0.86\)).
 
 \subsection{MOFA+ multi-omics integration}
@@ -214,17 +219,14 @@ in flight leaves (effect \(= +1.82\)). In adventitious roots, \textit{Fusarium s
 
 \subsection{Spaceflight transcriptional response is light-dependent}
 DESeq2 analysis revealed a pronounced interaction between spaceflight and light
-quality (Table~S2). In leaves, the flight term of the flight \(\times\) light model, which estimates the flight
-effect under red-rich light (the reference level), gave 757 DEGs (404 up, 353 down;
-Fig.~\ref{fig:3b}). Separate models within each light treatment gave 4{,}716 DEGs under
-blue-rich light and 523 under red-rich light (Fig.~\ref{fig:3}); the two red-rich
-estimates differ because they come from different models. The
-formal interaction term identified 3{,}189 DEGs, confirming that the transcriptional
+quality (Table~S2). In leaves, the flight main effect (the flight effect averaged over the
+two light treatments) gave 2{,}683 DEGs (1{,}368 up, 1{,}315 down; Fig.~\ref{fig:3b}).
+Separate models within each light treatment gave 4{,}716 DEGs under blue-rich light and 523
+under red-rich light (Fig.~\ref{fig:3}). The formal interaction term identified 3{,}189 DEGs, confirming that the transcriptional
 response to spaceflight is strongly modulated by light quality.
 
-In adventitious roots, the flight term (red-rich reference level) was predominantly
-upregulation (896 DEGs:
-783 up, 113 down, 87\% upregulated; Fig.~\ref{fig:3c}), suggesting activation of
+In adventitious roots, the flight main effect was predominantly upregulation (1{,}501 DEGs:
+1{,}245 up, 256 down, 83\% upregulated; Fig.~\ref{fig:3c}), suggesting activation of
 stress response pathways. The interaction was minimal (6 DEGs after shrinkage),
 indicating that the root transcriptional response to spaceflight is less
 light-dependent than the leaf response.
@@ -241,9 +243,8 @@ flight response (4{,}716 DEGs) dwarfs red (523).}
 \centering
 \includegraphics[width=0.48\textwidth]{fig3b_volcano_leaf_flight.png}\hfill
 \includegraphics[width=0.48\textwidth]{fig3c_volcano_advroot_flight.png}
-\caption{\textbf{Flight-vs-Ground volcano plots} for the flight term of the flight
-\(\times\) light model, i.e.\ the flight effect under red-rich light (the reference
-level). Left (\(3B\)): leaf. Right (\(3C\)): adventitious root (predominantly
+\caption{\textbf{Flight-vs-Ground volcano plots} for the flight main effect of the flight
+\(\times\) light model, i.e.\ the flight effect averaged over the two light treatments. Left (\(3B\)): leaf. Right (\(3C\)): adventitious root (predominantly
 upregulation).}
 \label{fig:3b}
 \end{figure}
@@ -255,13 +256,17 @@ Fig.~\ref{fig:4leaf}), with the turquoise module (\(n = 2{,}037\) genes) showing
 strongest flight correlation (\(r = +0.73\), \(p_{\mathrm{adj}} = 0.001\)) and the
 blue module (\(n = 1{,}012\)) the strongest anti-correlation (\(r = -0.79\),
 \(p_{\mathrm{adj}} = 3\times10^{-4}\)). Four leaf modules were classified as
-co-regulated (correlated with both flight and dysbiosis; Table~S5)
-\textbf{[TODO: Table~S5 was built from an earlier correlation table; re-derive]}.
+co-regulated (correlated with both flight and dysbiosis; Table~S5).
 
 In adventitious roots, WGCNA identified 16 modules plus unassigned genes (power = 18). The key finding was
 the black module (\(n = 169\) genes), strongly correlated with ITS dysbiosis (\(r =
--0.85\), \(p_{\mathrm{adj}} = 0.001\)) but not with flight status (\(r = -0.38\),
-\(p_{\mathrm{adj}} = 0.32\); Fig.~\ref{fig:4advroot}). This module was classified as
+-0.85\), \(p_{\mathrm{adj}} = 0.009\), 12 plants) but not with flight status (\(r = -0.38\),
+\(p_{\mathrm{adj}} = 0.32\); Fig.~\ref{fig:4advroot}). The correlation holds within flight
+plants (\(r = -0.87\), \(n = 6\)) and within ground plants (\(r = -0.75\), \(n = 6\)),
+although the ITS dysbiosis index is itself higher in flight (\(r = 0.70\) with flight status).
+The green module (\(n = 287\); ITS \(r = -0.72\), \(p_{\mathrm{adj}} = 0.044\)) was also
+classified as microbe-driven, and the turquoise module as co-regulated (flight \(r = +0.72\);
+ITS \(r = +0.74\), \(p_{\mathrm{adj}} = 0.044\)). The black module was classified as
 microbe-driven, representing a host transcriptional response to fungal community
 changes independent of the direct spaceflight stimulus. GO enrichment of the black
 module itself was limited --- its only significantly enriched term was the cellular
