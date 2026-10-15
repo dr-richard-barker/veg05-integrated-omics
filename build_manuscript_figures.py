@@ -42,7 +42,7 @@ FIGS = [
          "**Figure 6.** Significant leaf module–taxon correlations (BH padj<0.05); modules carry their GO-biology labels (Table 1). The flight-associated turquoise (chromatin/nucleosome) module positively tracks Methylobacterium, Burkholderia and Azospirillum, while the blue (phosphate-starvation) module shows the inverse.")]),
     ("as the main ecological guilds (Table S7).", [
         ("figures/fig7_faprotax.png",
-         "**Figure 7.** FAPROTAX predicted bacterial functions (FAPROTAX 1.2.12; the 15 largest groups by read count: chemoheterotrophy, nitrogen fixation, ureolysis and others).")]),
+         "**Figure 7.** FAPROTAX predicted bacterial functions (FAPROTAX 1.2.12; the 15 largest groups by read count: chemoheterotrophy, ureolysis, nitrogen fixation, methylotrophy and others).")]),
 ]
 
 def fig_block(items):

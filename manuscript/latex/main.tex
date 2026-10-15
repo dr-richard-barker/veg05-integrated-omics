@@ -41,7 +41,7 @@ microbe-driven host transcriptional signature independent of the direct spacefli
 stimulus. MOFA+ integration of 18 leaf samples across three omics layers found a dominant
 flight-associated factor (44\% of transcriptome variance).
 The most abundant FAPROTAX-predicted bacterial functions were (aerobic)
-chemoheterotrophy, nitrogen fixation and ureolysis. These findings
+chemoheterotrophy, ureolysis, nitrogen fixation and methylotrophy. These findings
 demonstrate that spaceflight restructures plant-associated microbiomes in a tissue-
 and light-specific manner, with implications for crop production systems in
 long-duration space missions.}
@@ -164,7 +164,8 @@ dysbiosis but not flight/light), or co-regulated (correlated with both).
 
 \subsection{Functional prediction}
 Bacterial functional profiles were predicted for the 348 bacterial ASVs using FAPROTAX 1.2.12
-\cite{louca2016} and its collapse\_table.py with default settings (whole-word taxon matching). Fungal ecological
+\cite{louca2016} and its collapse\_table.py (whole-word taxon matching, with hyphens treated as
+word separators so that each genus in SILVA's merged genus names is matched). Fungal ecological
 guilds were assigned using genus-level lookup tables based on FUNGuild
 \cite{nguyen2016} categories.
 
@@ -401,14 +402,14 @@ the blue (phosphate-starvation) module shows the inverse.}
 \end{figure}
 
 \subsection{Predicted bacterial functions}
-FAPROTAX assigned 185 of the 348 bacterial ASVs to 44 functional groups (Table~S6). By read
-count the largest were chemoheterotrophy (379{,}596 reads, 160 ASVs) and its subset aerobic
-chemoheterotrophy (377{,}996 reads, 144 ASVs), nitrogen fixation (166{,}177 reads, 14 ASVs) and
-ureolysis (139{,}142 reads, 17 ASVs) (Fig.~\ref{fig:7}). FAPROTAX matches whole taxon names, so
-the 14 ASVs of SILVA's merged genus \textit{Methylobacterium-Methylorubrum}, the genus most
-strongly correlated with the flight-associated turquoise module, received no function. Treating
-the hyphenated name as separate words adds all 14 to methanol oxidation and methylotrophy
-(methanol oxidation then totals 96{,}687 reads), but not to methanotrophy.
+FAPROTAX assigned 205 of the 348 bacterial ASVs to 44 functional groups (Table~S6). By read
+count the largest were chemoheterotrophy (786{,}147 reads, 180 ASVs) and its subset aerobic
+chemoheterotrophy (688{,}214 reads, 150 ASVs), ureolysis (235{,}475 reads, 31 ASVs), nitrogen
+fixation (223{,}554 reads, 15 ASVs), methylotrophy (96{,}868 reads, 16 ASVs) and methanol oxidation
+(96{,}687 reads, 15 ASVs) (Fig.~\ref{fig:7}). The methylotrophy and methanol oxidation assignments
+were almost entirely \textit{Methylobacterium-Methylorubrum} (14 ASVs), the genus most strongly
+correlated with the flight-associated turquoise module. Methanotrophy was minor (181 reads,
+1 ASV): \textit{Methylobacterium} oxidizes methanol, not methane.
 Fungal guild assignment (manual genus-level classification) identified saprotrophs
 (11 ASVs, dominated by \textit{Penicillium} and \textit{Aspergillus}) and plant
 pathogens (2 ASVs: \textit{Fusarium} spp.) as the main guilds (Table~S7).
@@ -417,7 +418,7 @@ pathogens (2 ASVs: \textit{Fusarium} spp.) as the main guilds (Table~S7).
 \centering
 \includegraphics[width=0.8\textwidth]{fig7_faprotax.png}
 \caption{\textbf{FAPROTAX predicted bacterial functions} (FAPROTAX 1.2.12; the 15 largest
-groups by read count: chemoheterotrophy, nitrogen fixation, ureolysis and others).}
+groups by read count: chemoheterotrophy, ureolysis, nitrogen fixation, methylotrophy and others).}
 \label{fig:7}
 \end{figure}
 

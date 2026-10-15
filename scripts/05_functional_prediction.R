@@ -15,7 +15,7 @@
 #   results/microbiome/ITS/asv_table_ITS.tsv
 #   results/microbiome/ITS/taxonomy_ITS.tsv
 #   data/microbiome/ref_db/FAPROTAX_1.2.12/{FAPROTAX.txt,collapse_table.py}
-#     (unmodified FAPROTAX 1.2.12 release)
+#     (unmodified FAPROTAX 1.2.12 release; run with hyphens as word separators)
 #
 # Outputs:
 #   results/microbiome/functional/faprotax_functions_16S.tsv
@@ -79,8 +79,13 @@ log_msg("  FAPROTAX input: ", nrow(otu16), " ASVs, ", ncol(otu16), " samples")
 
 collapsed_file <- file.path(work_dir, "functions.tsv")
 g2r_file <- file.path(work_dir, "groups2records.tsv")
+# FAPROTAX matches whole words, and by default '-' is part of a word, so
+# SILVA 138's merged genus names (e.g. Methylobacterium-Methylorubrum) match
+# nothing. --valid_word_symbols '' makes '-' separate words, so each genus
+# in a merged name is matched.
 cmd <- sprintf(paste("'%s' '%s' -i '%s' -g '%s' -d taxonomy",
                      "--column_names_are_in first_data_line -n none",
+                     "--valid_word_symbols ''",
                      "-o '%s' --out_groups2records_table '%s' -v 2>&1"),
                python_bin, collapse_py, faprotax_infile, faprotax_db, collapsed_file, g2r_file)
 log_msg("  Running FAPROTAX collapse_table.py...")

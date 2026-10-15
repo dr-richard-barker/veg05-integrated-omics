@@ -64,7 +64,7 @@ below, so the scripts are not runnable from this repository without editing thos
 - **GO enrichment**: 80 module–term associations (73 unique terms, Leaf), 96 (86 unique, Adv-Root). Photosynthesis, oxidative stress, ribosome
 
 ### Functional Prediction
-- **FAPROTAX** (1.2.12): 185 of 348 bacterial ASVs in 44 groups; largest by reads are chemoheterotrophy, aerobic chemoheterotrophy, nitrogen fixation, ureolysis. SILVA's merged genus names (e.g. *Methylobacterium-Methylorubrum*) are not matched by FAPROTAX's whole-word matching
+- **FAPROTAX** (1.2.12, hyphens as word separators): 205 of 348 bacterial ASVs in 44 groups; largest by reads are chemoheterotrophy, aerobic chemoheterotrophy, ureolysis, nitrogen fixation, methylotrophy and methanol oxidation (the last two almost entirely *Methylobacterium-Methylorubrum*)
 - **FUNGuild**: Saprotrophs (11 ASVs), Plant Pathogens (2 ASVs: Fusarium spp.)
 
 ## Repository Structure
