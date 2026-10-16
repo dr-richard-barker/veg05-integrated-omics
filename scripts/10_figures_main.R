@@ -83,13 +83,17 @@ dys_16s   <- read.csv(file.path(REPO_ROOT, "results/microbiome/community_health/
 dys_its   <- read.csv(file.path(REPO_ROOT, "results/microbiome/community_health/dysbiosis_index_ITS.tsv"),
                       sep = "\t", stringsAsFactors = FALSE)
 
+# Points are jittered sideways only (height = 0 keeps each value exact), with
+# a fixed seed so that rebuilds are identical
+set.seed(42)
+
 # Fig 2A: Alpha diversity (Observed) for 16S leaf and AdvRoot
 alpha_16s$group <- paste(alpha_16s$flight, alpha_16s$light, sep = "_")
 alpha_16s_main  <- alpha_16s[alpha_16s$compartment %in% c("leaf", "AdvRoot"), ]
 
 fig2a <- ggplot(alpha_16s_main, aes(x = group, y = Observed, fill = flight)) +
   geom_boxplot(outlier.shape = NA, alpha = 0.7) +
-  geom_jitter(width = 0.15, size = 1.5, alpha = 0.6) +
+  geom_jitter(width = 0.15, height = 0, size = 1.5, alpha = 0.6) +
   facet_wrap(~compartment, scales = "free_y") +
   scale_fill_manual(values = FLIGHT_COLORS) +
   labs(x = "", y = "Observed ASVs", title = "16S Alpha Diversity") +
@@ -101,7 +105,7 @@ save_fig(fig2a, "fig2a_alpha_diversity_16S", 8, 5)
 dys_16s_main <- dys_16s[dys_16s$compartment %in% c("leaf", "AdvRoot"), ]
 fig2b <- ggplot(dys_16s_main, aes(x = flight, y = dysbiosis_index, fill = flight)) +
   geom_boxplot(outlier.shape = NA, alpha = 0.7) +
-  geom_jitter(width = 0.15, size = 1.5, alpha = 0.6) +
+  geom_jitter(width = 0.15, height = 0, size = 1.5, alpha = 0.6) +
   facet_wrap(~compartment, scales = "free_y") +
   scale_fill_manual(values = FLIGHT_COLORS) +
   labs(x = "", y = "Dysbiosis Index", title = "16S Dysbiosis Index") +
@@ -112,7 +116,7 @@ save_fig(fig2b, "fig2b_dysbiosis_16S", 6, 5)
 dys_its_main <- dys_its[dys_its$compartment %in% c("leaf", "AdvRoot"), ]
 fig2b_its <- ggplot(dys_its_main, aes(x = flight, y = dysbiosis_index, fill = flight)) +
   geom_boxplot(outlier.shape = NA, alpha = 0.7) +
-  geom_jitter(width = 0.15, size = 1.5, alpha = 0.6) +
+  geom_jitter(width = 0.15, height = 0, size = 1.5, alpha = 0.6) +
   facet_wrap(~compartment, scales = "free_y") +
   scale_fill_manual(values = FLIGHT_COLORS) +
   labs(x = "", y = "Dysbiosis Index", title = "ITS Dysbiosis Index") +
@@ -146,6 +150,8 @@ save_fig(fig3, "fig3_deg_summary", 10, 6)
 # Volcano: Leaf flight_vs_ground
 degs_leaf <- read.csv(file.path(REPO_ROOT, "results/rnaseq/degs_Leaf_flight_vs_ground.tsv"),
                       sep = "\t", stringsAsFactors = FALSE)
+# genes without an adjusted p (independent filtering) have no y position
+degs_leaf <- degs_leaf[!is.na(degs_leaf$padj), ]
 degs_leaf$significance <- ifelse(degs_leaf$padj < 0.05 & abs(degs_leaf$log2FoldChange) >= 1,
                                   "Significant", "NS")
 fig3b <- ggplot(degs_leaf, aes(x = log2FoldChange, y = -log10(padj), color = significance)) +
@@ -161,6 +167,8 @@ save_fig(fig3b, "fig3b_volcano_leaf_flight", 7, 6)
 # Volcano: AdvRoot flight_vs_ground
 degs_root <- read.csv(file.path(REPO_ROOT, "results/rnaseq/degs_Adv-Root_flight_vs_ground.tsv"),
                       sep = "\t", stringsAsFactors = FALSE)
+# genes without an adjusted p (independent filtering) have no y position
+degs_root <- degs_root[!is.na(degs_root$padj), ]
 degs_root$significance <- ifelse(degs_root$padj < 0.05 & abs(degs_root$log2FoldChange) >= 1,
                                   "Significant", "NS")
 fig3c <- ggplot(degs_root, aes(x = log2FoldChange, y = -log10(padj), color = significance)) +
@@ -242,7 +250,9 @@ cor_df <- read.csv(file.path(REPO_ROOT, "results/integration/factor_trait_correl
 
 # Fig 5A: Variance explained
 ve_long <- ve_df %>%
-  pivot_longer(cols = starts_with("r2_"), names_to = "View", values_to = "R2") %>%
+  # one bar per view; r2_total (all views together) is not plotted
+  pivot_longer(cols = c(r2_transcriptome, r2_microbiome_16S, r2_microbiome_ITS),
+               names_to = "View", values_to = "R2") %>%
   mutate(View = gsub("r2_", "", View),
          View = recode(View, "transcriptome" = "Transcriptome",
                        "microbiome_16S" = "16S", "microbiome_ITS" = "ITS"),

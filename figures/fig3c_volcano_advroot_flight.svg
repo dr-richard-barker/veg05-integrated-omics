@@ -20906,17 +20906,14 @@
 <text x='383.63' y='372.54' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.78px' lengthAdjust='spacingAndGlyphs'>20</text>
 <text x='265.82' y='385.00' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='178.03px' lengthAdjust='spacingAndGlyphs'>log2 Fold Change (Flight vs Ground)</text>
 <text transform='translate(13.36,192.24) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='58.72px' lengthAdjust='spacingAndGlyphs'>-log10(padj)</text>
-<rect x='156.71' y='398.28' width='218.22' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<text x='162.19' y='416.34' style='font-size: 11.00px; font-family: "Arial";' textLength='57.50px' lengthAdjust='spacingAndGlyphs'>significance</text>
-<rect x='225.17' y='403.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='233.81' cy='412.40' r='1.42' style='stroke-width: 0.71; stroke: #B3B3B3; stroke-opacity: 0.50; fill: #B3B3B3; fill-opacity: 0.50;' />
-<rect x='265.64' y='403.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='274.28' cy='412.40' r='1.42' style='stroke-width: 0.71; stroke: #FF9400; stroke-opacity: 0.50; fill: #FF9400; fill-opacity: 0.50;' />
-<rect x='334.46' y='403.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
-<circle cx='343.10' cy='412.40' r='1.42' style='stroke-width: 0.71; stroke: #7F7F7F; stroke-opacity: 0.50; fill: #7F7F7F; fill-opacity: 0.50;' />
-<text x='247.93' y='415.55' style='font-size: 8.80px; font-family: "Arial";' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>NS</text>
-<text x='288.40' y='415.55' style='font-size: 8.80px; font-family: "Arial";' textLength='40.58px' lengthAdjust='spacingAndGlyphs'>Significant</text>
-<text x='357.22' y='415.55' style='font-size: 8.80px; font-family: "Arial";' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>NA</text>
+<rect x='176.95' y='398.28' width='177.75' height='28.24' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<text x='182.43' y='416.34' style='font-size: 11.00px; font-family: "Arial";' textLength='57.50px' lengthAdjust='spacingAndGlyphs'>significance</text>
+<rect x='245.41' y='403.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='254.05' cy='412.40' r='1.42' style='stroke-width: 0.71; stroke: #B3B3B3; stroke-opacity: 0.50; fill: #B3B3B3; fill-opacity: 0.50;' />
+<rect x='285.88' y='403.76' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
+<circle cx='294.52' cy='412.40' r='1.42' style='stroke-width: 0.71; stroke: #FF9400; stroke-opacity: 0.50; fill: #FF9400; fill-opacity: 0.50;' />
+<text x='268.17' y='415.55' style='font-size: 8.80px; font-family: "Arial";' textLength='12.23px' lengthAdjust='spacingAndGlyphs'>NS</text>
+<text x='308.64' y='415.55' style='font-size: 8.80px; font-family: "Arial";' textLength='40.58px' lengthAdjust='spacingAndGlyphs'>Significant</text>
 <text x='33.13' y='14.93' style='font-size: 13.20px; font-family: "Arial";' textLength='158.97px' lengthAdjust='spacingAndGlyphs'>Adv-Root: Flight vs Ground</text>
 </g>
 </g>
