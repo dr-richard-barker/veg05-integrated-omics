@@ -28,7 +28,7 @@ latex/
       once on Overleaf and fix any stragglers. Table 1 uses `longtable`
       (single-column); if the SN class is set to two-column, switch it to a
       standard `table`/`tabular` or `\onecolumn` around it.
-- [ ] **Author block** — confirm author list, ORCID(s), and affiliation
+- [ ] **Author block** — confirm author list and ORCID(s) (affiliation: Collaborative Science Environment Inc.)
       (currently a single-author placeholder; `% TODO` in `main.tex`).
 - [ ] **Supplementary tables S1–S10** — referenced in-text; bundle the CSVs as
       supplementary data per journal instructions.

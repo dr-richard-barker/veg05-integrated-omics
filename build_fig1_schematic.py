@@ -24,7 +24,7 @@ ax.text(58, 54, 'ISS VEG-05 multi-omics integration: host transcriptome × micro
 
 # experiment
 box(1.5, 20, 26, 26, C_EXP, '#33506e', 'VEG-05 experiment',
-    'Tomato cv. Red Robin\naboard the ISS\n\nFlight vs Ground\nRed vs Blue LED\n\nLeaf +\nAdventitious root')
+    'Tomato cv. Red Robin\naboard the ISS\n\nFlight vs Ground\nRed-rich vs Blue-rich LED\n\nLeaf +\nAdventitious root')
 # two data streams
 box(33, 33, 27, 13, C_RNA, '#8f6216', 'Host transcriptome', 'RNA-seq · OSD-767\nLeaf & Adv-Root')
 box(33, 15, 27, 13, C_MIC, '#316049', 'Microbiome', '16S + ITS amplicons · OSD-766\n348 bacterial / 77 fungal ASVs')
@@ -35,7 +35,7 @@ box(65, 20, 27, 26, C_INT, '#4a3d61', 'Integration',
 arrow(60.5, 39, 64.5, 36); arrow(60.5, 21, 64.5, 26)
 # outcome
 box(97, 20, 17.5, 26, C_OUT, '#7d2f1f', 'Findings',
-    'Spaceflight\ndysbiosis\n\nLight-\ndependent\nresponse\n\nMicrobe-\ndriven host\ndefense', fs=8.2)
+    'Spaceflight\ndysbiosis\n\nLight-\ndependent\nresponse\n\nMicrobe-\ndriven host\ndefense', fs=7.8)
 arrow(92.5, 33, 96.5, 33)
 
 for ext in ('png', 'svg', 'pdf'):

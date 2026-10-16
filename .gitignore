@@ -3,3 +3,5 @@ __pycache__/
 .Rhistory
 .RData
 .DS_Store
+# ABAI attestation (local record of /abai check)
+.abai/

@@ -4,7 +4,8 @@ title: "Integrated transcriptome-microbiome analysis of ISS VEG-05 tomato (OSD-7
 authors:
   - family-names: Barker
     given-names: Richard
-    affiliation: "Purdue University, West Lafayette, IN, USA"
+    orcid: "https://orcid.org/0000-0001-5681-9857"
+    affiliation: "Collaborative Science Environment Inc."
 version: "1.0.0"
 date-released: "2026-07-02"
 license: MIT

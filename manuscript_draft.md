@@ -6,13 +6,13 @@
 
 ## Abstract
 
-Spaceflight imposes unique stressors on plant-microbe interactions, but the coordinated responses of host transcriptomes and associated microbiomes remain poorly characterized. We analyzed tomato (*Solanum lycopersicum* cv. Red Robin) grown aboard the International Space Station (ISS) as part of the VEG-05 experiment, integrating 16S rRNA and ITS amplicon sequencing (OSD-766) with host transcriptomics (OSD-767) across two tissues (leaf, adventitious root) and two light treatments (red vs. blue). DADA2 processing yielded 348 bacterial and 77 fungal ASVs from 142 and 141 samples respectively. Spaceflight significantly reshaped leaf bacterial communities (PERMANOVA R²=0.42, p=0.001) and increased bacterial alpha diversity (Observed ASVs: Flight 17.8–25.8 vs. Ground 10.0–15.2). The spaceflight transcriptional response was strongly light-dependent: under blue light, 4,716 differentially expressed genes (DEGs) were detected in leaves versus only 523 under red light. WGCNA identified a 169-gene adventitious root module correlated with fungal dysbiosis (r=−0.85, padj=0.001) but not with flight status (r=−0.38, p=0.32), representing a microbe-driven host transcriptional signature independent of the direct spaceflight stimulus. MOFA+ integration across three omics layers confirmed a dominant flight-associated factor (48% transcriptome variance) and revealed that the leaf bacterial community was more responsive to spaceflight than the fungal community. FAPROTAX functional prediction identified nitrogen fixation, methanotrophy, and methanol oxidation as enriched functions in the bacterial community. These findings demonstrate that spaceflight restructures plant-associated microbiomes in a tissue- and light-specific manner, with implications for crop production systems in long-duration space missions.
+Spaceflight imposes unique stressors on plant-microbe interactions, but the coordinated responses of host transcriptomes and associated microbiomes remain poorly characterized. We analyzed tomato (*Solanum lycopersicum* cv. Red Robin) grown aboard the International Space Station (ISS) as part of the VEG-05 experiment, integrating 16S rRNA and ITS amplicon sequencing (OSD-766) with host transcriptomics (OSD-767) across two tissues (leaf, adventitious root) and two light treatments (red-rich vs. blue-rich LED). DADA2 processing yielded 348 bacterial and 77 fungal ASVs from 142 and 141 samples respectively. Spaceflight significantly reshaped leaf bacterial communities (PERMANOVA R²=0.42, p=0.001) and increased bacterial alpha diversity (Observed ASVs: Flight 17.8–25.8 vs. Ground 10.0–15.2). The spaceflight transcriptional response was strongly light-dependent: under blue light, 4,716 differentially expressed genes (DEGs) were detected in leaves versus only 523 under red light. WGCNA identified a 169-gene adventitious root module correlated with fungal dysbiosis (r=−0.85, padj=0.001) but not with flight status (r=−0.38, p=0.32), representing a microbe-driven host transcriptional signature independent of the direct spaceflight stimulus. MOFA+ integration across three omics layers confirmed a dominant flight-associated factor (48% transcriptome variance) and revealed that the leaf bacterial community was more responsive to spaceflight than the fungal community. FAPROTAX functional prediction identified nitrogen fixation, methanotrophy, and methanol oxidation as enriched functions in the bacterial community. These findings demonstrate that spaceflight restructures plant-associated microbiomes in a tissue- and light-specific manner, with implications for crop production systems in long-duration space missions.
 
 ---
 
 ## Introduction
 
-Plant-associated microbiomes play critical roles in nutrient acquisition, pathogen protection, and stress tolerance [1]. In the context of spaceflight, these interactions take on added significance: crops grown in bioregenerative life support systems must maintain productive plant-microbe partnerships under conditions of microgravity, altered fluid dynamics, elevated radiation, and controlled-environment lighting [2]. The VEG-05 experiment aboard the International Space Station (ISS) provided a unique opportunity to study these interactions in tomato (*Solanum lycopersicum*), a candidate crop for long-duration missions [3].
+Plant-associated microbiomes play critical roles in nutrient acquisition, pathogen protection, and stress tolerance [1]. In the context of spaceflight, these interactions take on added significance: crops grown in bioregenerative life support systems must maintain productive plant-microbe partnerships under conditions of microgravity, altered fluid dynamics, elevated radiation, and controlled-environment lighting [2]. The VEG-05 experiment aboard the International Space Station (ISS) provided a unique opportunity to study these interactions in tomato (*Solanum lycopersicum*), a candidate crop for long-duration missions [3, 23].
 
 Spaceflight has been shown to alter microbial community composition, gene expression, and virulence in pure culture systems [4,5]. However, the coordinated response of host plants and their associated microbiomes to the spaceflight environment remains largely unexplored. Multi-omics integration approaches such as MOFA+ (Multi-Omics Factor Analysis) [6] and WGCNA (Weighted Gene Co-expression Network Analysis) [7] offer powerful frameworks for identifying coordinated variation across biological layers, but have not been applied to spaceflight plant-microbiome studies.
 
@@ -24,7 +24,7 @@ Here we present an integrated analysis of the VEG-05 tomato microbiome (16S rRNA
 
 ### Data acquisition and metadata
 
-Raw sequencing data and metadata were obtained from NASA's Open Science Data Repository (OSDR): OSD-766 (microbiome amplicon sequencing) and OSD-767 (host RNA-seq). The VEG-05 experiment grew tomato cv. Red Robin aboard the ISS under red or blue LED lighting, with ground controls at Kennedy Space Center. Metadata were parsed from ISA-Tab format, and a crosswalk table linking microbiome and RNA-seq samples by plant ID, flight status, light treatment, and tissue was constructed.
+Raw sequencing data and metadata were obtained from NASA's Open Science Data Repository (OSDR): OSD-766 (microbiome amplicon sequencing [3]) and OSD-767 (host RNA-seq [23]). The VEG-05 experiment grew tomato cv. Red Robin aboard the ISS under red-rich (90% red:10% blue) or blue-rich (50% red:50% blue) LED lighting, with ground controls at Kennedy Space Center. Metadata were parsed from ISA-Tab format, and a crosswalk table linking microbiome and RNA-seq samples by plant ID, flight status, light treatment, and tissue was constructed.
 
 ### Microbiome amplicon processing
 
@@ -165,25 +165,26 @@ This work used data from NASA's Open Science Data Repository (OSD-766, OSD-767) 
 
 ## References
 
-[1] Bulgarelli, D. et al. Structuring and function of the root microbiota in health and disease. *Annu. Rev. Plant Biol.* 64, 807–838 (2013).
-[2] Wheeler, R.M. et al. Crop production for space life support: a review. *Adv. Space Res.* 41, 1057–1066 (2008).
-[3] Massa, G.D. et al. VEG-05: Plant habitat-02 tomato plant growth in the vegetable production system on the ISS. *NASA Technical Report* (2024).
-[4] Rosenzweig, J.A. et al. Spaceflight and model microorganisms. *npj Microgravity* 1, 15009 (2015).
-[5] Voorhies, A.A. et al. Spaceflight alters bacterial gene expression and virulence. *PLoS ONE* 14, e0224893 (2019).
+[1] Bulgarelli, D. et al. Structure and functions of the bacterial microbiota of plants. *Annu. Rev. Plant Biol.* 64, 807–838 (2013).
+[2] TODO: citation needed. The reference previously listed here (Wheeler, R.M. et al., *Adv. Space Res.* 41, 1057–1066, 2008) matches no published record.
+[3] Spern, C.J. et al. The microbial communities of a tomato crop grown in Veggie under different lighting regimes on the International Space Station. *Life Sci. Space Res.* 52, 84–97 (2026).
+[4] TODO: citation needed. The reference previously listed here (Rosenzweig, J.A. et al., *npj Microgravity* 1, 15009, 2015) matches no published record.
+[5] TODO: citation needed. The reference previously listed here (Voorhies, A.A. et al., *PLoS ONE* 14, e0224893, 2019) matches no published record.
 [6] Argelaguet, R. et al. MOFA+: a statistical framework for comprehensive integration of multi-modal single-cell data. *Genome Biol.* 21, 111 (2020).
 [7] Langfelder, P. & Horvath, S. WGCNA: an R package for weighted correlation network analysis. *BMC Bioinformatics* 9, 559 (2008).
 [8] Callahan, B.J. et al. DADA2: High-resolution sample inference from Illumina amplicon data. *Nat. Methods* 13, 581–583 (2016).
-[9] Quast, C. et al. The SILVA ribosomal RNA gene database project. *Nucleic Acids Res.* 41, D590–D596 (2013).
+[9] Quast, C. et al. The SILVA ribosomal RNA gene database project: improved data processing and web-based tools. *Nucleic Acids Res.* 41, D590–D596 (2013).
 [10] Martin, M. Cutadapt removes adapter sequences from high-throughput sequencing reads. *EMBnet.journal* 17, 10–12 (2011).
-[11] Kõljalg, U. et al. UNITE: a database providing web-based methods for the molecular identification of fungi. *Oikos* 112, 182–186 (2005).
+[11] Kõljalg, U. et al. UNITE: a database providing web-based methods for the molecular identification of ectomycorrhizal fungi. *New Phytol.* 166, 1063–1068 (2005).
 [12] Love, M.I. et al. Moderated estimation of fold change and dispersion for RNA-seq data with DESeq2. *Genome Biol.* 15, 550 (2014).
-[13] Zhu, A. et al. Heavy-tailed prior distributions for sequence count data: removing the bias and dissecting the controversy. *Genome Biol.* 20, 139 (2019).
+[13] Zhu, A., Ibrahim, J.G. & Love, M.I. Heavy-tailed prior distributions for sequence count data: removing the noise and preserving large differences. *Bioinformatics* 35, 2084–2092 (2019).
 [14] Stephens, M. False discovery rates: a new deal. *Biostatistics* 18, 275–294 (2017).
 [15] McMurdie, P.J. & Holmes, S. phyloseq: an R package for reproducible interactive analysis and graphics of microbiome census data. *PLoS ONE* 8, e61217 (2013).
-[16] Oksanen, J. et al. vegan: Community Ecology Package. R package version 2.7-5 (2024).
-[17] Fernandes, A.D. et al. Unifying the analysis of high-throughput sequencing data: comparing RNA-Seq and chip-Seq data. *PLoS ONE* 8, e67023 (2013).
+[16] Oksanen, J. et al. vegan: Community Ecology Package. R package version 2.7-5 (2026).
+[17] Fernandes, A.D. et al. Unifying the analysis of high-throughput sequencing datasets: characterizing RNA-seq, 16S rRNA gene sequencing and selective growth experiments by compositional data analysis. *Microbiome* 2, 15 (2014).
 [18] Yu, G. et al. clusterProfiler: an R package for comparing biological themes among gene clusters. *OMICS* 16, 284–287 (2012).
-[19] Louca, S. et al. FAPROTAX: a functional annotation of prokaryotic taxa. *Nat. Commun.* 7, 12428 (2016).
-[20] Nguyen, N.H. et al. FUNGuild: an open annotation tool for parsing fungal community datasets. *Fungal Ecol.* 20, 241–248 (2016).
-[21] Voorhies, A.A. et al. Study of the impact of long-duration spaceflight on the astronaut microbiome. *Sci. Rep.* 9, 9911 (2019).
-[22] Chaves, I. et al. The cryptochromes: blue light receptors in plants and animals. *Annu. Rev. Plant Biol.* 62, 335–364 (2011).
+[19] Louca, S., Parfrey, L.W. & Doebeli, M. Decoupling function and taxonomy in the global ocean microbiome. *Science* 353, 1272–1277 (2016).
+[20] Nguyen, N.H. et al. FUNGuild: an open annotation tool for parsing fungal community datasets by ecological guild. *Fungal Ecol.* 20, 241–248 (2016).
+[21] Voorhies, A.A. et al. Study of the impact of long-duration space missions at the International Space Station on the astronaut microbiome. *Sci. Rep.* 9, 9911 (2019).
+[22] Chaves, I. et al. The cryptochromes: blue light photoreceptors in plants and animals. *Annu. Rev. Plant Biol.* 62, 335–364 (2011).
+[23] Dixit, A.R. et al. Stress and light spectral quality influence the transcriptome of a tomato crop on the International Space Station. *BMC Plant Biol.* 26, 764 (2026).

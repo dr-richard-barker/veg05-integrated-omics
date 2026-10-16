@@ -17,18 +17,30 @@ Complete analysis pipeline for an integrated multi-omics study of dwarf tomato (
 
 ## Pipeline
 
-| Step | Script | Description | Status |
-|------|--------|-------------|--------|
-| 0 | `scripts/00_download_data.py` | Download data from OSDR API | Complete |
-| 1 | `scripts/01_parse_metadata.py` | Parse ISA-Tab metadata, build crosswalk | Complete |
-| 2 | `scripts/02_microbiome_dada2.R` | DADA2 amplicon processing (16S + ITS) | Complete |
-| 3 | `scripts/03_rnaseq_deseq2.R` | DESeq2 differential expression | Complete |
-| 4 | `scripts/04_community_health.R` | Alpha/beta diversity, dysbiosis, ALDEx2 | Complete |
-| 5 | `scripts/06_wgcna.R` | WGCNA co-expression networks | Complete |
-| 6 | `scripts/07_integration_mofa.R` | MOFA+ multi-omics integration | Complete |
-| 7 | `scripts/08_correlation_networks.R` | Module-taxon networks, GO enrichment, directionality | Complete |
-| 7b | `scripts/faprotax_collapse.py` | FAPROTAX functional prediction (custom) | Complete |
-| 8 | `scripts/09_generate_figures.R` | Publication figures + supplementary tables | Complete |
+| Step | Script | Description |
+|------|--------|-------------|
+| 0 | `scripts/00_download_data.py` | Download processed RNA-seq data and microbiome FASTQ from the OSDR API |
+| 1 | `scripts/01_parse_metadata.py` | Parse ISA-Tab metadata; build the RNA-seq ↔ microbiome sample crosswalk |
+| 2 | `scripts/02_microbiome_dada2.R` | DADA2 amplicon processing (16S + ITS) |
+| 3 | `scripts/03_rnaseq_deseq2.R` | DESeq2 differential expression |
+| 4 | `scripts/04_community_health.R` | Alpha/beta diversity, PERMANOVA, dysbiosis index, ALDEx2 |
+| 5 | `scripts/05_functional_prediction.R` | FAPROTAX (via `scripts/faprotax_collapse.py`, custom) and FUNGuild |
+| 6 | `scripts/06_wgcna.R` | WGCNA co-expression networks |
+| 7 | `scripts/07_integration_mofa.R` | MOFA+ multi-omics integration (leaf) |
+| 8 | `scripts/08_correlation_networks.R` | Module–taxon correlation networks |
+| 9 | `scripts/09_directionality.R` | GO enrichment of modules; directionality inference |
+| 10 | `scripts/10_figures_main.R` | Main figures 2–7 |
+| 11 | `scripts/11_figures_supplementary.R` | Supplementary figures S1–S7 |
+| 12 | `scripts/12_export_tables.R` | Supplementary tables S1–S10 |
+| — | `build_fig1_schematic.py` | Figure 1 (study-design schematic) |
+| — | `build_module_annotations_and_fig4.py`, `fix_fig4_wgcna.py`, `fix_fig6_module_taxon.py` | Module GO labels (`results/module_annotations.tsv`); redrawn Figures 4 and 6 |
+| — | `build_manuscript_figures.py` | Builds `manuscript_with_figures.md` and `.docx` from `manuscript_draft.md` |
+
+The R and Python pipeline scripts were run in an analysis sandbox and hard-code
+`REPO_ROOT <- "/mnt/shared-workspace/veg05-integrated-omics"`. They read inputs from
+`data/` and write to `results/` under that root; neither directory is tracked here.
+The outputs used in the manuscript were copied into the top-level folders listed
+below, so the scripts are not runnable from this repository without editing those paths.
 
 ## Key Results
 
@@ -59,23 +71,28 @@ Complete analysis pipeline for an integrated multi-omics study of dwarf tomato (
 
 ```
 veg05-integrated-omics/
-├── config/
-│   └── config.yaml              # All analysis parameters
-├── data/
-│   ├── metadata/                # Sample metadata + crosswalk
-│   ├── microbiome/
-│   │   ├── fastq/               # Raw FASTQ files
-│   │   └── ref_db/              # SILVA, UNITE, FAPROTAX, FUNGuild
-│   └── rnaseq/                  # RNA-seq counts + GO annotations
-├── scripts/                     # Analysis scripts (see Pipeline table)
-├── results/
-│   ├── microbiome/              # DADA2 + community health results
-│   ├── rnaseq/                  # DESeq2 + WGCNA + GO enrichment
-│   ├── integration/             # MOFA+ + correlation networks
-│   ├── figures/                 # Publication figures (SVG + PNG + PDF)
-│   └── supplementary_tables/    # Tables S1-S10
-└── manuscript/
-    └── manuscript_draft.md      # npj Microgravity draft
+├── scripts/                     # Analysis pipeline, steps 00–12 (see Pipeline table)
+├── microbiome/                  # DADA2 taxonomy and read tracking (16S, ITS)
+│   ├── community_health/        # Alpha/beta diversity, PERMANOVA, dysbiosis, ALDEx2
+│   └── functional/              # FAPROTAX and FUNGuild outputs
+├── rnaseq/                      # DESeq2 DEG tables and summary, sample-distance QC
+│   ├── go_enrichment/           # GO enrichment of WGCNA modules
+│   ├── wgcna_Leaf/              # Module–trait correlations, hub genes
+│   └── wgcna_Adv-Root/
+├── integration/                 # MOFA+ model, factor values, variance, weights
+│   └── networks/                # Module–taxon correlations, directionality
+├── results/                     # module_annotations.tsv (module GO labels)
+├── figures/                     # Figures 1–7 and S1–S7 (PDF, PNG, SVG)
+├── supplementary_tables/        # Tables S1–S10 (CSV)
+├── manuscript/latex/            # LaTeX manuscript (main.tex, references.bib) + figure copies
+├── manuscript_draft.md          # Markdown manuscript (source for the two files below)
+├── manuscript_with_figures.md   # Draft with figures embedded
+├── manuscript_with_figures.docx
+├── build_*.py, fix_*.py         # Figure and manuscript builders (see Pipeline table)
+├── docs/                        # GitHub Pages site and compiled manuscript PDF
+├── execution_trace/             # Original analysis plan and agent notebook
+├── COMPARISON_with_SA_integration.md
+└── environment.yml, requirements.txt, renv.lock, sessionInfo.txt
 ```
 
 ## Software Versions
