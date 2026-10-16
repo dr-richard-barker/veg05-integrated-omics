@@ -19,22 +19,22 @@ FIGS = [
     ("2.18 versus 0.80 in ground blue-light controls.", [
         ("figures/fig2a_alpha_diversity_16S.png",
          "**Figure 2A.** Bacterial (16S) alpha diversity (Observed ASVs) by flight status and light treatment; flight leaves show higher diversity.")]),
-    ("Adventitious root fungal communities were significantly reshaped (R²=0.65, F=8.19, p=0.001).", [
+    ("Adventitious root fungal community composition also differed among groups (model R²=0.65, F=8.19, p=0.001).", [
         ("figures/fig2b_dysbiosis_16S.png",
-         "**Figure 2B (16S).** Bacterial dysbiosis index (Bray-Curtis displacement from ground centroid); elevated under flight."),
+         "**Figure 2B (16S).** Bacterial dysbiosis index (mean Bray-Curtis distance to ground samples, relative to ground-ground distance); elevated under flight."),
         ("figures/fig2b_dysbiosis_ITS.png",
          "**Figure 2B (ITS).** Fungal dysbiosis index; the largest displacement is in flight leaves.")]),
     ("the root transcriptional response to spaceflight is less light-dependent than the leaf response.", [
         ("figures/fig3_deg_summary.png",
          "**Figure 3.** DEG summary across tissue × contrast; the leaf blue-light flight response (4,716 DEGs) dwarfs red (523)."),
-        ("figures/fig3b_volcano_leaf_flight.png", "**Figure 3B.** Leaf Flight-vs-Ground volcano."),
-        ("figures/fig3c_volcano_advroot_flight.png", "**Figure 3C.** Adventitious-root Flight-vs-Ground volcano (predominantly upregulation).")]),
+        ("figures/fig3b_volcano_leaf_flight.png", "**Figure 3B.** Leaf Flight-vs-Ground volcano (flight term of the flight × light model: the flight effect under red-rich light, the reference level)."),
+        ("figures/fig3c_volcano_advroot_flight.png", "**Figure 3C.** Adventitious-root Flight-vs-Ground volcano (flight term at the red-rich reference level; predominantly upregulation).")]),
     ("consistent with spaceflight-induced oxidative stress.", [
         ("figures/fig4_module_traits_Leaf.png",
-         "**Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis). Each module is labelled with its dominant GO biology (Table 1); cells show Spearman rho with significance stars."),
+         "**Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis). Each module is labelled with its dominant GO biology (Table 1); cells show Pearson r with significance stars."),
         ("figures/fig4_module_traits_AdvRoot.png",
          "**Figure 4 (Adv-Root).** Module–trait correlations with GO-biology labels (Table 1). The black (nucleus) module tracks ITS dysbiosis (r=−0.85) but not flight; the turquoise (oxidative-stress/peroxidase) module is the largest flight-correlated module.")]),
-    ("microbial features were consistently present in the top weights (Table S8).", [
+    ("microbial features were consistently present in the top weights (Fig. S6).", [
         ("figures/fig5a_mofa_variance.png", "**Figure 5A.** MOFA+ variance explained per factor per view (transcriptome, 16S, ITS)."),
         ("figures/fig5b_mofa_correlations.png", "**Figure 5B.** MOFA+ factor–trait correlations; Factor 1 captures flight (ρ=−0.76).")]),
     ("*Paenibacillus* (ρ=−0.77, padj=0.003).", [

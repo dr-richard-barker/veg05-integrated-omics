@@ -44,7 +44,7 @@ def build(tissue, tsv, out):
     ax.set_ylabel('WGCNA Module', fontsize=10)
     ax.set_title(f'{tissue}: Module–Trait Correlations', fontsize=12, loc='left', pad=8)
     cb = fig.colorbar(im, ax=ax, shrink=0.5, aspect=16, pad=0.03, ticks=[-1, -0.5, 0, 0.5, 1])
-    cb.set_label('Spearman rho', fontsize=9); cb.ax.tick_params(labelsize=8)
+    cb.set_label('Pearson r', fontsize=9); cb.ax.tick_params(labelsize=8)
     fig.text(0.01, 0.01, '* padj<0.05   ** <0.01   *** <0.001', fontsize=6.5, color='#555')
     plt.tight_layout()
     for ext in ('png', 'svg', 'pdf'):

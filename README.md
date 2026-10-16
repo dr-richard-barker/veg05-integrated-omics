@@ -47,24 +47,24 @@ below, so the scripts are not runnable from this repository without editing thos
 ### Microbiome
 - **16S**: 348 bacterial ASVs (after chloroplast/mitochondria removal), 142 samples, 3,558,814 reads
 - **ITS**: 77 fungal ASVs, 141 samples, 160,316 reads
-- **PERMANOVA (16S leaf)**: R²=0.42, F=4.02, p=0.001 — spaceflight significantly reshapes leaf bacterial communities
+- **PERMANOVA (16S leaf)**: R²=0.42, F=4.02, p=0.001 for the full flight × light model (the flight term alone has not been estimated)
 - **Dysbiosis (16S leaf)**: Flight 2.06±0.99 vs Ground 1.00±0.47
 - **Dysbiosis (ITS leaf)**: Flight 3.64±2.78 vs Ground 1.00±0.24
 
 ### Transcriptome
 - **Leaf**: 19,844 genes, 21 samples. Flight×Light interaction: 3,189 DEGs
-- **Adv-Root**: 20,875 genes, 15 samples. Flight effect: 896 DEGs (87% upregulated)
+- **Adv-Root**: 20,875 genes, 15 samples. Flight term (red-rich reference level): 896 DEGs (87% upregulated)
 - **Key finding**: Spaceflight response under blue light (4,716 DEGs) >> red light (523 DEGs) in leaf
 
 ### Integration
-- **WGCNA**: Leaf 13 modules, Adv-Root 17 modules
-- **Key module**: Adv-Root black (169 genes) — microbe-driven (r=−0.85 with ITS dysbiosis, NOT correlated with flight)
-- **MOFA+**: 5 factors, 21 samples, 3 views. Factor 1 captures flight (ρ=−0.76, padj=0.001), explains 48% transcriptome variance
+- **WGCNA**: Leaf 12 modules, Adv-Root 16 modules (plus unassigned genes)
+- **Key module**: Adv-Root black (169 genes) — microbe-driven (r=−0.85 with ITS dysbiosis; r=−0.38, padj=0.32 with flight)
+- **MOFA+**: 5 factors, 21 samples, 3 views. Factor 1 captures flight (ρ=−0.76, padj=0.001), explains 48% transcriptome variance. The 16S/ITS views were built from mismatched samples and need re-running
 - **Module-taxon correlations**: 29 significant (BH padj<0.05), linking flight modules to Methylobacterium, Burkholderia, Azospirillum
-- **GO enrichment**: 80 terms (Leaf), 96 terms (Adv-Root). Photosynthesis, oxidative stress, ribosome
+- **GO enrichment**: 80 module–term associations (73 unique terms, Leaf), 96 (86 unique, Adv-Root). Photosynthesis, oxidative stress, ribosome
 
 ### Functional Prediction
-- **FAPROTAX**: 29 functions, dominated by aerobic chemoheterotrophy, nitrogen fixation, methanotrophy
+- **FAPROTAX**: 26 functions; largest by reads are aerobic chemoheterotrophy, nitrogen fixation, dark hydrogen oxidation, methanol oxidation. The custom collapse misparses three database lines (31 ASVs) and needs re-running
 - **FUNGuild**: Saprotrophs (11 ASVs), Plant Pathogens (2 ASVs: Fusarium spp.)
 
 ## Repository Structure
@@ -100,7 +100,7 @@ veg05-integrated-omics/
 - R 4.4.2, Bioconductor 3.20
 - DADA2 1.34.0, phyloseq 1.50.0, DESeq2 1.46.0, WGCNA 1.74, MOFA2 1.16.0
 - ALDEx2 1.38.0, clusterProfiler 4.14.0, vegan 2.7-5
-- SILVA 138.2, UNITE v7 (Oct 2017), FAPROTAX v1.2
+- SILVA 138.1, UNITE v7 (Oct 2017), FAPROTAX v1.2
 - Python 3.12, mofapy2 0.7.4, cutadapt
 
 ## Limitations
