@@ -40,7 +40,7 @@ Alpha diversity (Observed ASVs, Shannon index) was computed on unfiltered data u
 
 ### WGCNA co-expression networks
 
-WGCNA [7] was applied to variance-stabilized transcriptome data for each tissue separately. Soft-thresholding powers were selected to maximize scale-free fit (Leaf: power=20, R²=0.72; Adv-Root: power=18, R²=0.69). Module eigengenes were correlated (Pearson) with flight status, light treatment, and the 16S/ITS dysbiosis indices of the same plant and tissue. A ground sample's index is its mean Bray-Curtis distance to the other ground samples of its compartment, over the same denominator, so ground indices average 1. Dysbiosis indices exist for 21 (16S) and 18 (ITS) of the 21 leaf samples and for 15 and 12 of the 15 adventitious-root samples; each correlation's p-value uses that number of samples. Hub genes were the 10 genes with the highest module membership (kME) in each module (all kME ≥ 0.86).
+WGCNA [7] was applied to variance-stabilized transcriptome data for each tissue separately. Soft-thresholding powers were selected to maximize the signed scale-free fit, as neither tissue reached the 0.8 target (Leaf: power=20, R²=0.72; Adv-Root: power=18, R²=0.69; Fig. S7). Module eigengenes were correlated (Pearson) with flight status, light treatment, and the 16S/ITS dysbiosis indices of the same plant and tissue. A ground sample's index is its mean Bray-Curtis distance to the other ground samples of its compartment, over the same denominator, so ground indices average 1. Dysbiosis indices exist for 21 (16S) and 18 (ITS) of the 21 leaf samples and for 15 and 12 of the 15 adventitious-root samples; each correlation's p-value uses that number of samples. Hub genes were the 10 genes with the highest module membership (kME) in each module (all kME ≥ 0.85).
 
 ### MOFA+ multi-omics integration
 
@@ -48,7 +48,7 @@ MOFA2 [6] was trained on the 18 leaf samples with RNA-seq, 16S and ITS data from
 
 ### Correlation networks and directionality inference
 
-Bipartite module-taxon networks were constructed by Spearman correlation between WGCNA module eigengenes and ASV relative abundances (prevalence filter >20%, BH correction). GO enrichment of WGCNA modules was performed using clusterProfiler's enricher function [18] with tomato GO annotations from Ensembl Plants (18,479 annotated genes). Directionality was classified as: host-driven (correlated with flight/light but not dysbiosis), microbe-driven (correlated with dysbiosis but not flight/light), or co-regulated (correlated with both).
+Bipartite module-taxon networks were constructed by Spearman correlation between WGCNA module eigengenes and ASV relative abundances (prevalence filter >20%, BH correction). GO enrichment of WGCNA modules was performed using clusterProfiler's enricher function [18] with tomato GO annotations from Ensembl Plants **[TODO: Ensembl Plants release and number of GO-annotated genes]**. Directionality was classified as: host-driven (correlated with flight/light but not dysbiosis), microbe-driven (correlated with dysbiosis but not flight/light), or co-regulated (correlated with both).
 
 ### Functional prediction
 
@@ -153,7 +153,25 @@ These microbiome findings dovetail with a companion cross-mission analysis that 
 
 ### Limitations
 
-Several limitations should be noted. First, sample sizes are small (n=21 leaf, n=15 root for RNA-seq; n=1–6 per flight × light group for microbiome), limiting statistical power. Second, 16S leaf samples had very low bacterial read counts after host DNA removal (median 89 reads), precluding rarefaction and requiring reliance on relative abundance metrics. Third, the ITS dataset had uneven group representation, with some flight groups containing only 1–2 samples, and two flight adventitious-root samples retained a single ITS read each. Fourth, MOFA+ warned that Factor 1 may partially capture technical variation (detection rate differences), though the strong biological signal supports its interpretation as a flight factor. Fifth, FAPROTAX functional predictions are based on taxonomy and should be validated with metagenomic or metatranscriptomic data. Sixth, the FUNGuild analysis used manual genus-level assignment rather than the full database, reducing assignment confidence. Finally, this study is correlational; causal relationships between host transcription and microbiome changes require experimental validation, ideally in simulated microgravity conditions with microbiome manipulation.
+Several limitations should be noted. First, sample sizes are small (n=21 leaf, n=15 root for RNA-seq; n=1–6 per flight × light group for microbiome), limiting statistical power. Second, 16S leaf samples had very low bacterial read counts after host DNA removal (median 89 reads), precluding rarefaction and requiring reliance on relative abundance metrics. Third, the ITS dataset had uneven group representation, with some flight groups containing only 1–2 samples, and two flight adventitious-root samples retained a single ITS read each. Fourth, MOFA+ warned that 18 samples are few for five factors (it suggests at most about four), and that Factor 1 is strongly correlated with the average level of the features in at least one view, which happens when samples differ in overall levels, sometimes through normalisation; Factor 1's correlation with flight (ρ=−0.68) does not rule this out. Fifth, FAPROTAX functional predictions are based on taxonomy and should be validated with metagenomic or metatranscriptomic data. Sixth, the FUNGuild analysis used manual genus-level assignment rather than the full database, reducing assignment confidence. Finally, this study is correlational; causal relationships between host transcription and microbiome changes require experimental validation, ideally in simulated microgravity conditions with microbiome manipulation.
+
+---
+
+## Supplementary figure legends
+
+**Figure S1. DADA2 read retention.** Reads per sample at each DADA2 step (input, filtered, denoised forward and reverse, merged, non-chimeric) for all 142 16S and 141 ITS samples, on a log scale. Samples with no reads at a step cannot be drawn on that scale; 20 ITS samples have no non-chimeric reads.
+
+**Figure S2. Alpha diversity in every compartment.** Observed ASVs, Shannon and Simpson indices for leaf, adventitious root (AdvRoot), root, wick and soil samples, flight and ground, for 16S (78 samples; chloroplast and mitochondrial ASVs removed) and ITS (65 samples). Points are jittered sideways only.
+
+**Figure S3. Bray–Curtis PCoA.** Principal coordinates of Bray–Curtis dissimilarities between relative-abundance profiles for 16S (78 samples; chloroplast and mitochondrial ASVs removed) and ITS (65 samples), coloured by compartment, with flight and ground as point shapes. Ellipses are 95% normal-theory ellipses per compartment; axis percentages are each axis's share of the eigenvalue sum.
+
+**Figure S4. Bacterial genera by compartment (16S).** Mean relative abundance per compartment of the 15 genera with the highest mean over the five compartments, after removing chloroplast and mitochondrial ASVs; all other genera are pooled as Other. ASVs without a genus call are grouped by family (Unclassified <family>).
+
+**Figure S5. All nominal module–taxon correlations.** Spearman correlations between WGCNA module eigengenes and ASV relative abundances with unadjusted p < 0.05 (449 correlations), by tissue and amplicon. Rows are genera, or the family where no genus was assigned; ASVs with neither are pooled. Where several ASVs of a row correlate with one module, the tile shows the strongest (302 tiles). Correlations that pass BH correction are shown in Fig. 6 and listed in Table S9.
+
+**Figure S6. MOFA+ feature weights.** The 20 features with the largest absolute weight on each factor in each view (transcriptome genes, 16S and ITS ASVs) of the MOFA+ model in Fig. 5 (18 leaf samples).
+
+**Figure S7. WGCNA soft-threshold selection.** Signed scale-free topology fit (WGCNA pickSoftThreshold, signed network: −sign(slope) × R²) against soft power for the leaf (21 samples) and adventitious-root (15 samples) expression matrices of 5,000 genes each. The dashed line is the 0.8 target, which neither tissue reached; the power with the highest fit was used (dotted lines: leaf 20, R² = 0.72; adventitious root 18, R² = 0.69).
 
 ---
 
@@ -180,7 +198,7 @@ This work used data from NASA's Open Science Data Repository (OSD-766, OSD-767) 
 [13] Zhu, A., Ibrahim, J.G. & Love, M.I. Heavy-tailed prior distributions for sequence count data: removing the noise and preserving large differences. *Bioinformatics* 35, 2084–2092 (2019).
 [14] Stephens, M. False discovery rates: a new deal. *Biostatistics* 18, 275–294 (2017).
 [15] McMurdie, P.J. & Holmes, S. phyloseq: an R package for reproducible interactive analysis and graphics of microbiome census data. *PLoS ONE* 8, e61217 (2013).
-[16] Oksanen, J. et al. vegan: Community Ecology Package. R package version 2.7-5 (2026).
+[16] Oksanen, J. et al. vegan: Community Ecology Package. R package version 2.7-6 (2026).
 [17] Fernandes, A.D. et al. Unifying the analysis of high-throughput sequencing datasets: characterizing RNA-seq, 16S rRNA gene sequencing and selective growth experiments by compositional data analysis. *Microbiome* 2, 15 (2014).
 [18] Yu, G. et al. clusterProfiler: an R package for comparing biological themes among gene clusters. *OMICS* 16, 284–287 (2012).
 [19] Louca, S., Parfrey, L.W. & Doebeli, M. Decoupling function and taxonomy in the global ocean microbiome. *Science* 353, 1272–1277 (2016).

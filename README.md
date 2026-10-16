@@ -35,6 +35,8 @@ Complete analysis pipeline for an integrated multi-omics study of dwarf tomato (
 | — | `build_fig1_schematic.py` | Figure 1 (study-design schematic) |
 | — | `build_module_annotations_and_fig4.py`, `fix_fig4_wgcna.py`, `fix_fig6_module_taxon.py` | Module GO labels (`results/module_annotations.tsv`); redrawn Figures 4 and 6 |
 | — | `build_manuscript_figures.py` | Builds `manuscript_with_figures.md` and `.docx` from `manuscript_draft.md` |
+| — | `build_slides.py` | Builds the slide deck `ISS_Tomato_Multi-Omics.pptx` from the figures |
+| — | `build_infographic.py` | Builds the README banner `Space_Tomato_Multi-Omics_Research.png` |
 
 The R and Python pipeline scripts were run in an analysis sandbox and hard-code
 `REPO_ROOT <- "/mnt/shared-workspace/veg05-integrated-omics"`. They read inputs from

@@ -59,11 +59,15 @@ for anchor, items in FIGS:
     else:
         print("WARN anchor not found:", anchor[:50])
 
-legends = "\n---\n\n## Figure legends\n\n"
+legends = "## Figure legends\n\n"
 for _, items in FIGS:
     for _, cap in items:
         legends += "- " + cap.replace("**", "**") + "\n"
-md = md.replace("## Acknowledgements", legends + "\n---\n\n## Acknowledgements", 1)
+# main legends go before the supplementary ones (manuscript_draft.md has a
+# "Supplementary figure legends" section ahead of the acknowledgements)
+anchor = "## Supplementary figure legends"
+assert md.count(anchor) == 1, anchor
+md = md.replace(anchor, legends + "\n" + anchor, 1)
 
 open(os.path.join(HERE, 'manuscript_with_figures.md'), 'w', encoding='utf-8').write(md)
 print("figures embedded:", inserted)

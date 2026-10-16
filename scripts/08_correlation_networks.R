@@ -217,7 +217,7 @@ build_bipartite_network <- function(tissue, wgcna_dir, ps_16s, ps_its, meta_rna,
   all_cor <- rbind(cor_16s_df, cor_its_df)
 
   # Look each ASV up in its own amplicon's taxonomy. ASV IDs restart in each
-  # amplicon (ITS ASV006 is Fusarium solani, 16S ASV006 is Ralstonia), and an
+  # amplicon (ITS ASV006 is Fusarium, 16S ASV006 is Ralstonia), and an
   # earlier version labelled every row, ITS included, from the 16S table.
   if (nrow(all_cor) > 0) {
     tax_lookup <- list("16S" = tax_16s, "ITS" = tax_its)
