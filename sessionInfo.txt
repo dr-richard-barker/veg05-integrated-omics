@@ -88,13 +88,18 @@ viridisLite       0.4.2     CRAN
 1. This sessionInfo was reconstructed from the analysis record after the compute
    environment was recreated. Package versions reflect those used during the
    original analysis run (Bioconductor 3.20, R 4.4.x).
-2. See renv.lock for machine-readable package versions.
+2. renv.lock does not describe this environment: it records the environment of
+   the October 2026 re-runs (R 4.6.1, Bioconductor 3.23; see note 7).
 3. GO annotations for tomato (Solanum lycopersicum) were obtained from Ensembl
    Plants BioMart (virtual schema: plants_mart, dataset: slgca000188115v5cm_eg_gene)
    because org.Sl.eg.db was not available for Bioconductor 3.20.
 4. UNITE v7 (Oct 2017) was used instead of v10 because the Plutof.ut.ee download
    endpoint was inaccessible from the analysis environment.
 5. FAPROTAX collapse_table.py was unavailable for download; a custom Python
-   implementation (scripts/faprotax_collapse.py) was used instead.
+   implementation (scripts/faprotax_collapse.py) was used instead. It misread
+   three database lines and was removed on 15 Oct 2026 (see note 7).
 6. FUNGuild v1.1 script was present but the -db UNITE parameter was invalid
    (choices: fungi, nematode); manual genus-level guild assignment was used.
+7. The RNA-seq (14 Oct 2026) and microbiome (15 Oct 2026) steps were re-run
+   with R 4.6.1 and the versions listed in README.md; see
+   rnaseq/RERUN_2026-10-14.md and microbiome/RERUN_2026-10-15.md.

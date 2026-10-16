@@ -140,6 +140,14 @@ def parse_microbiome_metadata():
         else:
             light = "NA"
 
+        # OSD-766 names the adventitious-root samples of ground plants SN02,
+        # SN04 and SN05 "blue" (file names and Factor Value[light regimen]).
+        # The same record labels those plants' leaf samples red-rich, as it
+        # does every ground plant SN01-SN06, and OSD-767 names their
+        # adventitious-root RNA-seq samples Red. Treated as red-rich here.
+        if flight == "Ground" and compartment == "AdvRoot" and plant in ("SN02", "SN04", "SN05"):
+            light = "Red"
+
         # Soil replicate
         soil_rep = ""
         if compartment == "soil":

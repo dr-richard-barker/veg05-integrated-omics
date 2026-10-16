@@ -1,5 +1,5 @@
 """Rebuild Fig 6 (module-taxon) as a clean bubble grid with GO-based module biology labels.
-Shows the significant (padj<0.05) module-taxon correlations for Leaf 16S (the 28 of 29 hits);
+Shows the significant (padj<0.05) module-taxon correlations for Leaf 16S;
 significant hits outside Leaf 16S are listed in a footnote, built from the table.
 """
 import os
@@ -47,7 +47,9 @@ for p, lab in [(0.05, 'padj .05'), (0.005, 'padj .005')]:
 ax.legend(title='dot size', loc='upper left', bbox_to_anchor=(1.02, 1), fontsize=7.5, title_fontsize=8, frameon=False)
 other = d[(d['padj'] < 0.05) & ~((d['tissue'] == 'Leaf') & (d['amplicon'] == '16S'))]
 if len(other):
-    hits = '; '.join(f"{r.tissue} {r.amplicon} {r.module} × {r.Genus} (rho={r.rho:.2f})" for r in other.itertuples())
+    # ASVs without a genus call (Genus is NaN) are named by their ASV ID
+    taxon = lambda r: f"{r.Genus} {r.asv_id}" if isinstance(r.Genus, str) else f"{r.asv_id} (no genus assigned)"
+    hits = '; '.join(f"{r.tissue} {r.amplicon} {r.module} × {taxon(r)} (rho={r.rho:.2f})" for r in other.itertuples())
     fig.text(0.01, 0.005, f"Significant hits not shown ({len(other)}): {hits}.", fontsize=6.5, color='#555')
 plt.tight_layout()
 for ext in ('png', 'svg', 'pdf'):

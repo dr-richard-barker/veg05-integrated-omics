@@ -6,7 +6,7 @@
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2026-10-14T07:28:19.142196</dc:date>
+    <dc:date>2026-10-15T12:30:57.561000</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
@@ -40,7 +40,7 @@ Q 13.020517 60.4224 13.020517 69.2928
 L 13.020517 200.1312 
 Q 13.020517 209.0016 21.486724 209.0016 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #4c6e91; stroke: #33506e; stroke-width: 1.4; stroke-linejoin: miter"/>
+" clip-path="url(#p8529867e8c)" style="fill: #4c6e91; stroke: #33506e; stroke-width: 1.4; stroke-linejoin: miter"/>
    </g>
    <g id="patch_3">
     <path d="M 188.165172 136.9296 
@@ -53,7 +53,7 @@ Q 179.698966 60.4224 179.698966 69.2928
 L 179.698966 128.0592 
 Q 179.698966 136.9296 188.165172 136.9296 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #c58a2e; stroke: #8f6216; stroke-width: 1.4; stroke-linejoin: miter"/>
+" clip-path="url(#p8529867e8c)" style="fill: #c58a2e; stroke: #8f6216; stroke-width: 1.4; stroke-linejoin: miter"/>
    </g>
    <g id="patch_4">
     <path d="M 188.165172 236.7216 
@@ -66,27 +66,27 @@ Q 179.698966 160.2144 179.698966 169.0848
 L 179.698966 227.8512 
 Q 179.698966 236.7216 188.165172 236.7216 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #4a8c6f; stroke: #316049; stroke-width: 1.4; stroke-linejoin: miter"/>
+" clip-path="url(#p8529867e8c)" style="fill: #4a8c6f; stroke: #316049; stroke-width: 1.4; stroke-linejoin: miter"/>
    </g>
    <g id="patch_5">
     <path d="M 154.673299 101.037208 
 Q 165.942241 98.67582 175.022647 96.773035 
-" clip-path="url(#pe7184727ef)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 167.669881 94.839949 
 L 175.022647 96.773035 
 L 169.064519 101.495397 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_6">
     <path d="M 153.957942 169.541341 
 Q 165.940666 184.607104 176.531485 197.922838 
-" clip-path="url(#pe7184727ef)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 174.959594 190.484481 
 L 176.531485 197.922838 
 L 169.637665 194.717337 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_7">
     <path d="M 357.48931 209.0016 
@@ -99,27 +99,27 @@ Q 349.023103 60.4224 349.023103 69.2928
 L 349.023103 200.1312 
 Q 349.023103 209.0016 357.48931 209.0016 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #6e5a8c; stroke: #4a3d61; stroke-width: 1.4; stroke-linejoin: miter"/>
+" clip-path="url(#p8529867e8c)" style="fill: #6e5a8c; stroke: #4a3d61; stroke-width: 1.4; stroke-linejoin: miter"/>
    </g>
    <g id="patch_8">
     <path d="M 328.90191 102.684437 
 Q 337.912295 109.764855 345.164496 115.463682 
-" clip-path="url(#pe7184727ef)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 341.918517 108.588828 
 L 345.164496 115.463682 
 L 337.717025 113.935553 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_9">
     <path d="M 328.540195 199.653003 
 Q 337.909357 187.382422 345.92152 176.889073 
-" clip-path="url(#pe7184727ef)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 339.092486 180.230375 
 L 345.92152 176.889073 
 L 344.497141 184.357081 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="patch_10">
     <path d="M 526.813448 209.0016 
@@ -132,17 +132,17 @@ Q 518.347241 60.4224 518.347241 69.2928
 L 518.347241 200.1312 
 Q 518.347241 209.0016 526.813448 209.0016 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #b0472f; stroke: #7d2f1f; stroke-width: 1.4; stroke-linejoin: miter"/>
+" clip-path="url(#p8529867e8c)" style="fill: #b0472f; stroke: #7d2f1f; stroke-width: 1.4; stroke-linejoin: miter"/>
    </g>
    <g id="patch_11">
     <path d="M 498.654939 134.712 
 Q 507.23766 134.712 513.584313 134.712 
-" clip-path="url(#pe7184727ef)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: none; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
     <path d="M 506.784313 131.312 
 L 513.584313 134.712 
 L 506.784313 138.112 
 z
-" clip-path="url(#pe7184727ef)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
+" clip-path="url(#p8529867e8c)" style="fill: #222222; stroke: #222222; stroke-width: 2; stroke-linecap: round"/>
    </g>
    <g id="text_1">
     <text style="fill: #222222; font: 700 13px 'DejaVu Sans', sans-serif; text-anchor: middle" x="314.1" y="18.288" transform="rotate(-0 314.1 18.288)">ISS VEG-05 multi-omics integration: host transcriptome × microbiome</text>
@@ -172,7 +172,7 @@ z
    </g>
    <g id="text_7">
     <text style="fill: #ffffff; font: 8.4px 'DejaVu Sans', sans-serif" transform="translate(187.107013 213.166687)">16S + ITS amplicons · OSD-766</text>
-    <text style="fill: #ffffff; font: 8.4px 'DejaVu Sans', sans-serif" transform="translate(189.575169 223.849387)">348 bacterial / 77 fungal ASVs</text>
+    <text style="fill: #ffffff; font: 8.4px 'DejaVu Sans', sans-serif" transform="translate(189.575169 223.849387)">348 bacterial / 78 fungal ASVs</text>
    </g>
    <g id="text_8">
     <text style="fill: #ffffff; font: 700 9.5px 'DejaVu Sans', sans-serif; text-anchor: middle" x="422.573276" y="86.490516" transform="rotate(-0 422.573276 86.490516)">Integration</text>
@@ -203,7 +203,7 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="pe7184727ef">
+  <clipPath id="p8529867e8c">
    <rect x="7.2" y="7.2" width="613.8" height="310.464"/>
   </clipPath>
  </defs>

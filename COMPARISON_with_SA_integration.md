@@ -22,7 +22,7 @@ spaceflight response**.
 1. **Blue light amplifies the spaceflight response — found twice, two pipelines.**
    This study: leaf DEGs under blue light **4,716 vs 523** under red (~9×), interaction = 3,189 DEGs.
    Our OSD-767/SA work: blue LED drives the largest biotic/hormone PhysioSpace interaction
-   (−44.2) and the Light×Condition interaction dominates the leaf transcriptome. Two independent
+   (−44.2, in adventitious roots) and the Light×Condition interaction dominates the leaf transcriptome. Two independent
    DE parameterisations on the same OSD-767 data reach the same qualitative conclusion — strong
    internal validation. (Exact DEG counts differ, as expected from different thresholds/models;
    the *direction and magnitude* replicate.)
@@ -41,7 +41,7 @@ trigger.
 
 **This microbiome study supplies a candidate trigger.** It shows that spaceflight
 *restructures the plant microbiome* — increased bacterial diversity, elevated bacterial and
-fungal dysbiosis, flight enrichment of specific taxa (*Pantoea*, *Penicillium*, *Fusarium*), and correlation of growth-promoting/N-fixing taxa (*Methylobacterium*, *Burkholderia*, *Azospirillum*) with flight-associated host modules — and that a **microbe-driven** host module (adventitious-root black module: r = −0.85 with ITS dysbiosis, but r = −0.38, padj = 0.32 with flight) tracks the *microbiome*, not microgravity per se (its only enriched GO term is "nucleus").
+fungal dysbiosis, flight enrichment of specific taxa (an Erwiniaceae ASV and *Penicillium citrinum* in leaves; *Burkholderia*, Rhizobiaceae and *Dyadobacter* in roots), and correlation of growth-promoting/N-fixing taxa (*Methylobacterium*, *Burkholderia*, *Azospirillum*) with flight-associated host modules — and that a **microbe-driven** host module (adventitious-root black module: r = −0.85 with ITS dysbiosis, but r = −0.38, padj = 0.32 with flight) tracks the *microbiome*, not microgravity per se (its only enriched GO term is "nucleus").
 
 Put together, a coherent, testable model emerges:
 

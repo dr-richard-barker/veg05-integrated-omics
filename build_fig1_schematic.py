@@ -27,7 +27,7 @@ box(1.5, 20, 26, 26, C_EXP, '#33506e', 'VEG-05 experiment',
     'Tomato cv. Red Robin\naboard the ISS\n\nFlight vs Ground\nRed-rich vs Blue-rich LED\n\nLeaf +\nAdventitious root')
 # two data streams
 box(33, 33, 27, 13, C_RNA, '#8f6216', 'Host transcriptome', 'RNA-seq · OSD-767\nLeaf & Adv-Root')
-box(33, 15, 27, 13, C_MIC, '#316049', 'Microbiome', '16S + ITS amplicons · OSD-766\n348 bacterial / 77 fungal ASVs')
+box(33, 15, 27, 13, C_MIC, '#316049', 'Microbiome', '16S + ITS amplicons · OSD-766\n348 bacterial / 78 fungal ASVs')
 arrow(27.5, 39, 32.5, 40); arrow(27.5, 27, 32.5, 21)
 # integration
 box(65, 20, 27, 26, C_INT, '#4a3d61', 'Integration',

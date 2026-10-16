@@ -7,12 +7,13 @@
 #   Fig S3: Bray-Curtis PCoA for all compartments (16S + ITS)
 #   Fig S4: Stacked bar charts of top 15 genera per compartment (16S)
 #   Fig S5: Full module-taxon correlation heatmap (all significant)
-#   Fig S6: MOFA+ factor weight dot plots (top features per factor per view)
+#   Fig S6: MOFA+ factor weights (top 20 features per factor per view)
 #   Fig S7: WGCNA soft power scale-free topology fit curves
 #
-# Uses only base R + ggplot2/dplyr/tidyr (no phyloseq/vegan/WGCNA required).
+# Uses base R + ggplot2/dplyr/tidyr; WGCNA for Fig S7 only.
 # Bray-Curtis dissimilarity and PCoA computed manually.
-# Power curve recomputed from datExpr stored in WGCNA RDS.
+# Power curve: WGCNA::pickSoftThreshold on the datExpr stored in the WGCNA RDS,
+# with the settings 06 used to choose the power.
 #
 # Inputs:
 #   results/microbiome/16S/track_stats_16S.tsv
@@ -132,9 +133,11 @@ alpha_long <- alpha_all %>%
   pivot_longer(cols = c(Observed, Shannon, Simpson), names_to = "metric", values_to = "value") %>%
   mutate(metric = factor(metric, levels = c("Observed", "Shannon", "Simpson")))
 
+# sideways jitter only (values stay exact), seeded so rebuilds are identical
+set.seed(42)
 figS2 <- ggplot(alpha_long, aes(x = compartment, y = value, fill = flight)) +
   geom_boxplot(outlier.shape = NA, alpha = 0.7) +
-  geom_jitter(width = 0.15, size = 0.8, alpha = 0.5) +
+  geom_jitter(width = 0.15, height = 0, size = 0.8, alpha = 0.5) +
   facet_grid(metric ~ amplicon, scales = "free_y") +
   scale_fill_manual(values = FLIGHT_COLORS) +
   labs(x = "Compartment", y = "Diversity Value",
@@ -170,8 +173,16 @@ bray_curtis <- function(mat) {
 meta_mb <- read.csv(file.path(REPO_ROOT, "data/metadata/sample_metadata_microbiome.csv"),
                     stringsAsFactors = FALSE)
 
-run_pcoa <- function(amplicon_label, asv_file, out_name) {
+# 16S chloroplast and mitochondrial ASVs are host DNA: drop them as 04 does
+tax_16s <- read.csv(file.path(REPO_ROOT, "results/microbiome/16S/taxonomy_16S.tsv"),
+                    sep = "\t", stringsAsFactors = FALSE)
+organelle_16s <- tax_16s$ASV_ID[grepl("Chloroplast", tax_16s$Order) |
+                                grepl("Mitochondria", tax_16s$Family)]
+log_msg("  16S: ", length(organelle_16s), " chloroplast/mitochondrial ASVs removed")
+
+run_pcoa <- function(amplicon_label, asv_file, out_name, drop_asvs = character(0)) {
   asv <- read.csv(asv_file, sep = "\t", stringsAsFactors = FALSE, check.names = FALSE)
+  asv <- asv[!asv[, 1] %in% drop_asvs, ]
   asv_ids <- asv[, 1]
   count_data <- t(asv[, -1])
   colnames(count_data) <- asv_ids
@@ -227,7 +238,7 @@ run_pcoa <- function(amplicon_label, asv_file, out_name) {
 }
 
 run_pcoa("16S", file.path(REPO_ROOT, "results/microbiome/16S/asv_table_16S.tsv"),
-         "figS3_pcoa_bray_16S")
+         "figS3_pcoa_bray_16S", drop_asvs = organelle_16s)
 run_pcoa("ITS", file.path(REPO_ROOT, "results/microbiome/ITS/asv_table_ITS.tsv"),
          "figS3_pcoa_bray_ITS")
 
@@ -238,8 +249,7 @@ log_msg("Generating Fig S4: Stacked bar charts (16S genera)")
 
 asv_16s <- read.csv(file.path(REPO_ROOT, "results/microbiome/16S/asv_table_16S.tsv"),
                     sep = "\t", stringsAsFactors = FALSE, check.names = FALSE)
-tax_16s <- read.csv(file.path(REPO_ROOT, "results/microbiome/16S/taxonomy_16S.tsv"),
-                    sep = "\t", stringsAsFactors = FALSE)
+asv_16s <- asv_16s[!asv_16s[, 1] %in% organelle_16s, ]
 
 asv_ids <- asv_16s[, 1]
 count_data <- asv_16s[, -1]
@@ -350,8 +360,14 @@ net_df <- read.csv(file.path(REPO_ROOT, "results/integration/networks/module_tax
 sig_net <- net_df[!is.na(net_df$p_value) & net_df$p_value < 0.05, ]
 
 if (nrow(sig_net) > 0) {
-  # Create label combining module and genus
-  sig_net$module_genus <- paste0(sig_net$module, " | ", sig_net$Genus)
+  # Genus is the genus, else the family (08); ASVs with neither are pooled.
+  # Several ASVs can share a genus: keep the strongest per module, so that
+  # no tile is drawn over another.
+  sig_net$Genus[is.na(sig_net$Genus)] <- "No family or genus"
+  sig_net <- sig_net %>%
+    group_by(tissue, amplicon, module, Genus) %>%
+    slice_max(abs(rho), n = 1, with_ties = FALSE) %>%
+    ungroup()
 
   figS5 <- ggplot(sig_net, aes(x = module, y = Genus, fill = rho)) +
     geom_tile(color = "white", linewidth = 0.3) +
@@ -359,7 +375,7 @@ if (nrow(sig_net) > 0) {
     scale_fill_gradient2(low = "#0279EE", mid = "white", high = "#E9ED4C",
                          midpoint = 0, limits = c(-1, 1)) +
     labs(x = "WGCNA Module", y = "Taxon (Genus)",
-         title = "Module-Taxon Correlations (p<0.05)",
+         title = "Module-Taxon Correlations (unadjusted p<0.05)",
          fill = "Spearman\nrho") +
     theme(axis.text.x = element_text(angle = 45, hjust = 1, size = 7),
           axis.text.y = element_text(size = 7),
@@ -378,21 +394,33 @@ log_msg("Generating Fig S6: MOFA+ factor weights")
 weights_df <- read.csv(file.path(REPO_ROOT, "results/integration/factor_weights_top.tsv"),
                        sep = "\t", stringsAsFactors = FALSE)
 
-# Top 10 features per factor per view
-figS6 <- ggplot(weights_df, aes(x = reorder(feature, abs(weight)), y = weight, fill = view)) +
+# The 20 features with the largest |weight| per factor per view (07). Each panel
+# gets its own feature axis: with one axis per view, a row held every feature
+# of all five factors and the labels overlapped.
+VIEW_LABELS <- c("transcriptome" = "Transcriptome", "microbiome_16S" = "16S",
+                 "microbiome_ITS" = "ITS")
+weights_df <- weights_df %>%
+  mutate(view_label = factor(VIEW_LABELS[view], levels = VIEW_LABELS),
+         feature = sub("_microbiome_(16S|ITS)$", "", feature),
+         key = paste(feature, view, factor, sep = "___")) %>%
+  arrange(abs(weight)) %>%
+  mutate(key = factor(key, levels = unique(key)))
+
+figS6 <- ggplot(weights_df, aes(x = key, y = weight, fill = view_label)) +
   geom_col(alpha = 0.8) +
   coord_flip() +
-  facet_grid(view ~ factor, scales = "free_y", space = "free_y") +
-  scale_fill_manual(values = c("transcriptome" = "#0279EE",
-                               "microbiome_16S" = "#75A025",
-                               "microbiome_ITS" = "#FD9BED")) +
+  facet_wrap(view_label ~ factor, scales = "free_y", ncol = 5,
+             labeller = label_wrap_gen(multi_line = FALSE)) +
+  scale_x_discrete(labels = function(k) sub("___.*$", "", k)) +
+  scale_fill_manual(values = c("Transcriptome" = "#0279EE", "16S" = "#75A025",
+                               "ITS" = "#FD9BED")) +
   labs(x = "Feature", y = "Weight",
-       title = "MOFA+ Top Feature Weights per Factor",
+       title = "MOFA+ top 20 feature weights per factor and view",
        fill = "View") +
-  theme(axis.text.y = element_text(size = 6),
+  theme(axis.text.y = element_text(size = 6.5),
         strip.text = element_text(size = 8),
         legend.position = "bottom")
-save_fig(figS6, "figS6_mofa_factor_weights", 14, 8)
+save_fig(figS6, "figS6_mofa_factor_weights", 16, 14)
 
 log_msg("  Saved Fig S6")
 
@@ -401,29 +429,14 @@ log_msg("  Saved Fig S6")
 # ==============================================================================
 log_msg("Generating Fig S7: WGCNA power curves")
 
-compute_power_curve <- function(datExpr, powers = 1:20) {
-  # Compute correlation matrix
-  cor_mat <- cor(datExpr, use = "pairwise.complete.obs")
-
-  sft <- data.frame(power = powers, sft_r2 = NA, mean_k = NA)
-  for (p in powers) {
-    # Adjacency
-    adj <- abs(cor_mat)^p
-    # Connectivity (excluding self)
-    k <- colSums(adj) - 1
-    # Scale-free topology fit
-    hist_info <- hist(k, breaks = 50, plot = FALSE)
-    k_bins <- hist_info$mids
-    p_k <- hist_info$counts
-    # Filter non-zero bins
-    valid <- p_k > 0 & k_bins > 0
-    if (sum(valid) >= 3) {
-      fit <- lm(log10(p_k[valid]) ~ log10(k_bins[valid]))
-      sft$sft_r2[sft$power == p] <- summary(fit)$r.squared
-    }
-    sft$mean_k[sft$power == p] <- mean(k)
-  }
-  return(sft)
+# The fit 06 used to choose the power: pickSoftThreshold, signed network,
+# signed R^2 = -sign(slope) * SFT.R.sq, same powers
+compute_power_curve <- function(datExpr, powers = c(1:10, seq(12, 20, by = 2))) {
+  sft <- WGCNA::pickSoftThreshold(datExpr, powerVector = powers, verbose = 0,
+                                  networkType = "signed")
+  fi <- sft$fitIndices
+  data.frame(power = fi$Power, sft_r2 = -sign(fi$slope) * fi$SFT.R.sq,
+             mean_k = fi$mean.k.)
 }
 
 power_curves <- list()
@@ -437,7 +450,8 @@ for (tissue in c("Leaf", "Adv-Root")) {
     sft$tissue <- tissue
     sft$chosen_power <- w$softPower
     power_curves[[tissue]] <- sft
-    log_msg("  ", tissue, ": chosen power = ", w$softPower)
+    log_msg("  ", tissue, ": chosen power = ", w$softPower, " (signed R2 = ",
+            round(sft$sft_r2[sft$power == w$softPower], 3), ")")
   }
 }
 
@@ -453,7 +467,7 @@ if (length(power_curves) > 0) {
                aes(xintercept = chosen_power, color = tissue),
                linetype = "dotted", linewidth = 0.5) +
     scale_color_manual(values = c("Leaf" = "#75A025", "Adv-Root" = "#FD9BED")) +
-    labs(x = "Soft Power", y = "Scale-Free Topology Fit (R\u00b2)",
+    labs(x = "Soft Power", y = "Scale-Free Topology Fit (signed R\u00b2)",
          title = "WGCNA Soft Power Selection",
          color = "Tissue") +
     theme(legend.position = "bottom")
