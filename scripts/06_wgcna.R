@@ -66,10 +66,16 @@ load_dysbiosis <- function() {
 }
 
 # --- Match dysbiosis to RNA-seq samples -------------------------------------
+plant_number <- function(id) {
+  # "SN05", "SN010", "VEG-05-G-SN-10-leaf-..." -> 5, 10, 10
+  as.integer(sub("^.*?SN-?([0-9]+).*$", "\\1", id, perl = TRUE))
+}
+
 match_dysbiosis_to_rnaseq <- function(rnaseq_samples, dys_data) {
   # RNA-seq sample IDs look like: VEG-05-Flt-SN05-Leaf-Red_L008
   # Microbiome sample IDs look like: VEG-05F-SN05-leaf-tom-red-rich_S107_L001
-  # Need to match by plant + tissue + flight + light
+  # Matched by plant + tissue + flight (not light: the two datasets label the
+  # light of ground adventitious-root plants SN02, SN04 and SN05 differently)
   
   meta <- read.csv(META_FILE, stringsAsFactors = FALSE)
   
@@ -97,11 +103,12 @@ match_dysbiosis_to_rnaseq <- function(rnaseq_samples, dys_data) {
       if (is.null(dys_data[[amp]])) next
       dys <- dys_data[[amp]]
       # Match: same compartment, flight, and plant
-      # Normalize plant ID: RNA-seq uses "SN01", microbiome uses "SN-01" for Ground
-      plant_norm <- gsub("-", "", plant)  # "SN01" from either "SN01" or "SN-01"
-      matches <- dys[dys$compartment == comp & 
-                      dys$flight == flight &
-                      grepl(plant_norm, gsub("-", "", dys$sample_id)), ]
+      # Plant IDs are written SN01, SN010 (flight) and SN-01, SN10 (ground), so
+      # they are compared as numbers; a substring match pairs SN01 with SN010
+      matches <- dys[which(dys$compartment == comp &
+                           dys$flight == flight &
+                           plant_number(dys$sample_id) == plant_number(plant)), ]
+      if (nrow(matches) > 1) stop("More than one ", amp, " sample matches ", sid)
       if (nrow(matches) > 0) {
         dys_matched$dysbiosis_16S[i] <- if (amp == "16S") matches$dysbiosis_index[1] else dys_matched$dysbiosis_16S[i]
         dys_matched$dysbiosis_ITS[i] <- if (amp == "ITS") matches$dysbiosis_index[1] else dys_matched$dysbiosis_ITS[i]
@@ -230,9 +237,12 @@ run_wgcna <- function(tissue) {
   # Match MEs to traits (same sample order)
   MEs <- MEs[rownames(traits), ]
   
-  # Correlate MEs with traits
+  # Correlate MEs with traits. A dysbiosis index is missing for samples with
+  # no matching microbiome sample, so each p-value uses that trait's own n
   moduleTraitCor <- cor(MEs, traits, use = "pairwise.complete.obs")
-  moduleTraitPvalue <- corPvalueStudent(moduleTraitCor, nrow(datExpr))
+  traitN <- colSums(!is.na(traits))
+  moduleTraitPvalue <- sapply(colnames(traits), function(trait)
+    corPvalueStudent(moduleTraitCor[, trait], traitN[[trait]]))
   
   # Format results
   mt_results <- data.frame(
@@ -247,6 +257,7 @@ run_wgcna <- function(tissue) {
     mt_results[[paste0("cor_", trait)]] <- moduleTraitCor[, trait]
     mt_results[[paste0("p_", trait)]] <- moduleTraitPvalue[, trait]
     mt_results[[paste0("padj_", trait)]] <- p.adjust(moduleTraitPvalue[, trait], method = "BH")
+    mt_results[[paste0("n_", trait)]] <- traitN[[trait]]
   }
   
   write.table(mt_results, file.path(out_dir, "module_trait_correlations.tsv"),

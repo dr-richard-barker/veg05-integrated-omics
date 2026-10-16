@@ -53,12 +53,12 @@ below, so the scripts are not runnable from this repository without editing thos
 
 ### Transcriptome
 - **Leaf**: 19,844 genes, 21 samples. Flight×Light interaction: 3,189 DEGs
-- **Adv-Root**: 20,875 genes, 15 samples. Flight term (red-rich reference level): 896 DEGs (87% upregulated)
+- **Adv-Root**: 20,875 genes, 15 samples. Flight main effect (averaged over light): 1,501 DEGs (83% upregulated)
 - **Key finding**: Spaceflight response under blue light (4,716 DEGs) >> red light (523 DEGs) in leaf
 
 ### Integration
 - **WGCNA**: Leaf 12 modules, Adv-Root 16 modules (plus unassigned genes)
-- **Key module**: Adv-Root black (169 genes) — microbe-driven (r=−0.85 with ITS dysbiosis; r=−0.38, padj=0.32 with flight)
+- **Key module**: Adv-Root black (169 genes) — microbe-driven (r=−0.85, padj=0.009 with ITS dysbiosis, 12 plants; r=−0.38, padj=0.32 with flight)
 - **MOFA+**: 5 factors, 21 samples, 3 views. Factor 1 captures flight (ρ=−0.76, padj=0.001), explains 48% transcriptome variance. The 16S/ITS views were built from mismatched samples and need re-running
 - **Module-taxon correlations**: 29 significant (BH padj<0.05), linking flight modules to Methylobacterium, Burkholderia, Azospirillum
 - **GO enrichment**: 80 module–term associations (73 unique terms, Leaf), 96 (86 unique, Adv-Root). Photosynthesis, oxidative stress, ribosome
@@ -75,7 +75,7 @@ veg05-integrated-omics/
 ├── microbiome/                  # DADA2 taxonomy and read tracking (16S, ITS)
 │   ├── community_health/        # Alpha/beta diversity, PERMANOVA, dysbiosis, ALDEx2
 │   └── functional/              # FAPROTAX and FUNGuild outputs
-├── rnaseq/                      # DESeq2 DEG tables and summary, sample-distance QC
+├── rnaseq/                      # DESeq2 DEG tables and summary, sample-distance QC; RERUN_2026-10-14.md
 │   ├── go_enrichment/           # GO enrichment of WGCNA modules
 │   ├── wgcna_Leaf/              # Module–trait correlations, hub genes
 │   └── wgcna_Adv-Root/

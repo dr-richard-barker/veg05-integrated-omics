@@ -7,7 +7,7 @@
 #   1. Load counts + metadata, filter low-count genes
 #   2. Create DESeq2 dataset with design ~ flight * light
 #   3. Run DESeq2 pipeline per tissue (Leaf, AdvRoot)
-#   4. Extract 5 contrasts per tissue with LFC shrinkage (apeglm)
+#   4. Extract 5 contrasts per tissue with LFC shrinkage (apeglm, ashr)
 #   5. VST transformation for downstream visualization/integration
 #   6. Export results tables, VST matrix, DESeq2 objects
 #
@@ -103,9 +103,20 @@ run_deseq2 <- function(tissue_name) {
   log_msg("DESeq2 complete")
   
   # --- Extract results for each contrast ---
+  # In the ~ flight * light model the flight coefficient is the flight effect
+  # under Red (the reference light) and the light coefficient the light effect
+  # in Ground. The main effects average each over both levels of the other
+  # factor, so they are built as numeric contrasts on the coefficients.
+  coef_names <- resultsNames(dds)
+  main_effect <- function(weights) {
+    stopifnot(all(names(weights) %in% coef_names))
+    v <- setNames(numeric(length(coef_names)), coef_names)
+    v[names(weights)] <- weights
+    v
+  }
   contrasts <- list(
-    flight_vs_ground = c("flight", "Flight", "Ground"),
-    red_vs_blue = c("light", "Red", "Blue"),
+    flight_vs_ground = main_effect(c(flight_Flight_vs_Ground = 1, flightFlight.lightBlue = 0.5)),
+    red_vs_blue = main_effect(c(light_Blue_vs_Red = -1, flightFlight.lightBlue = -0.5)),
     flt_red_vs_gnd_red = c("flight", "Flight", "Ground"),  # subset to Red
     flt_blue_vs_gnd_blue = c("flight", "Flight", "Ground"),  # subset to Blue
     interaction = NULL  # interaction term
@@ -135,15 +146,10 @@ run_deseq2 <- function(tissue_name) {
       res <- results(dds, contrast = coef, alpha = PADJ_THRESH)
     }
     
-    # LFC shrinkage: use apeglm with coef when possible, ashr for contrast-based
+    # LFC shrinkage: apeglm for the interaction coefficient, ashr for the
+    # main-effect contrasts (apeglm shrinks single coefficients only)
     if (contrast_name == "interaction") {
       res_shr <- lfcShrink(dds, coef = "flightFlight.lightBlue", type = "apeglm")
-    } else if (contrast_name == "flight_vs_ground") {
-      res_shr <- lfcShrink(dds, coef = "flight_Flight_vs_Ground", type = "apeglm")
-    } else if (contrast_name == "red_vs_blue") {
-      # Red vs Blue = negative of Blue_vs_Red coef
-      res_shr <- lfcShrink(dds, coef = "light_Blue_vs_Red", type = "apeglm")
-      res_shr$log2FoldChange <- -res_shr$log2FoldChange
     } else if (contrast_name %in% c("flt_red_vs_gnd_red", "flt_blue_vs_gnd_blue")) {
       # For subset analyses, use ashr (apeglm needs the full model)
       light_val <- ifelse(contrast_name == "flt_red_vs_gnd_red", "Red", "Blue")

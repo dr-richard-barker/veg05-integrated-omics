@@ -27,8 +27,8 @@ FIGS = [
     ("the root transcriptional response to spaceflight is less light-dependent than the leaf response.", [
         ("figures/fig3_deg_summary.png",
          "**Figure 3.** DEG summary across tissue × contrast; the leaf blue-light flight response (4,716 DEGs) dwarfs red (523)."),
-        ("figures/fig3b_volcano_leaf_flight.png", "**Figure 3B.** Leaf Flight-vs-Ground volcano (flight term of the flight × light model: the flight effect under red-rich light, the reference level)."),
-        ("figures/fig3c_volcano_advroot_flight.png", "**Figure 3C.** Adventitious-root Flight-vs-Ground volcano (flight term at the red-rich reference level; predominantly upregulation).")]),
+        ("figures/fig3b_volcano_leaf_flight.png", "**Figure 3B.** Leaf Flight-vs-Ground volcano (flight main effect of the flight × light model: the flight effect averaged over the two light treatments)."),
+        ("figures/fig3c_volcano_advroot_flight.png", "**Figure 3C.** Adventitious-root Flight-vs-Ground volcano (flight main effect, averaged over the two light treatments; predominantly upregulation).")]),
     ("consistent with spaceflight-induced oxidative stress.", [
         ("figures/fig4_module_traits_Leaf.png",
          "**Figure 4 (Leaf).** WGCNA module–trait correlations (flight, light, 16S/ITS dysbiosis). Each module is labelled with its dominant GO biology (Table 1); cells show Pearson r with significance stars."),
